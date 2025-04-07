@@ -1,3 +1,14 @@
+#' This function trail zeros from the coordinate values
+#'
+#' @param coord A coordinate value in the numeric format of decimal degree
+#'
+#' @return A coordinate value: which is trailed.
+
+#' @examples
+#' ec_trail_zero(12.7000000)
+#' ec_trail_zero(45.000000)
+#' @export
+
 ec_trail_zero <- function(coord) {
   coord_num <- as.numeric(coord)
   coord_cleaned <- sub("0+$", "", coord) # Remove trailing zeros

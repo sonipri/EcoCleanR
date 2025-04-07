@@ -1,0 +1,38 @@
+#' This function use for getting summary table of spatial and environmental variable for a species habitat suitability
+#'
+#' @param data data table after cleaning the records
+#' @param env_layers an array of col names of enviornmental layers
+#' @return a summary table with the mean, min and max values of spatial and environmenal variables
+#'
+#' @export
+#' @examples
+#' data <- data.frame(
+#'   scientificName = "Mexacanthina lugubris",
+#'   decimalLongitude = c(-117, -117.8, -116.9, -116.5),
+#'   decimalLatitude = c(32.9, 33.5, 31.9, 32.4),
+#'   temperature_mean = c(12, 13, 14, 11),
+#'   temperature_min = c(9, 6, 10, 10),
+#'   temperature_max = c(14, 16, 18, 17)
+#'   )
+#' env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+#' ec_var_summary(data, env_layers)
+#'
+#'
+ec_var_summary <- function(data, env_layers) {
+  vars_to_summarize <- c("decimalLatitude", "decimalLongitude", env_layers)
+
+  # Subset the data
+  data_subset <- data[, vars_to_summarize]
+
+  summary_table <- data.frame(
+    Mean = round(colMeans(data_subset, na.rm = TRUE), 2),
+    Min = round(apply(data_subset, 2, min, na.rm = TRUE), 2),
+    Max = round(apply(data_subset, 2, max, na.rm = TRUE), 2)
+  )
+
+  summary_table$variable <- rownames(summary_table)
+  rownames(summary_table) <- seq_len(nrow(summary_table))
+  summary_table <- summary_table[, c("variable", "Max", "Min", "Mean")]
+
+  return(summary_table)
+}

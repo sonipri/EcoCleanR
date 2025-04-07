@@ -1,0 +1,55 @@
+#' This function can be used display a map view of input data
+#'
+#' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table
+#'
+#' @return A map view shows occurrence records.
+#' @importFrom terra ext
+#' @importFrom terra crop
+#' @importFrom geodata world
+#' @importFrom sf st_as_sf
+#' @import ggplot2
+#' @export
+#'
+#' @examples
+#' data <- data.frame(
+#'   scientificName = "Mexacanthina lugubris",
+#'   decimalLongitude = c(-117, -117.8, -116.9),
+#'   decimalLatitude = c(32.9, 33.5, 31.9),
+#'   temperature_mean = c(12, 13, 14),
+#'   temperature_min = c(9, 6, 10),
+#'   temperature_max = c(14, 16, 18)
+#'   )
+#' ec_geographic_map(data)
+ec_geographic_map <- function(data) {
+  # Calculate latitude and longitude boundaries
+  max_lat <- ceiling(max(data$decimalLatitude, na.rm = TRUE))
+  min_lat <- floor(min(data$decimalLatitude, na.rm = TRUE))
+  max_lon <- ceiling(max(data$decimalLongitude, na.rm = TRUE))
+  min_lon <- floor(min(data$decimalLongitude, na.rm = TRUE))
+
+  # Create geographic extent
+  geographic_extent <- ext(x = c(min_lon, max_lon, min_lat, max_lat))
+
+  # Load and crop world map
+  world_map <- world(resolution = 3, path = "data/") # Load world map
+  cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
+
+  # Convert cropped map to sf object
+  my_map <- st_as_sf(cropped_map)
+
+  # Plot the map using ggplot2
+  ggplot(data = my_map) +
+    geom_sf(fill = "grey95", color = "black") + # Plot the map
+    geom_jitter(
+      data = data,
+      aes(x = decimalLongitude, y = decimalLatitude),
+      color = "darkblue", size = 6, alpha = 0.5
+    ) + # Add jittered points
+    theme_minimal() + # Minimal theme
+    labs(x = "Longitude", y = "Latitude", title = "Geographic Map") + # Labels and title
+    theme(
+      axis.text = element_text(size = 14), # Increase axis tick label size
+      axis.title = element_text(size = 16), # Increase axis label size
+      plot.title = element_text(size = 18, hjust = 0.5) # Center and enlarge the title
+    )
+}

@@ -1,0 +1,42 @@
+Package: EcoCleanR
+Title: Cleaning occurrence data to generate species biogeographic range
+Version: 0.0.0.9000
+Authors@R: 
+    person("Priyanka", "Soni", , "sonip@usc.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package provides tools to integrate biodiversity data from multiple aggregators and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    geodata,
+    geosphere,
+    ggplot2,
+    moments,
+    mregions2,
+    patchwork,
+    predicts,
+    raster,
+    remotes,
+    rgbif,
+    ridigbio,
+    rnaturalearth,
+    robis,
+    sdmpredictors,
+    sf,
+    sp,
+    stats,
+    taxize,
+    terra,
+    tidygeocoder,
+    tidyr,
+    vdiffr,
+    viridis
+Depends: 
+    R (>= 2.10)
+LazyData: true
