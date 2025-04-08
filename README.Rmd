@@ -13,16 +13,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-# EcoCleanR
+# EcoCleanR V1.0
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of EcoCleanR is to provides tools to integrate biodiversity data from multiple aggregators and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.
+**The goal of EcoCleanR is to provides functions to integrate biodiversity data from multiple aggregates and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.**
 
-## Installation
+Key features:<br>
+
+1. Data Merging: Merge data from GBIF (with *rgbif*), iDigBio (with *ridigbio*), OBIS (with *robis*), InvertEBase (with *rsymbiota*), and local input data files (with read.csv local drive). <br>
+2. Data Cleaning: <br>
+2.1. Remove duplicates<br>
+2.2. Check bad taxon using WoRMs<br>
+2.3. Improve the coordinate information utilizing external georeference tools. 
+2.4. check the coordinate precision and rounding<br>
+2.5. Flag the records associated wrong ocean/sea and inland
+2.6. Extract the environmental variables<br>
+2.7. Impute the environmental variables if no assignment from online resources.<br>
+2.8. Identifying outliers<br>
+3. Data visualizing: <br>
+3.1. Create map view<br>
+3.2. Execute a summary table with max, min and mean limits of variables<br>
+3.3. Create a summary and plot to represent suitable range of a species for spatial and non spatial attributes<br>
+
+## Installation from GitHub
 
 You can install the development version of EcoCleanR from [GitHub](https://github.com/) with:
+https://github.com/sonipri/EcoCleanR/
+
 
 ``` r
 # install.packages("devtools")
@@ -36,20 +55,50 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(EcoCleanR)
 ## basic example code
+# After execution of step 1 and 2.1, output file called "ecodata"
+# This dataset contains ~1100 occurrence records for the species Mexacanthina lugubris. It was compiled by merging data from multiple online repositories — GBIF, OBIS, iDigBio, InvertEBase — along with personal field observations (step 1). Duplicate records were removed to retain only unique occurrences (2.1).
+# The algorithm for these steps can be found on article folder - documentation
+head(ecodata)
+
+# visualizing the raw data
+ec_geographic_map(ecodata)
+
+# lets execute cleaning steps
+# step 2.2 - check taxon error for species name - "Mexacanthina lugubris"
+comparison <- ec_worms_synonym("Mexacanthina lugubris", ecodata)
+# step 2.3 - check records with locality but no coordinate assignments
+ecodata$flag_with_locality <- ec_flag_with_locality(ecodata)
+# upload back the corrected file with csv upload - name it as ecodata_corrected
+head(ecodata_corrected)
+ecodata <- ec_merge_corrected_coordinates(ecodata_corrected, ecodata)
+
+ecodata <- ec_filter_by_uncertainty(ecodata, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.95, ask = TRUE)
+
+# step 2.4 - check records with bad precision <2 as well as rounding issue
+ecodata$flag_precision <- ec_flag_precision(ecodata$decimalLongitude, ecodata$decimalLatitude)
+# step 2.5 - check records with wrong assignment of ocean/sea and inland with certain buffer range - not executing on run
+if (FALSE) {
+  ecodata$flag_non_region <- ec_flag_non_region("east", "pacific", buffer = 25000, ecodata)
+}
+# step 2.6 - extract the environmental variables, here we are using a data table which has unique combination of coordinates - we call it ecodata_x - not executing on run
+if (FALSE) {
+  ecodata_x <- ec_extract_env_layers(ecodata_x, env_layers = env_layers)
+}
+# step 2.7 - impute the environmental variables for those coordinates with no assignment on online data sources.
+if (FALSE) {
+  ecodata_x <- ec_impute_env_values(ecodata_x, radius_km, iter)
+}
+# step 2.8 - calculate outlier probability for each data points.
+if (FALSE) {
+  ecodata_x$flag_outliers <- ((ec_flag_outlier(ecodata_x, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)))$ouliers
+}
+# step 3.1 - visualize the map with outlier probability index, bind the ecodata_x with ecodata with updated column flag_outlier
+ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
+# at this stage we can decide the acceptable outlier probability and after removing higher probable a new datafram called ecodata_cleaned can be source of summary table (next step)
+# step 3.2 - Visualize the summary table
+env_layers <- c("temperature_mean_BO", "temperature_min_BO", "temperature_max_BO")
+data("ecodata_cleaned")
+summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
+# step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
+ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

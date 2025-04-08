@@ -74,7 +74,7 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
                 width = 0.15, color = "blue", linewidth = 1.0) +
   geom_point(data = mydata_long %>% filter(variable %in% env_layers),
              aes(x = variable, y = value),
-             size = 2, shape = 1, color = "black", stroke = 1) +
+             size = 2, shape = 1, color = "black", stroke = 1, na.rm = TRUE) +
   ggtitle("Environmental Variables") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))

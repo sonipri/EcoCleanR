@@ -104,37 +104,71 @@ test_that("ec_impute_env_values works", {
   expect_true(!any(is.na(result))) # for this example
 })
 
-#ec_flag_outlier (Testing)
+# ec_flag_outlier (Testing)
 
 test_data7 <- data.frame(
-  decimalLatitude = c(8.40, 16.80, 19.28, 20.25, 20.25, 20.25, 22.92, 23.22, 23.95, 24.36,
-                      24.40, 24.40, 24.40, 24.42, 24.52, 24.53, 24.54, 24.55, 24.55, 24.60, 24.61, 24.63, 24.63),
-  decimalLongitude = c(-83.28, -99.90, -104.87, -105.58, -105.58, -105.58, -106.10, -106.42, -110.88, -110.34,
-                       -112.07, -112.07, -112.07, -111.73, -111.95, -112.03, -112.07, -112.07, -112.07,
-                       -112.08, -112.10, -112.02, -112.12),
-  temperature_mean = c(29.31, 29.36, 27.83, 28.02, 28.02, 28.02, 29.04, 26.73, 23.22, 25.11,
-                          21.88, 21.88, 21.88, 23.48, 22.40, 21.95, 21.95, 21.95, 21.95, 21.95, 21.49, 21.55, 21.49),
-  temperature_max = c(30.17, 31.31, 30.71, 32.42, 32.42, 32.42, 32.68, 31.30, 27.82, 30.01,
-                         27.23, 27.23, 27.23, 28.61, 27.44, 27.19, 27.19, 27.19, 27.19, 27.19, 26.94, 26.74, 26.94),
-  temperature_min = c(28.49, 27.18, 24.69, 23.62, 23.62, 23.62, 24.96, 22.43, 18.87, 20.71,
-                         17.82, 17.82, 17.82, 20.49, 19.52, 18.11, 18.11, 18.11, 18.11, 18.11, 17.51, 17.85, 17.51)
+  decimalLatitude = c(
+    8.40, 16.80, 19.28, 20.25, 20.25, 20.25, 22.92, 23.22, 23.95, 24.36,
+    24.40, 24.40, 24.40, 24.42, 24.52, 24.53, 24.54, 24.55, 24.55, 24.60, 24.61, 24.63, 24.63
+  ),
+  decimalLongitude = c(
+    -83.28, -99.90, -104.87, -105.58, -105.58, -105.58, -106.10, -106.42, -110.88, -110.34,
+    -112.07, -112.07, -112.07, -111.73, -111.95, -112.03, -112.07, -112.07, -112.07,
+    -112.08, -112.10, -112.02, -112.12
+  ),
+  temperature_mean = c(
+    29.31, 29.36, 27.83, 28.02, 28.02, 28.02, 29.04, 26.73, 23.22, 25.11,
+    21.88, 21.88, 21.88, 23.48, 22.40, 21.95, 21.95, 21.95, 21.95, 21.95, 21.49, 21.55, 21.49
+  ),
+  temperature_max = c(
+    30.17, 31.31, 30.71, 32.42, 32.42, 32.42, 32.68, 31.30, 27.82, 30.01,
+    27.23, 27.23, 27.23, 28.61, 27.44, 27.19, 27.19, 27.19, 27.19, 27.19, 26.94, 26.74, 26.94
+  ),
+  temperature_min = c(
+    28.49, 27.18, 24.69, 23.62, 23.62, 23.62, 24.96, 22.43, 18.87, 20.71,
+    17.82, 17.82, 17.82, 20.49, 19.52, 18.11, 18.11, 18.11, 18.11, 18.11, 17.51, 17.85, 17.51
+  )
 )
 
 env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
 
 test_that("ec_flag_outlier works", {
-result <- ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99)
-expect_equal(sum(result$outliers)>0,TRUE)
+  result <- ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99)
+  expect_equal(sum(result$outliers) > 0, TRUE)
 })
 
+# ec_geographic_map_w_flag
 
-
-test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier #result obtained from ec_flag_outliers
+test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
 test_that("ec_geographic_map_w_flag works", {
- p<- ec_geographic_map_w_flag(test_data7, flag_column = "outliers")
- vdiffr::expect_doppelganger("map_w_flag.png", p)
- })
+  p <- ec_geographic_map_w_flag(test_data7, flag_column = "outliers")
+  vdiffr::expect_doppelganger("map_w_flag.png", p)
+})
 
+# ec_geographic_map
+test_that("ec_geographic_map_w_flag works", {
+  p1 <- ec_geographic_map(test_data7)
+  vdiffr::expect_doppelganger("map.png", p1)
+})
 
+# ec_var_summary
 
+env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+test_data8 <- test_data7 %>%
+  dplyr::filter(outliers == 0)
 
+test_that("ec_var_summary works", {
+  result <- ec_var_summary(test_data8, env_layers)
+  expect_s3_class(result, "data.frame")
+  # Check required columns exist
+  expect_true(all(c("Max", "Min", "Mean") %in% colnames(result)))
+  # Check record count formatting exists (e.g., "Mexacanthina lugubris (1)")
+  expect_true(!any(is.na(result)))
+})
+
+# ec_plot_var_range
+env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+test_that("ec_plot_var_range works", {
+  p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
+  vdiffr::expect_doppelganger("var_plot.png", p2)
+})
