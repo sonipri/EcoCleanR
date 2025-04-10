@@ -1,3 +1,41 @@
+
+db1 <- data.frame(
+  species = "A",
+  decimalLongitude = c(-120.2, -117.1, NA, NA),
+  decimalLatitude = c(20.2, 34.1, NA, NA),
+  catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
+  occurrenceStatus = c("present", NA, "ABSENT", "Present"),
+  basisOfRecord = c("preserved_specimen", NA, "fossilspecimen", "material_sample"),
+  source = "db1",
+  abundance = c(1, 6, 23, 1)
+)
+
+db2 <- data.frame(
+  species = "A",
+  decimalLongitude = c(-120.2, -117.1, NA, NA),
+  decimalLatitude = c(20.2, 34.1, NA, NA),
+  catalogNumber = c("12345", "898828", "LACM82898", "SDNHM62767"),
+  occurrenceStatus = c("present", "Absent", "present", "Present"),
+  basisOfRecord = c("preserved_specimen", NA, "fossilspecimen", "material_sample"),
+  source = "db2",
+  abundance = c(1, 3, 8, 19)
+)
+# ec_db_merge
+test_that("ec_db_merge works", {
+  result <- ec_db_merge(datatype = "modern", db1, db2)
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 3)
+  expect_equal(sum(table(result$catalogNumber)>1), 1)
+})
+
+#ec_rm_duplicate
+test_that("ec_rm_duplicate works",{
+  result <- ec_rm_duplicate(ec_db_merge(datatype = "modern", db1, db2), catalogNumber = "catalogNumber", abundance = "abundance")
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 2)
+  expect_equal(sum(table(result$cleaned_catalog)>1), 0)
+  })
+
 # load data file
 test_data1 <- data.frame(
   scientificName = c("Mexacanthina lugubris", "Mexacanthina angelica", "Notareal species"),

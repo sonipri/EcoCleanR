@@ -1,0 +1,74 @@
+#' This function helps to merge the data frames from different sources.
+#' condition to run this function:
+#' all the data frames should have same fields follwing DwC standards:
+#' e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")
+#' Assign manually the source name in "source" field. example - gbif, obis, invertEBase etc
+#' Assign values of individual count or organism count into abundance. Most online sources has one of them updated with specimen count.
+#' @param datatype default "modern". datatype accept text input as "modern" or "fossil"
+#' @param ... list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.
+#'
+#' @return A merge data frame which is filtered with "modern" or "fossil" records
+#' @export
+#' @importFrom dplyr mutate
+#' @importFrom dplyr filter
+#' @examples
+#' db1<- data.frame(species = "A",
+#'                   decimalLongitude = c(-120, -117, NA, NA),
+#'                   decimalLatitude = c(20, 34, NA, NA),
+#'                   catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
+#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
+#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
+#'                   source = "db1",
+#'                   abundance = c(1,NA,8,23)
+#'                   )
+#'
+#'db2<- data.frame(species = "A",
+#'                   decimalLongitude = c(-120.2, -117.1, NA, NA),
+#'                   decimalLatitude = c(20.2, 34.1, NA, NA),
+#'                   catalogNumber = c("123452", "898828", "LACM82898", "SDNHM62767"),
+#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
+#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
+#'                   source = "db2",
+#'                   abundance = c(1,2,3,19)
+#'                   )
+#' merge_modern_data <- ec_db_merge("modern", db1, db2)
+#'
+ec_db_merge <- function(datatype = "modern", ...) {
+  # Collect all input databases
+  db_list <- list(...)
+
+  # Filter out invalid inputs
+  db_list <- Filter(function(x) is.data.frame(x) && nrow(x) > 0, db_list)
+
+  if (length(db_list) == 0) {
+    warning("No valid databases provided.")
+    return(NULL)
+  }
+
+  # Combine all valid data frames
+  Mixdb.occ <- do.call(rbind, db_list)
+
+  # Clean and filter based on datatype
+  Mixdb.occ <- Mixdb.occ %>%
+    mutate(
+      occurrenceStatus = ifelse(is.na(occurrenceStatus), "", occurrenceStatus)
+    ) %>%
+    filter(tolower(occurrenceStatus) != "absent")
+
+  if (datatype == "modern") {
+    Mixdb.occ <- Mixdb.occ %>%
+      filter(
+        !tolower(basisOfRecord) %in% c("fossil_specimen", "fossilspecimen", "material_sample")
+      ) %>%
+      mutate(basisOfRecord = "modern")
+  } else if (datatype == "fossil") {
+    Mixdb.occ <- Mixdb.occ %>%
+      filter(tolower(basisOfRecord) %in% c("fossil_specimen", "fossilspecimen")) %>%
+      mutate(basisOfRecord = "fossil")
+  } else {
+    warning("Invalid datatype. Choose 'modern' or 'fossil'.")
+    return(NULL)
+  }
+
+  return(Mixdb.occ)
+}

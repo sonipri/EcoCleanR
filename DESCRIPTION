@@ -25,6 +25,7 @@ Imports:
     remotes,
     rgbif,
     ridigbio,
+    rlang,
     rnaturalearth,
     robis,
     sdmpredictors,
