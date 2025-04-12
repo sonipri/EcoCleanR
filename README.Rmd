@@ -40,12 +40,12 @@ Key features:<br>
 ## Installation from GitHub
 
 You can install the development version of EcoCleanR from [GitHub](https://github.com/) with:
-https://github.com/sonipri/EcoCleanR/
+https://github.com/xxx/EcoCleanR/
 
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("sonipri/EcoCleanR")
+devtools::install_github("xxx/EcoCleanR")
 ```
 
 ## Example
@@ -98,7 +98,10 @@ ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
 # step 3.2 - Visualize the summary table
 env_layers <- c("temperature_mean_BO", "temperature_min_BO", "temperature_max_BO")
 data("ecodata_cleaned")
+ec_geographic_map(ecodata_cleaned)
+
 summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
+print(summary_table)
 # step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
 ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
 ```

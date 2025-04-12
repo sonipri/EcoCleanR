@@ -25,13 +25,13 @@ In this tutorial we will show merging occurrence records of an example species f
 
 #Code execution:
 ```{r libraries}
-#Install packages
+# Install packages
 library(rgbif)
 library(ridigbio)
 library(robis)
-#library(rSymbiota)
-#install.packages("devtools")
-#devtools::install_github("FranzKrah/rSymbiota")
+# library(rSymbiota)
+# install.packages("devtools")
+# devtools::install_github("FranzKrah/rSymbiota")
 library(dplyr)
 # select species of interest
 species_name <- "Mexacanthina lugubris"
@@ -46,7 +46,7 @@ gbif.occ$abundance <- ifelse(is.na(as.numeric(gbif.occ$individualCount)), as.num
 ## additional field added to know the source
 gbif.occ$source <- "gbif"
 gbif.occ_temp <- gbif.occ[, attribute_list]
-str(gbif.occ_temp[,1:3])
+str(gbif.occ_temp[, 1:3])
 ## end of GBIF data extraction
 
 # OBIS- data extraction and standardization---------
@@ -60,7 +60,7 @@ obis.occ$abundance <- ifelse(is.na(as.numeric(obis.occ$individualCount)), as.num
 obis.occ$source <- "obis"
 obis.occ$municipality <- ""
 obis.occ_temp <- obis.occ[, attribute_list]
-str(obis.occ_temp[,1:3])
+str(obis.occ_temp[, 1:3])
 
 ## end of OBIS data extraction
 
@@ -97,35 +97,32 @@ idig.occ <- idig.occ %>%
   )
 
 idig.occ_temp <- idig.occ[, attribute_list]
-str(idig.occ_temp[,1:3])
+str(idig.occ_temp[, 1:3])
 
-##end of idigbio data extraction
+## end of idigbio data extraction
 
-#InvertEbase - data extraction and standardization---------
-###rSymbiota is utilize for invertEBase which required addition soft loading called - docker to run ther server. We are not running this code due to system dependency
+# InvertEbase - data extraction and standardization---------
+### rSymbiota is utilize for invertEBase which required addition soft loading called - docker to run ther server. We are not running this code due to system dependency
 
-###mycoportal <- "http://invertebase.org/portal/index.php"
-###sym.occ <- symbiota(taxon = "mexacanthina lugubris", db = mycoportal)
+### mycoportal <- "http://invertebase.org/portal/index.php"
+### sym.occ <- symbiota(taxon = "mexacanthina lugubris", db = mycoportal)
 
-#Instead we will use csv file downloaded from invertEBase, please use this file as template
+# Instead we will use csv file downloaded from invertEBase, please use this file as template
 sym.occ <- example_sp_invertebase
 sym.occ$abundance <- as.numeric(sym.occ$individualCount)
 
 for (field in attribute_list) {
   if (!field %in% names(sym.occ)) {
-    obis.occ[[field]] <- NA  # Add the missing field as NA
+    obis.occ[[field]] <- NA # Add the missing field as NA
   }
 }
 
-str(sym.occ[,1:3])
-### end of InvertEBase 
+str(sym.occ[, 1:3])
+### end of InvertEBase
 
-#Merging the databases
+# Merging the databases
 Mixdb.occ <- ec_db_merge(datatype = "modern", gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
 
-str(Mixdb.occ[,1:3])
-#end of merge data. Note - we have duplicates which will be removed as part of data cleaning file.
-
+str(Mixdb.occ[, 1:3])
+# end of merge data. Note - we have duplicates which will be removed as part of data cleaning file.
 ```
-
-

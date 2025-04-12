@@ -2,8 +2,7 @@ Package: EcoCleanR
 Title: Cleaning occurrence data to generate species biogeographic range
 Version: 0.0.0.9000
 Authors@R: 
-    person("Priyanka", "Soni", , "sonip@usc.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("xxx", "xxx", , "xxx@gmail.com", role = c("aut", "cre"))
 Description: This package provides tools to integrate biodiversity data from multiple aggregators and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.
 License: MIT + file LICENSE
 Encoding: UTF-8

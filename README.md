@@ -33,12 +33,11 @@ Key features:<br>
 ## Installation from GitHub
 
 You can install the development version of EcoCleanR from
-[GitHub](https://github.com/) with:
-<https://github.com/sonipri/EcoCleanR/>
+[GitHub](https://github.com/) with: <https://github.com/xxx/EcoCleanR/>
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("sonipri/EcoCleanR")
+devtools::install_github("xxx/EcoCleanR")
 ```
 
 ## Example
@@ -171,11 +170,23 @@ ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
 # step 3.2 - Visualize the summary table
 env_layers <- c("temperature_mean_BO", "temperature_min_BO", "temperature_max_BO")
 data("ecodata_cleaned")
-summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
-# step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
-ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
-#> Warning: Removed 24 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
+ec_geographic_map(ecodata_cleaned)
 ```
 
 <img src="man/figures/README-example-3.png" width="100%" />
+
+``` r
+
+summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
+print(summary_table)
+#>              variable     Max     Min    Mean
+#> 1     decimalLatitude   34.04   22.92   31.73
+#> 2    decimalLongitude -106.10 -118.94 -116.58
+#> 3 temperature_mean_BO   29.04   16.15   17.97
+#> 4  temperature_min_BO   24.96   11.42   14.41
+#> 5  temperature_max_BO   32.68   18.79   22.47
+# step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
+ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
+```
+
+<img src="man/figures/README-example-4.png" width="100%" />
