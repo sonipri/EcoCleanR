@@ -33,21 +33,18 @@ attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatu
 # GBIF - data extraction and standardization---------
 ## library(rgbif)
 gbif.occ <- occ_data(taxonKey = taxonkey, occurrenceStatus = NULL, limit = 10000L)$data
-## we are making one column called abundance which should have values from individual count and organism Quantity
-gbif.occ$abundance <- ifelse(is.na(as.numeric(gbif.occ$individualCount)), as.numeric(gbif.occ$organismQuantity), as.numeric(gbif.occ$individualCount))
+
 ## additional field added to know the source
 gbif.occ$source <- "gbif"
 
-# Optional to perform: check the institution code
-inst_counts <- gbif.occ %>%
-  group_by(institutionCode) %>%
-  summarise(record_count = n(), .groups = "drop")
+for (field in attribute_list) {
+  if (!field %in% names(gbif.occ)) {
+    gbif.occ[[field]] <- NA # Add the missing field as NA
+  }
+}
+## we are making one column called abundance which should have values from individual count and organism Quantity
+gbif.occ$abundance <- ifelse(is.na(as.numeric(gbif.occ$individualCount)), as.numeric(gbif.occ$organismQuantity), as.numeric(gbif.occ$individualCount))
 
-### optional to perform..
-gbif.occ_temp <- gbif.occ %>%
-  filter(is.na(institutionCode) | institutionCode != "NRM")
-
-# remove unwanted insititution codes which may not have valid records
 
 gbif.occ_temp <- gbif.occ[, attribute_list]
 str(gbif.occ_temp[, 1:3])
@@ -136,6 +133,17 @@ str(Mixdb.occ[, 1:3])
 ecodata_cl <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance = "abundance")
 str(ecodata_cl[, 1:3])
 
+### Optional to perform: check the institution code
+inst_counts <- ecodata_cl %>%
+  group_by(institutionCode) %>%
+  summarise(record_count = n(), .groups = "drop")
+
+### optional to perform..
+ecodata_cl <- ecodata_cl %>%
+  filter(is.na(institutionCode) | institutionCode != "NRM")
+
+ec_geographic_map(ecodata_cl)
+
 # Step3: check taxon error - ec_worms_synonym function--------
 comparison <- ec_worms_synonym(species_name, ecodata_cl)
 print(comparison)
@@ -216,9 +224,9 @@ ecodata_unique <- ec_impute_env_values(ecodata_unique, radius_km = 15, iter = 4)
 ### omit the coordinate which couldn't get any env values after imputation
 ecodata_unique <- na.omit(ecodata_unique)
 list_outlier <- list()
-list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
+list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.995)
 
-ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99)
+ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.995)
 ###press q to exit from the plot
 
 ecodata_unique$flag_outliers <- list_outlier$outliers
@@ -238,7 +246,7 @@ ecodata_cl <- ecodata_cl %>%
 ec_geographic_map_w_flag(ecodata_cl, flag_column = "flag_outliers")
 ### consider a threshold to accept a data point outlier with the outlier probability >0.8
 cleaned_data <- ecodata_cl %>%
-  filter(flag_outliers < 0.8)
+  filter(flag_outliers < 0.95)
 
 ec_geographic_map(cleaned_data)
 str(cleaned_data)

@@ -39,7 +39,7 @@ ec_flag_non_west_atlantic <- function(ocean_names, buffer_distance = 50000, ecod
   combined_ocean <- do.call(rbind, ocean_shapes)
 
   # Define a bounding box
-  bbox <- st_bbox(c(xmin = -100, xmax = -40, ymin = -60, ymax = 60), crs = st_crs(combined_ocean))
+  bbox <- st_bbox(c(xmin = -100, xmax = -30, ymin = -60, ymax = 60), crs = st_crs(combined_ocean))
   suppressWarnings({
     # Crop the ocean shapes to the bounding box
     cropped_ocean <- st_crop(combined_ocean, bbox)

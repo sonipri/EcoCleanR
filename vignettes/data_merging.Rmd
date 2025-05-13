@@ -41,6 +41,14 @@ attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatu
 
 # GBIF - data extraction and standardization---------
 gbif.occ <- occ_data(taxonKey = taxonkey, occurrenceStatus = NULL, limit = 10000L)$data
+## additional field added to know the source
+gbif.occ$source <- "gbif"
+for (field in attribute_list) {
+  if (!field %in% names(gbif.occ)) {
+    gbif.occ[[field]] <- NA # Add the missing field as NA
+  }
+}
+
 ## we are making one column called abundance which should have values from individual count and organism Quantity
 gbif.occ$abundance <- ifelse(is.na(as.numeric(gbif.occ$individualCount)), as.numeric(gbif.occ$organismQuantity), as.numeric(gbif.occ$individualCount))
 ## additional field added to know the source

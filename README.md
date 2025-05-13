@@ -36,14 +36,19 @@ You can install the development version of EcoCleanR from
 [GitHub](https://github.com/) with:
 <https://github.com/xxx/EcoCleanR/><br>
 
-How to install package through zip file:<br> a) as mregion2 and rdigbio
-are not on cran, please install them from github:<br>
-install.packages(“remotes”)<br>
-remotes::install_github(“ropensci/mregions”)<br>
-remotes::install_github(“ropensci/ridigbio”)<br> b)
-devtools::install_local(“EcoCleanR-main.zip”, dependencies = TRUE) \#to
-install EcoCleanR package with dependent packages<br> c) Set the working
-directory on EcoCleanR-main unzip folder<br>
+How to install package through zip file:<br> a) First install
+prerequisite packages: As *mregion2* and *ridigbio* are not on cran,
+install them from github:<br>
+
+``` r
+   #install.packages("remotes")
+      #remotes::install_github("ropensci/mregions2")
+      #remotes::install_github("ropensci/ridigbio")
+```
+
+2)  devtools::install_local(“EcoCleanR-main.zip”, dependencies = TRUE)
+    \#to install EcoCleanR package with dependent packages<br>
+3)  Set the working directory on EcoCleanR-main unzip folder<br>
 
 ``` r
 # install.packages("devtools")

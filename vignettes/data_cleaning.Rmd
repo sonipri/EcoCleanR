@@ -10,8 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
-  #eval = FALSE
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -46,6 +46,18 @@ species_name <- "Mexacanthina lugubris"
 # ecodata <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance = "abundance")
 # str(ecodata[,1:3])
 ### end of remove duplicates
+
+### Optional to perform: check the institution code
+#inst_counts <- ecodata_cl %>%
+  #group_by(institutionCode) %>%
+  #summarise(record_count = n(), .groups = "drop")
+
+### optional to perform..
+#ecodata_cl <- ecodata_cl %>%
+  #filter(is.na(institutionCode) | institutionCode != "NRM")
+
+
+
 
 # Step2: check taxon error - ec_worms_synonym function
 comparison <- ec_worms_synonym(species_name, ecodata)

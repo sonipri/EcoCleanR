@@ -43,7 +43,7 @@ ec_geographic_map <- function(data) {
     geom_jitter(
       data = data,
       aes(x = decimalLongitude, y = decimalLatitude),
-      color = "darkblue", size = 6, alpha = 0.5
+      color = "#000066", size = 3.5, alpha = 0.5
     ) + # Add jittered points
     theme_minimal() + # Minimal theme
     labs(x = "Longitude", y = "Latitude", title = "Geographic Map") + # Labels and title

@@ -51,7 +51,7 @@ ec_geographic_map_w_flag <- function(data, flag_column) {
     geom_sf(fill = "grey95", color = "black") +  # Plot the map
     geom_jitter(data = data,
                 aes(x = decimalLongitude, y = decimalLatitude, fill = !!sym(flag_column)),  # Fill with flag column
-                shape = 21, size = 5, alpha = 0.5, stroke = 0.5, color = "black") +  # Black border
+                shape = 21, size = 3.5, alpha = 0.5, stroke = 0.5, color = "black") +  # Black border
     scale_fill_viridis_c(option = "plasma", name = "Outlier Probability", limits = c(0,1)) +  # Custom colors
     theme_minimal() + # Minimal theme
     labs(x = "Longitude", y = "Latitude", title = "Geographic Map", color = "Flag") +  # Labels and title
