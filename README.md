@@ -40,20 +40,20 @@ How to install package through zip file:<br>
 
 1)  Install *devtools* and *remotes* packages and load them.<br>
 
-\#install.packages(“devtools”) \#install.packages(“remotes”)
-\#library(devtools) \#library(remotes)
+    \#install.packages(“devtools”)<br> \#install.packages(“remotes”)<br>
+    \#library(devtools)<br> \#library(remotes)<br>
 
 2)  Install *EcoCleanR* package from zip file.<br>
 
-\#devtools::install_local(“EcoCleanR-xxx.zip”, dependencies = TRUE)
+    \#devtools::install_local(“EcoCleanR-xxx.zip”, dependencies = TRUE)
 
 3)  unzip the zip file EcoCleanR and set it as working directory.<br>
 
-\#setwd(…path)
+    \#setwd(…path)
 
 4)  *Optional: Only for testing purposes*. <br>
 
-\#devtools::check()
+    \#devtools::check()
 
 5)  Detail script with example scenario is given in
     vignettes/articles/stepbystep.Rmd.
