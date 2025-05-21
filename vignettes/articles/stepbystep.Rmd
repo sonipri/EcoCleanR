@@ -224,9 +224,9 @@ ecodata_unique <- ec_impute_env_values(ecodata_unique, radius_km = 15, iter = 4)
 ### omit the coordinate which couldn't get any env values after imputation
 ecodata_unique <- na.omit(ecodata_unique)
 list_outlier <- list()
-list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.995)
+list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
 
-ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.995)
+ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99)
 ###press q to exit from the plot
 
 ecodata_unique$flag_outliers <- list_outlier$outliers

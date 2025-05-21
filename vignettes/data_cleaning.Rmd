@@ -138,11 +138,11 @@ ecodata_cl <- ecodata_cl %>%
 ec_geographic_map_w_flag(ecodata_cl, flag_column = "flag_outliers")
 ### consider a threshold to accept a data point outlier with the outlier probability >0.8
 cleaned_data <- ecodata_cl %>%
-  filter(flag_outliers < 0.8)
-
+  filter(flag_outliers < 0.95)
+ec_geographic_map(cleaned_data)
 # Step8: Create summary table for the accepted occurrence record to define a species distribution range
 summary_table <- ec_var_summary(cleaned_data, env_layers = env_layers)
-
+head(summary_table)
 # Step9: Create plot to show accepted data records
 ec_plot_var_range(ecodata_cl, summary_df = summary_table, env_layers = env_layers)
 ```

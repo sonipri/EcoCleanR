@@ -21,41 +21,42 @@ Key features:<br>
 2.  Data Cleaning: <br> 2.1. Remove duplicates<br> 2.2. Check bad taxon
     using WoRMs<br> 2.3. Improve the coordinate information utilizing
     external georeference tools. 2.4. check the coordinate precision and
-    rounding<br> 2.5. Flag the records associated wrong ocean/sea and
-    inland 2.6. Extract the environmental variables<br> 2.7. Impute the
-    environmental variables if no assignment from online resources.<br>
-    2.8. Identifying outliers<br>
-3.  Data visualizing: <br> 3.1. Create map view<br> 3.2. Execute a
+    rounding<br> 2.5. Flag the records associated with the wrong
+    ocean/sea and inland 2.6. Extract the environmental variables<br>
+    2.7. Impute the environmental variables if no assignment from online
+    resources.<br> 2.8. Identifying outliers<br>
+3.  Data visualization: <br> 3.1. Create map view<br> 3.2. Execute a
     summary table with max, min and mean limits of variables<br> 3.3.
     Create a summary and plot to represent suitable range of a species
     for spatial and non spatial attributes<br>
 
 ## Installation from GitHub
 
-You can install the development version of EcoCleanR from
+You can install the development version of *EcoCleanR* from
 [GitHub](https://github.com/) with:
 <https://github.com/xxx/EcoCleanR/><br>
 
-How to install package through zip file:<br> a) First install
-prerequisite packages: As *mregion2* and *ridigbio* are not on cran,
-install them from github:<br>
+How to install package through zip file:<br>
 
-``` r
-   #install.packages("remotes")
-      #remotes::install_github("ropensci/mregions2")
-      #remotes::install_github("ropensci/ridigbio")
-```
+1)  Install *devtools* and *remotes* packages and load them.<br>
 
-2)  devtools::install_local(“EcoCleanR-main.zip”, dependencies = TRUE)
-    \#to install EcoCleanR package with dependent packages<br>
-3)  Set the working directory on EcoCleanR-main unzip folder<br>
+\#install.packages(“devtools”) \#install.packages(“remotes”)
+\#library(devtools) \#library(remotes)
 
-``` r
-# install.packages("devtools")
-devtools::install_github("xxx/EcoCleanR")
-#or
-#devtools::install_local("EcoCleanR-main.zip", dependencies = TRUE)#to install EcoCleanR package from zip file.. follow the steps above mentioned
-```
+2)  Install *EcoCleanR* package from zip file.<br>
+
+\#devtools::install_local(“EcoCleanR-xxx.zip”, dependencies = TRUE)
+
+3)  unzip the zip file EcoCleanR and set it as working directory.<br>
+
+\#setwd(…path)
+
+4)  *Optional: Only for testing purposes*. <br>
+
+\#devtools::check()
+
+5)  Detail script with example scenario is given in
+    vignettes/articles/stepbystep.Rmd.
 
 ## Example
 
