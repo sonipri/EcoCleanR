@@ -116,7 +116,7 @@ sym.occ$abundance <- as.numeric(sym.occ$individualCount)
 
 for (field in attribute_list) {
   if (!field %in% names(sym.occ)) {
-    obis.occ[[field]] <- NA # Add the missing field as NA
+    sym.occ[[field]] <- NA # Add the missing field as NA
   }
 }
 
