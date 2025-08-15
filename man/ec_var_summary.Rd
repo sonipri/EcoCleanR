@@ -22,11 +22,11 @@ data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9, -116.5),
   decimalLatitude = c(32.9, 33.5, 31.9, 32.4),
-  temperature_mean = c(12, 13, 14, 11),
-  temperature_min = c(9, 6, 10, 10),
-  temperature_max = c(14, 16, 18, 17)
+  BO_sstmean = c(12, 13, 14, 11),
+  BO_sstmin = c(9, 6, 10, 10),
+  BO_sstmax = c(14, 16, 18, 17)
   )
-env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 ec_var_summary(data, env_layers)
 
 

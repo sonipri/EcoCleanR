@@ -5,16 +5,12 @@
 \title{Extract the environmental layers for the data file based on coordinate information
 Source: Bio-oracle}
 \usage{
-ec_extract_env_layers(
-  data,
-  env_layers = c("temperature_mean", "temperature_max", "temperature_min", "Chloro",
-    "dissox")
-)
+ec_extract_env_layers(data, env_layers = env_layers)
 }
 \arguments{
 \item{data}{data table which has coordinate information}
 
-\item{env_layers}{make a list of enviornmental layers which need to be extracted, example :temperature_mean, temperature_max, temperature_min, Chloro, dissox, salinity, ph, dist_shore}
+\item{env_layers}{make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.}
 }
 \value{
 a data table which has unique coordinates and env predictors
@@ -24,7 +20,7 @@ Extract the environmental layers for the data file based on coordinate informati
 Source: Bio-oracle
 }
 \examples{
-env_layers <- c("temperature_mean", "Chloro", "dissox", "salinity")
+env_layers <- c("BO_sstmean", "BO_Chlomean", "BO_dissox", "BO_salinity")
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),

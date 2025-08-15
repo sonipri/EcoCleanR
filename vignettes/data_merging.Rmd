@@ -41,6 +41,9 @@ attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatu
 
 # GBIF - data extraction and standardization---------
 gbif.occ <- occ_data(taxonKey = taxonkey, occurrenceStatus = NULL, limit = 10000L)$data
+
+#refer article/cite_data.Rmd for instructions on how to cite the data from gbif- data providers
+
 ## additional field added to know the source
 gbif.occ$source <- "gbif"
 for (field in attribute_list) {

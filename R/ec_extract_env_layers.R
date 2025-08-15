@@ -2,14 +2,15 @@
 #' Source: Bio-oracle
 #'
 #' @param data data table which has coordinate information
-#' @param env_layers make a list of enviornmental layers which need to be extracted, example :temperature_mean, temperature_max, temperature_min, Chloro, dissox, salinity, ph, dist_shore
+#' @param env_layers make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.
 #' @return a data table which has unique coordinates and env predictors
 #' @export
 #' @importFrom sdmpredictors load_layers
+#' @importFrom sdmpredictors list_layers
 #' @importFrom terra extract
 #'
 #' @examples
-#' env_layers <- c("temperature_mean", "Chloro", "dissox", "salinity")
+#' env_layers <- c("BO_sstmean", "BO_Chlomean", "BO_dissox", "BO_salinity")
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
@@ -18,35 +19,23 @@
 #'
 #' data_x <- ec_extract_env_layers(data, env_layers = env_layers)
 #'
-ec_extract_env_layers <- function(data, env_layers = c("temperature_mean", "temperature_max", "temperature_min", "Chloro", "dissox")) {
+ec_extract_env_layers <- function(data, env_layers = env_layers) {
   # Unique coordinates
   data_x <- unique(data[, c("decimalLatitude", "decimalLongitude")])
   coordinates <- data_x[, c("decimalLongitude", "decimalLatitude")]
 
-  # Define mapping from user-friendly names to Bio-ORACLE codes
-  layer_map <- list(
-    temperature_mean = "BO_sstmean",
-    temperature_max  = "BO_sstmax",
-    temperature_min  = "BO_sstmin",
-    Chloro           = "BO_chlomean",
-    dissox           = "BO_dissox",
-    salinity         = "BO_salinity",
-    ph               = "BO_ph",
-    dist_shore       = "MS_biogeo05_dist_shore_5m"
-    # Add more mappings as needed
-  )
-
+  available_layers <- list_layers() # returns something like c("BO_sstmean", "BO_sstmax", ...)
   for (layer_name in env_layers) {
-    if (layer_name %in% names(layer_map)) {
+    if (layer_name %in% available_layers$layer_code) {
       message("Extracting ", layer_name, "...")
-      layer_code <- layer_map[[layer_name]]
-      layer_data <- load_layers(layer_code, rasterstack = TRUE)
+      layer_data <- load_layers(layer_name, rasterstack = TRUE)
       extracted_values <- terra::extract(layer_data, coordinates)
       data_x[[layer_name]] <- extracted_values
     } else {
-      warning("Layer '", layer_name, "' not recognized. Skipping.")
+      warning("Layer '", layer_name, "' not available. Skipping.")
     }
   }
 
   return(data_x)
+
 }

@@ -56,7 +56,8 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
              aes(x = variable, y = value),
              size = 2, shape = 1, color = "black", stroke = 1) +
   ggtitle("Latitude") +
-  theme_classic()
+  theme_classic()+
+  theme(axis.text = element_text(size = 14))
 
   P2 <- ggplot() +
   geom_errorbar(data = range_data %>% filter(variable == "decimalLongitude"),
@@ -66,8 +67,8 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
              aes(x = variable, y = value),
              size = 2, shape = 1, color = "black", stroke = 1) +
   ggtitle("Longitude") +
-  theme_classic()
-
+  theme_classic()+
+  theme(axis.text = element_text(size = 14))
   P3 <- ggplot() +
   geom_errorbar(data = range_data %>% filter(variable %in% env_layers),
                 aes(x = variable, ymin = ymin, ymax = ymax),
@@ -77,7 +78,9 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
              size = 2, shape = 1, color = "black", stroke = 1, na.rm = TRUE) +
   ggtitle("Environmental Variables") +
   theme_classic() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
+          axis.text.y = element_text(size = 14)
+  )
 
 
 return(P1 + P2 + P3 + plot_layout(widths = c(0.6, 0.6, 1.8)))

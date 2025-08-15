@@ -20,11 +20,11 @@ Key features:<br>
     and local input data files (with read.csv local drive). <br>
 2.  Data Cleaning: <br> 2.1. Remove duplicates<br> 2.2. Check bad taxon
     using WoRMs<br> 2.3. Improve the coordinate information utilizing
-    external georeference tools. 2.4. check the coordinate precision and
-    rounding<br> 2.5. Flag the records associated with the wrong
-    ocean/sea and inland 2.6. Extract the environmental variables<br>
-    2.7. Impute the environmental variables if no assignment from online
-    resources.<br> 2.8. Identifying outliers<br>
+    external georeference tools<br> 2.4. check the coordinate precision
+    and rounding<br> 2.5. Flag the records associated with the wrong
+    ocean/sea and inland<br> 2.6. Extract the environmental
+    variables<br> 2.7. Impute the environmental variables if no
+    assignment from online resources<br> 2.8. Identifying outliers<br>
 3.  Data visualization: <br> 3.1. Create map view<br> 3.2. Execute a
     summary table with max, min and mean limits of variables<br> 3.3.
     Create a summary and plot to represent suitable range of a species

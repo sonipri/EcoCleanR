@@ -54,6 +54,27 @@ test_that("ec_worms_synonym works", {
   expect_true(any(grepl("Mexacanthina lugubris \\([0-9]+\\)", result$ecodata_syn_with_count)))
 })
 
+# # load data file
+# test_data11 <- data.frame(
+#   scientificName = c("Felis leo", "Melieria cana"),
+#   stringsAsFactors = FALSE
+# )
+#
+# # ec_itis_synonym (Testing)
+# test_that("ec_itis_synonym works", {
+#   skip("Skipping ec_itis_synonym test - itis site could be down")
+#   skip_on_cran()
+#   skip_on_ci()
+#   result <- ec_itis_synonym("Felis leo", test_data11)
+#   # Check it's a data frame
+#   expect_s3_class(result, "data.frame")
+#   # Check required columns exist
+#   expect_true(all(c("Accepted_syn_itis", "ecodata_syn_with_count") %in% colnames(result)))
+#   # Check the input species is in the WoRMS column
+#   expect_true("Felis leo" %in% result$Accepted_syn_itis)
+#   # Check record count formatting exists (e.g., "Mexacanthina lugubris (1)")
+#   expect_true(any(grepl("Felis leo \\([0-9]+\\)", result$ecodata_syn_with_count)))
+# })
 
 # ec_flag_with_locality (Testing)
 test_data2 <- data.frame(
@@ -101,16 +122,8 @@ test_data5 <- data.frame(
   decimalLongitude = c(-116.24, -117.75, -115.8, -113.53),
   decimalLatitude = c(30.8, 33.5, 29.9, 31.31)
 )
-env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
-# layer_map <- list(
-# temperature_mean = "BO_sstmean",
-# temperature_max  = "BO_sstmax",
-# temperature_min  = "BO_sstmin",
-# Chloro           = "BO_chlomean",
-# dissox           = "BO_dissox",
-# salinity         = "BO_salinity",
-# ph               = "BO_ph",
-# dist_shore       = "MS_biogeo05_dist_shore_5m")
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
+
 
 test_that("ec_extract_env_layers works", {
   skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
@@ -154,21 +167,21 @@ test_data7 <- data.frame(
     -112.07, -112.07, -112.07, -111.73, -111.95, -112.03, -112.07, -112.07, -112.07,
     -112.08, -112.10, -112.02, -112.12
   ),
-  temperature_mean = c(
+  BO_sstmean = c(
     29.31, 29.36, 27.83, 28.02, 28.02, 28.02, 29.04, 26.73, 23.22, 25.11,
     21.88, 21.88, 21.88, 23.48, 22.40, 21.95, 21.95, 21.95, 21.95, 21.95, 21.49, 21.55, 21.49
   ),
-  temperature_max = c(
+  BO_sstmax = c(
     30.17, 31.31, 30.71, 32.42, 32.42, 32.42, 32.68, 31.30, 27.82, 30.01,
     27.23, 27.23, 27.23, 28.61, 27.44, 27.19, 27.19, 27.19, 27.19, 27.19, 26.94, 26.74, 26.94
   ),
-  temperature_min = c(
+  BO_sstmin = c(
     28.49, 27.18, 24.69, 23.62, 23.62, 23.62, 24.96, 22.43, 18.87, 20.71,
     17.82, 17.82, 17.82, 20.49, 19.52, 18.11, 18.11, 18.11, 18.11, 18.11, 17.51, 17.85, 17.51
   )
 )
 
-env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 
 test_that("ec_flag_outlier works", {
   result <- ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99)
@@ -191,7 +204,7 @@ test_that("ec_geographic_map_w_flag works", {
 
 # ec_var_summary
 
-env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 test_data8 <- test_data7 %>%
   dplyr::filter(outliers == 0)
 
@@ -205,8 +218,9 @@ test_that("ec_var_summary works", {
 })
 
 # ec_plot_var_range
-env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+env_layers <-c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 test_that("ec_plot_var_range works", {
   p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
   vdiffr::expect_doppelganger("var_plot.png", p2)
 })
+

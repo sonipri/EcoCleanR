@@ -18,12 +18,12 @@
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
 #'   decimalLatitude = c(32.9, 33.5, 31.9),
-#'   temperature_mean = c(12, 13, 14),
-#'   temperature_min = c(9, 6, 10),
-#'   temperature_max = c(14, 16, 18)
+#'   BO_sstmean = c(12, 13, 14),
+#'   BO_sstmin = c(9, 6, 10),
+#'   BO_sstmax = c(14, 16, 18)
 #' )
 #'
-#' env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
+#' env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 #' res <- ec_flag_outlier(data, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
 #' data$outlier <- res$outlier
 #' iteration_list <- res$result$list

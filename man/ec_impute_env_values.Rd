@@ -24,9 +24,9 @@ Impute env variables by mean values of data points within a certain radius
 data_x <- data.frame(scientificName = "Mexacanthina lugubris",
                   decimalLongitude = c(-117, -117.8, -116.9),
                   decimalLatitude = c(32.9, 33.5, 31.9),
-                  temperature_mean = c(12, NA, 14),
-                  temperature_min = c(9, NA, 10),
-                  temperature_max = c(14, NA, 18)
+                  BO_sstmean = c(12, NA, 14),
+                  BO_sstmin = c(9, NA, 10),
+                  BO_sstmax = c(14, NA, 18)
                   )
 radius_km = 10
 iter = 3
