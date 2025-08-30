@@ -1,4 +1,4 @@
-#' This function use for getting summary table of spatial and environmental variable for a species habitat suitability
+#' summary table of spatial and environmental variables
 #'
 #' @param data data table after cleaning the records
 #' @param env_layers an array of col names of enviornmental layers
