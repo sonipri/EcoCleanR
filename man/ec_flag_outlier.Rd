@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_outlier.R
 \name{ec_flag_outlier}
 \alias{ec_flag_outlier}
-\title{Title}
+\title{flag outliers - using spatial and non spatial attributes}
 \usage{
 ec_flag_outlier(
   data,
@@ -30,7 +30,7 @@ ec_flag_outlier(
 a column outlier which has outlier proportion from 0 to 1. 1 is more towards outlier, 0 more towards good data points.
 }
 \description{
-Title
+flag outliers - using spatial and non spatial attributes
 }
 \examples{
 data <- data.frame(
