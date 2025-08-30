@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_var_summary.R
 \name{ec_var_summary}
 \alias{ec_var_summary}
-\title{This function use for getting summary table of spatial and environmental variable for a species habitat suitability}
+\title{summary table of spatial and environmental variables}
 \usage{
 ec_var_summary(data, env_layers)
 }
@@ -15,7 +15,7 @@ ec_var_summary(data, env_layers)
 a summary table with the mean, min and max values of spatial and environmenal variables
 }
 \description{
-This function use for getting summary table of spatial and environmental variable for a species habitat suitability
+summary table of spatial and environmental variables
 }
 \examples{
 data <- data.frame(
