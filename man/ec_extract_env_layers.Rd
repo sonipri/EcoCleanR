@@ -2,8 +2,7 @@
 % Please edit documentation in R/ec_extract_env_layers.R
 \name{ec_extract_env_layers}
 \alias{ec_extract_env_layers}
-\title{Extract the environmental layers for the data file based on coordinate information
-Source: Bio-oracle}
+\title{extract the environmental layers}
 \usage{
 ec_extract_env_layers(data, env_layers = env_layers)
 }
@@ -16,8 +15,7 @@ ec_extract_env_layers(data, env_layers = env_layers)
 a data table which has unique coordinates and env predictors
 }
 \description{
-Extract the environmental layers for the data file based on coordinate information
-Source: Bio-oracle
+extract the environmental layers
 }
 \examples{
 env_layers <- c("BO_sstmean", "BO_Chlomean", "BO_dissox", "BO_salinity")
