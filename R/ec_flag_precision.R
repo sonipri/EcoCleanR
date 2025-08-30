@@ -1,4 +1,4 @@
-#' Check the precision of coordiantes
+#' flag bad precision data points
 #'
 #' @param longitude decimalLongitude, this a field in the data file. We prefer to use decimalLongitude as accepeted name based on TDWG standards
 #' @param latitude decimalLatitude, this a field in the data file. We prefer to use decimalLatitude as accepeted name based on TDWG standards
