@@ -1,4 +1,4 @@
-#' This function helps to merge the update georeferences back to the main file.
+#' merge the update georeferences back to the main file.
 #'
 #' @param data_corrected After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected
 #' @param data data table which needs to updated with the assign coordiantes
