@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_non_region.R
 \name{ec_flag_non_region}
 \alias{ec_flag_non_region}
-\title{Flag data points from different ocean basins}
+\title{flag data points from different ocean basins}
 \usage{
 ec_flag_non_region(direction, ocean, buffer = 50000, data)
 }
@@ -19,7 +19,7 @@ ec_flag_non_region(direction, ocean, buffer = 50000, data)
 a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 }
 \description{
-Flag data points from different ocean basins
+flag data points from different ocean basins
 }
 \examples{
 \dontrun{
