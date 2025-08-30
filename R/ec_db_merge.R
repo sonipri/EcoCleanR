@@ -1,4 +1,5 @@
-#' This function helps to merge the data frames from different sources.
+#' @title merge the data bases from different sources.
+#' @details
 #' condition to run this function:
 #' all the data frames should have same fields follwing DwC standards:
 #' e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")
@@ -12,6 +13,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr filter
 #' @examples
+#'
 #' db1<- data.frame(species = "A",
 #'                   decimalLongitude = c(-120, -117, NA, NA),
 #'                   decimalLatitude = c(20, 34, NA, NA),
