@@ -1,4 +1,4 @@
-#' A map view after running ec_flag_outliers, this function will help to visualize data points with outlier probability 0 to 1 on a map view
+#' A map view to visualize data points with outlier probability 0 to 1 on a map view
 #'
 #' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude) and a column which has flags 0 to 1
 #' @param flag_column column name which has flag, e.g. flag_outlier
