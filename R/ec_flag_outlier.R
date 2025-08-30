@@ -1,4 +1,4 @@
-#' Title
+#' flag outliers - using spatial and non spatial attributes
 
 #' @param data data table with spatial and environmental variables
 #' @param env_layers header names of env variables. env_layers <- c("Temperature", "pH")
