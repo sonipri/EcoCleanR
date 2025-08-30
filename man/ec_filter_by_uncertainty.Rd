@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_filter_by_uncertainty.R
 \name{ec_filter_by_uncertainty}
 \alias{ec_filter_by_uncertainty}
-\title{This function can be used to remove extreme uncertainty associate occurrence points}
+\title{flag extreme uncertainty points}
 \usage{
 ec_filter_by_uncertainty(
   data,
@@ -24,7 +24,7 @@ ec_filter_by_uncertainty(
 a clean data table with removed extreme uncertain data points
 }
 \description{
-This function can be used to remove extreme uncertainty associate occurrence points
+flag extreme uncertainty points
 }
 \examples{
 data <- data.frame(species = "A",
