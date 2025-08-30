@@ -1,4 +1,4 @@
-#' Flag data points from different ocean basins
+#' flag data points from different ocean basins
 
 #' @param direction, values as "east" or "west". These values help to filter the shape files for east or west of select ocean (e.g. pacific) for both north and south hemisphere.
 #' @param ocean, values such as "pacific" or "atlantic"
