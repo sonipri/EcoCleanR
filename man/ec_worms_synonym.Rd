@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_worms_synonym.R
 \name{ec_worms_synonym}
 \alias{ec_worms_synonym}
-\title{Title}
+\title{Synonym check using WoRMs taxonomy}
 \usage{
 ec_worms_synonym(species_name, data)
 }
@@ -15,7 +15,7 @@ ec_worms_synonym(species_name, data)
 a table with two columns, column one represent the accepted synonyms, and column two demonstrate the unique species names from the occurrence data base with the number of records tagged under species names.
 }
 \description{
-Title
+Synonym check using WoRMs taxonomy
 }
 \examples{
 species_name = "Mexacanthina lugubris"
