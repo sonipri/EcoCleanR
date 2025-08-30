@@ -1,5 +1,8 @@
+#' @title filter records to georeference using GEOLocate
+#' @details
 #' Records which has potential to manual georeferenced
 #' Definition, a record has no coordinate uncertainty information, but it does have locality or verbatimLocality information, so it might be possible to georeference it manually.”
+#'
 #' @param data data table with occurrence information
 #' @param uncertainty Mendatory to have coordinateUncertaintyInMeters column in the data table
 #' @param locality Mandatory to have locality column in the data table.
@@ -16,10 +19,7 @@
 
 #' data$flag_check_geolocate <- ec_flag_with_locality(data)
 #'
-#'
-#'
-#'
-#'
+
 #' @export
 ec_flag_with_locality <- function(data,
                                   uncertainty = "coordinateUncertaintyInMeters",
