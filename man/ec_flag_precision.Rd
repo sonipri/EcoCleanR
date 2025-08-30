@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_precision.R
 \name{ec_flag_precision}
 \alias{ec_flag_precision}
-\title{Check the precision of coordiantes}
+\title{flag bad precision data points}
 \usage{
 ec_flag_precision(longitude, latitude, threshold = 2)
 }
@@ -17,7 +17,7 @@ ec_flag_precision(longitude, latitude, threshold = 2)
 a column which has flagged records showed bad records based on low precision as well as rounding
 }
 \description{
-Check the precision of coordiantes
+flag bad precision data points
 }
 \examples{
 \dontrun{
