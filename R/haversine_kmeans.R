@@ -1,4 +1,4 @@
-#' Title
+#' Calculate Harversine distance
 #'
 #' @param df df is a dataframe with spatial attributes - Latitude and Logitude
 #' @param k k is number of cluster required for the data set you have. Normally visual inspection can give a sense on number of clusters. Cautious to have more than expected clusters to fit all data points, as overfitting can end up inluding bad data points in the analysis. e.g. k = 3
