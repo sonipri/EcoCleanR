@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_merge_corrected_coordinates.R
 \name{ec_merge_corrected_coordinates}
 \alias{ec_merge_corrected_coordinates}
-\title{This function helps to merge the update georeferences back to the main file.}
+\title{merge the update georeferences back to the main file.}
 \usage{
 ec_merge_corrected_coordinates(data_corrected, data)
 }
@@ -15,7 +15,7 @@ ec_merge_corrected_coordinates(data_corrected, data)
 data table with updated coordinate information
 }
 \description{
-This function helps to merge the update georeferences back to the main file.
+merge the update georeferences back to the main file.
 }
 \examples{
 data <- data.frame(
