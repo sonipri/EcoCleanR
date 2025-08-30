@@ -1,5 +1,4 @@
-#' Extract the environmental layers for the data file based on coordinate information
-#' Source: Bio-oracle
+#' extract the environmental layers
 #'
 #' @param data data table which has coordinate information
 #' @param env_layers make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.
