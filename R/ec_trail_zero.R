@@ -1,4 +1,4 @@
-#' This function trail zeros from the coordinate values
+#' trail zeros from the coordinate values
 #'
 #' @param coord A coordinate value in the numeric format of decimal degree
 #'
