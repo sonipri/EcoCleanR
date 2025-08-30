@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_rm_duplicate.R
 \name{ec_rm_duplicate}
 \alias{ec_rm_duplicate}
-\title{This function helps to remove duplocate records based on catalogNumber and abundance columns.
+\title{remove duplicate records based on catalogNumber and abundance columns.
 mandatory fields are catalogNumber, source and abundance}
 \usage{
 ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
@@ -16,7 +16,7 @@ ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
 A data frame which has unique catalog numbers. the output file will have cleaned_catalog field instead of catalogNumber. Also the unique record will be chosen with the abundance value if there is any.
 }
 \description{
-This function helps to remove duplocate records based on catalogNumber and abundance columns.
+remove duplicate records based on catalogNumber and abundance columns.
 mandatory fields are catalogNumber, source and abundance
 }
 \examples{
