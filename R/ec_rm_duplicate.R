@@ -1,4 +1,4 @@
-#' This function helps to remove duplocate records based on catalogNumber and abundance columns.
+#' remove duplicate records based on catalogNumber and abundance columns.
 #' mandatory fields are catalogNumber, source and abundance
 #' @param data this is merge data frame which is a output file after running ec_db_merge
 #' @param catalogNumber this is a mandatory field which consider unique for each occurrence record.
