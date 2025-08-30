@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_geographic_map.R
 \name{ec_geographic_map}
 \alias{ec_geographic_map}
-\title{This function can be used display a map view of input data}
+\title{a map view of data}
 \usage{
 ec_geographic_map(data)
 }
@@ -13,7 +13,7 @@ ec_geographic_map(data)
 A map view shows occurrence records.
 }
 \description{
-This function can be used display a map view of input data
+a map view of data
 }
 \examples{
 data <- data.frame(
