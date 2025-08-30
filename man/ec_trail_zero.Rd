@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_trail_zero.R
 \name{ec_trail_zero}
 \alias{ec_trail_zero}
-\title{This function trail zeros from the coordinate values}
+\title{trail zeros from the coordinate values}
 \usage{
 ec_trail_zero(coord)
 }
@@ -13,7 +13,7 @@ ec_trail_zero(coord)
 A coordinate value: which is trailed.
 }
 \description{
-This function trail zeros from the coordinate values
+trail zeros from the coordinate values
 }
 \examples{
 ec_trail_zero(12.7000000)
