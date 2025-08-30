@@ -2,7 +2,7 @@
 % Please edit documentation in R/haversine_kmeans.R
 \name{haversine_kmeans}
 \alias{haversine_kmeans}
-\title{Title}
+\title{Calculate Harversine distance}
 \usage{
 haversine_kmeans(df, k)
 }
@@ -15,7 +15,7 @@ haversine_kmeans(df, k)
 its a dataframe with a new column call
 }
 \description{
-Title
+Calculate Harversine distance
 }
 \examples{
 data_x <- data.frame(scientificName = "Mexacanthina lugubris",
