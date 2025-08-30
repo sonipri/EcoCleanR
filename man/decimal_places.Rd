@@ -2,7 +2,7 @@
 % Please edit documentation in R/decimal_places.R
 \name{decimal_places}
 \alias{decimal_places}
-\title{Title}
+\title{Get decimal places of coordinate values}
 \usage{
 decimal_places(coord)
 }
@@ -11,9 +11,10 @@ decimal_places(coord)
 }
 \value{
 a numerical value which represent the number of decimal places for the coordiante
+Get decimal places of coordinate values
 }
 \description{
-Title
+Get decimal places of coordinate values
 }
 \examples{
 decimal_places(12.7000000)
