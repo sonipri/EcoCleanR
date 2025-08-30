@@ -1,6 +1,4 @@
-#---- function for getting synonym comparision from worms vs merged data
-
-#' Title
+#' Synonym check using WoRMs taxonomy
 #'
 #' @param species_name input species name.e.g. Mexacanthina lugubris
 #' @param data data table which has information of all occurrence data of the selected species
