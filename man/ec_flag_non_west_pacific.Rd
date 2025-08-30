@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_non_west_pacific.R
 \name{ec_flag_non_west_pacific}
 \alias{ec_flag_non_west_pacific}
-\title{Flag data points from different ocean basins}
+\title{flag data points not in east pacific}
 \usage{
 ec_flag_non_west_pacific(ocean_names, buffer_distance = 50000, ecodata)
 }
@@ -18,7 +18,7 @@ ec_flag_non_west_pacific(ocean_names, buffer_distance = 50000, ecodata)
 a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 }
 \description{
-Flag data points from different ocean basins
+flag data points not in east pacific
 }
 \examples{
 \dontrun{
