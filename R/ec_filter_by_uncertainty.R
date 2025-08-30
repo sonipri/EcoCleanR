@@ -1,4 +1,4 @@
-#' This function can be used to remove extreme uncertainty associate occurrence points
+#' flag extreme uncertainty points
 #'
 #' @param data data table which need to be cleaned with unwanted uncertainty values - extreme values
 #' @param uncertainty_col coordinateUncertaintyInMeters column
