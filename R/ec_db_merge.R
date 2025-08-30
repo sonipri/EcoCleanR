@@ -5,6 +5,7 @@
 #' e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")
 #' Assign manually the source name in "source" field. example - gbif, obis, invertEBase etc
 #' Assign values of individual count or organism count into abundance. Most online sources has one of them updated with specimen count.
+#' this function depends on successful download of data files, it also allow to input csv files from local system
 #' @param datatype default "modern". datatype accept text input as "modern" or "fossil"
 #' @param ... list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.
 #'
