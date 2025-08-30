@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_plot_var_range.R
 \name{ec_plot_var_range}
 \alias{ec_plot_var_range}
-\title{Title}
+\title{Plot acceptable limits of spatial and non-spatial attributes}
 \usage{
 ec_plot_var_range(data, summary_df, env_layers)
 }
@@ -17,7 +17,7 @@ ec_plot_var_range(data, summary_df, env_layers)
 a plot which shows spatial and environmental variables with the acceptable range for species habitability
 }
 \description{
-Title
+Plot acceptable limits of spatial and non-spatial attributes
 }
 \examples{
 data <- data.frame(
