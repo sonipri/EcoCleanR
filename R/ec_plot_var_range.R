@@ -1,4 +1,4 @@
-#' Title
+#' Plot acceptable limits of spatial and non-spatial attributes
 #'
 #' @param data data table which even has outlier data points
 #' @param summary_df summmary output of final cleaned data, after executing function ec_var_summary
