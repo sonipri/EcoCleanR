@@ -1,4 +1,4 @@
-#' Flag data points from different ocean basins
+#' flag data points not in east pacific
 #'
 #' @param ocean_names, Insert the name of oceans:
 #'  "South Pacific Ocean", "North Pacific Ocean", North Atlantic Ocean", "South Atlantic Ocean"
