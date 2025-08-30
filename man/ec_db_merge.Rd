@@ -2,12 +2,7 @@
 % Please edit documentation in R/ec_db_merge.R
 \name{ec_db_merge}
 \alias{ec_db_merge}
-\title{This function helps to merge the data frames from different sources.
-condition to run this function:
-all the data frames should have same fields follwing DwC standards:
-e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")
-Assign manually the source name in "source" field. example - gbif, obis, invertEBase etc
-Assign values of individual count or organism count into abundance. Most online sources has one of them updated with specimen count.}
+\title{merge the data bases from different sources.}
 \usage{
 ec_db_merge(datatype = "modern", ...)
 }
@@ -20,7 +15,9 @@ ec_db_merge(datatype = "modern", ...)
 A merge data frame which is filtered with "modern" or "fossil" records
 }
 \description{
-This function helps to merge the data frames from different sources.
+merge the data bases from different sources.
+}
+\details{
 condition to run this function:
 all the data frames should have same fields follwing DwC standards:
 e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")
@@ -28,6 +25,7 @@ Assign manually the source name in "source" field. example - gbif, obis, invertE
 Assign values of individual count or organism count into abundance. Most online sources has one of them updated with specimen count.
 }
 \examples{
+
 db1<- data.frame(species = "A",
                   decimalLongitude = c(-120, -117, NA, NA),
                   decimalLatitude = c(20, 34, NA, NA),
