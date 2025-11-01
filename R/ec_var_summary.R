@@ -13,10 +13,9 @@
 #'   BO_sstmean = c(12, 13, 14, 11),
 #'   BO_sstmin = c(9, 6, 10, 10),
 #'   BO_sstmax = c(14, 16, 18, 17)
-#'   )
+#' )
 #' env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 #' ec_var_summary(data, env_layers)
-#'
 #'
 ec_var_summary <- function(data, env_layers) {
   vars_to_summarize <- c("decimalLatitude", "decimalLongitude", env_layers)

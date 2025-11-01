@@ -14,13 +14,13 @@
 #' \dontrun{
 #' ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 #' buffer_distance <- 25000
-#'data <- data.frame(
-#'  species = "A",
-#'  decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
-#'  decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
-#')
+#' data <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
+#'   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
+#' )
 #' data$flag_non_region <- ec_flag_non_east_atlantic(ocean_names, buffer_distance, data)
-#'}
+#' }
 #'
 ec_flag_non_east_atlantic <- function(ocean_names, buffer_distance = 50000, ecodata) {
   # Validate inputs

@@ -14,12 +14,14 @@
 #' \dontrun{
 #' ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 #' buffer_distance <- 25000
-#' data <- data.frame(species = "A",
-#'                 decimalLongitude = c(-120,-78,-110),
-#'                 decimalLatitude = c(20, 34, 30))
+#' data <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -78, -110),
+#'   decimalLatitude = c(20, 34, 30)
+#' )
 #' data$flag_non_region <- ec_flag_non_west_pacific(ocean_names, buffer_distance, data)
-
-#'}
+#' }
+#'
 #' @export
 ec_flag_non_west_pacific <- function(ocean_names, buffer_distance = 50000, ecodata) {
   # Validate inputs

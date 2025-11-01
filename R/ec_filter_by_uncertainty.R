@@ -9,16 +9,20 @@
 #' @export
 #'
 #' @examples
-#' data <- data.frame(species = "A",
-#'                   decimalLongitude = c(-120, -117, NA, NA),
-#'                   decimalLatitude = c(20, 34, NA, NA),
-#'                   cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
-#'                   locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
-#'                   coordinateUncertaintyInMeters = c(1000, 2000, 9999900, NA)
-#'                   )
-#' data <- ec_filter_by_uncertainty(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE)
-#'
-#'
+#' data <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -117, NA, NA),
+#'   decimalLatitude = c(20, 34, NA, NA),
+#'   cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
+#'   locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
+#'   coordinateUncertaintyInMeters = c(1000, 2000, 9999900, NA)
+#' )
+#' data <- ec_filter_by_uncertainty(
+#'   data,
+#'   uncertainty_col = "coordinateUncertaintyInMeters",
+#'   percentile = 0.96,
+#'   ask = TRUE
+#' )
 #'
 ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE) {
   # Ensure the uncertainty column is numeric

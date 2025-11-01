@@ -37,11 +37,11 @@ A data frame with 713 rows and 35 variables:
 \item{flag_cc_inst}{Flag for coordinates matching institution location}
 \item{flag_non_region}{Flag for coordinates outside the study region}
 \item{outliers}{Flag for outliers based clustering of spatial and env variables}
-\item{temperature_mean_BO}{Mean sea surface temperature from Bio-ORACLE}
-\item{temperature_max_BO}{Maximum sea surface temperature from Bio-ORACLE}
-\item{temperature_min_BO}{Minimum sea surface temperature from Bio-ORACLE}
-\item{Chloro_BO}{Chlorophyll concentration from Bio-ORACLE}
-\item{dissox_BO}{Dissolved oxygen level from Bio-ORACLE}
+\item{BO_sstmean}{Mean sea surface temperature from Bio-ORACLE}
+\item{BO_sstmax}{Maximum sea surface temperature from Bio-ORACLE}
+\item{BO_sstmin}{Minimum sea surface temperature from Bio-ORACLE}
+\item{BO_chloro}{Chlorophyll concentration from Bio-ORACLE}
+\item{BO_dissox}{Dissolved oxygen level from Bio-ORACLE}
 }
 }
 \source{

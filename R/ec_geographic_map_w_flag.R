@@ -23,9 +23,6 @@
 #' )
 #' ec_geographic_map_w_flag(data, flag_column = "flag_outlier")
 #'
-#'
-#'
-#'
 ec_geographic_map_w_flag <- function(data, flag_column) {
   # Ensure the flag column is a factor
   data[[flag_column]] <- as.numeric(data[[flag_column]])
@@ -40,7 +37,7 @@ ec_geographic_map_w_flag <- function(data, flag_column) {
   geographic_extent <- ext(x = c(min_lon, max_lon, min_lat, max_lat))
 
   # Load and crop world map
-  world_map <- world(resolution = 3, path = "data/") # Load world map
+  world_map <- world(resolution = 3, path = tempdir()) # Load world map
   cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
 
   # Convert cropped map to sf object
@@ -48,16 +45,18 @@ ec_geographic_map_w_flag <- function(data, flag_column) {
 
   # Plot the map using ggplot2
   ggplot(data = my_map) +
-    geom_sf(fill = "grey95", color = "black") +  # Plot the map
-    geom_jitter(data = data,
-                aes(x = decimalLongitude, y = decimalLatitude, fill = !!sym(flag_column)),  # Fill with flag column
-                shape = 21, size = 3.5, alpha = 0.5, stroke = 0.5, color = "black") +  # Black border
-    scale_fill_viridis_c(option = "plasma", name = "Outlier Probability", limits = c(0,1)) +  # Custom colors
+    geom_sf(fill = "grey95", color = "black") + # Plot the map
+    geom_jitter(
+      data = data,
+      aes(x = decimalLongitude, y = decimalLatitude, fill = !!sym(flag_column)), # Fill with flag column
+      shape = 21, size = 3.5, alpha = 0.5, stroke = 0.5, color = "black"
+    ) + # Black border
+    scale_fill_viridis_c(option = "plasma", name = "Outlier Probability", limits = c(0, 1)) + # Custom colors
     theme_minimal() + # Minimal theme
-    labs(x = "Longitude", y = "Latitude", title = "Geographic Map", color = "Flag") +  # Labels and title
+    labs(x = "Longitude", y = "Latitude", title = "Geographic Map", color = "Flag") + # Labels and title
     theme(
-      axis.text = element_text(size = 14),  # Increase axis tick label size
-      axis.title = element_text(size = 16),  # Increase axis label size
-      plot.title = element_text(size = 18, hjust = 0.5)  # Center and enlarge the title
+      axis.text = element_text(size = 14), # Increase axis tick label size
+      axis.title = element_text(size = 16), # Increase axis label size
+      plot.title = element_text(size = 18, hjust = 0.5) # Center and enlarge the title
     )
 }

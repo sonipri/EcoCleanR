@@ -18,11 +18,12 @@ a table with two columns, column one represent the accepted synonyms, and column
 Synonym check using WoRMs taxonomy
 }
 \examples{
-species_name = "Mexacanthina lugubris"
-data <- data.frame(scientificName = "Mexacanthina lugubris",
-                  decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
-                  decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
-                  )
+species_name <- "Mexacanthina lugubris"
+data <- data.frame(
+  scientificName = "Mexacanthina lugubris",
+  decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
+  decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
+)
 comparison <- ec_worms_synonym(species_name, data)
 print(comparison)
 

@@ -21,7 +21,7 @@ Scatter plot between geo_distance vs maha_distance
 }
 \examples{
 df1 <- data.frame(
-latitude = runif(5, 30, 35),
+  latitude = runif(5, 30, 35),
   longitude = runif(5, -120, -115),
   temperature = rnorm(5, 15, 2),
   pH = rnorm(5, 8, 0.1),

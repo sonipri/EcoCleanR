@@ -19,12 +19,12 @@ merge the update georeferences back to the main file.
 }
 \examples{
 data <- data.frame(
- species = "A",
- decimalLongitude = c(-120, -119.8, NA, NA),
- decimalLatitude = c(20, 34, NA, NA),
- cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
- locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
- coordinateUncertaintyInMeters = c(9999, NA, NA, NA)
+  species = "A",
+  decimalLongitude = c(-120, -119.8, NA, NA),
+  decimalLatitude = c(20, 34, NA, NA),
+  cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
+  locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
+  coordinateUncertaintyInMeters = c(9999, NA, NA, NA)
 )
 data_corrected <- data.frame(
  species = "A",

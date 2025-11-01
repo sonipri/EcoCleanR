@@ -36,5 +36,4 @@ ec_extract_env_layers <- function(data, env_layers = env_layers) {
   }
 
   return(data_x)
-
 }

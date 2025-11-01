@@ -18,14 +18,15 @@ its a dataframe with a new column call
 Calculate Harversine distance
 }
 \examples{
-data_x <- data.frame(scientificName = "Mexacanthina lugubris",
-                  decimalLongitude = c(-117, -117.8, -116.9),
-                  decimalLatitude = c(32.9, 33.5, 31.9),
-                  BO_sstmean = c(12, 13, 14),
-                  BO_sstmin = c(9, 6, 10),
-                  BO_sstmax = c(14, 16, 18)
-                  )
- df <- data_x[,c("decimalLatitude","decimalLongitude")] #selection of spatial attribute in df
- result <- haversine_kmeans(df, k = 3)
+data_x <- data.frame(
+  scientificName = "Mexacanthina lugubris",
+  decimalLongitude = c(-117, -117.8, -116.9),
+  decimalLatitude = c(32.9, 33.5, 31.9),
+  BO_sstmean = c(12, 13, 14),
+  BO_sstmin = c(9, 6, 10),
+  BO_sstmax = c(14, 16, 18)
+)
+df <- data_x[, c("decimalLatitude", "decimalLongitude")] # selection of spatial attribute in df
+result <- haversine_kmeans(df, k = 3)
 
 }

@@ -2,6 +2,7 @@
 #' mandatory fields are catalogNumber, source and abundance
 #' @param data this is merge data frame which is a output file after running ec_db_merge
 #' @param catalogNumber this is a mandatory field which consider unique for each occurrence record.
+#' @param abundance this is a mandatory field which has created while data extraction by combining individual count and quantity fields (may vary from one source to another, we aim to standardize those as "abundance").
 #'
 #' @return A data frame which has unique catalog numbers. the output file will have cleaned_catalog field instead of catalogNumber. Also the unique record will be chosen with the abundance value if there is any.
 #' @export
@@ -9,27 +10,32 @@
 #' @import dplyr
 #' @examples
 #'
-#' db1<- data.frame(species = "A",
-#'                   decimalLongitude = c(-120.2, -117.1, NA, NA),
-#'                   decimalLatitude = c(20.2, 34.1, NA, NA),
-#'                   catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
-#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
-#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
-#'                   source = "db1",
-#'                   abundance = c(1,NA,8,23)
-#'                   )
+#' db1 <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120.2, -117.1, NA, NA),
+#'   decimalLatitude = c(20.2, 34.1, NA, NA),
+#'   catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
+#'   occurrenceStatus = c("present", "", "ABSENT", "Present"),
+#'   basisOfRecord = c("preserved_specimen", "", "fossilspecimen", "material_sample"),
+#'   source = "db1",
+#'   abundance = c(1, NA, 8, 23)
+#' )
 #'
-#'db2<- data.frame(species = "A",
-#'                   decimalLongitude = c(-120.2, -117.1, NA, NA),
-#'                   decimalLatitude = c(20.2, 34.1, NA, NA),
-#'                   catalogNumber = c("123452", "898828", "LACM82898", "SDNHM62767"),
-#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
-#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
-#'                   source = "db2",
-#'                   abundance = c(1,2,3,19)
-#'                   )
+#' db2 <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120.2, -117.1, NA, NA),
+#'   decimalLatitude = c(20.2, 34.1, NA, NA),
+#'   catalogNumber = c("123452", "898828", "LACM82898", "SDNHM62767"),
+#'   occurrenceStatus = c("present", "", "ABSENT", "Present"),
+#'   basisOfRecord = c("preserved_specimen", "", "fossilspecimen", "material_sample"),
+#'   source = "db2",
+#'   abundance = c(1, 2, 3, 19)
+#' )
 #' merge_modern_data <- ec_db_merge("modern", db1, db2)
-#' ecodata <- ec_rm_duplicate(merge_modern_data, catalogNumber = "catalogNumber",abundance = "abundance")
+#' ecodata <- ec_rm_duplicate(merge_modern_data,
+#'   catalogNumber = "catalogNumber",
+#'   abundance = "abundance"
+#' )
 #'
 ec_rm_duplicate <- function(data, catalogNumber = "catalogNumber", abundance = "abundance") {
   # Convert column names from character to symbols for tidy evaluation
@@ -37,7 +43,7 @@ ec_rm_duplicate <- function(data, catalogNumber = "catalogNumber", abundance = "
   abun_col <- rlang::sym(abundance)
 
   # Remove 'source' column if it exists
-    data <- data[, !names(data) %in% "source"]
+  data <- data[, !names(data) %in% "source"]
 
 
   # Clean catalog number: remove leading zeros for numeric, capitalize others

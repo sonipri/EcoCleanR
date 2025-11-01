@@ -11,11 +11,11 @@
 #' @return a column with flagged records as 1, which means these records has potential to be georeferenced.
 #'
 #' @examples
-#'data <- data.frame(
-#'  coordinateUncertaintyInMeters = c(NA, "N/A", 50, "30", NA, "N/A", NA),
-#'  locality = c("Santa Cruz", NA, "Los Angeles", "N/A", "", "San Diego", NA),
-#'  verbatimLocality = c(NA, "CA coast", "", "N/A", "Long Beach", NA, "")
-#')
+#' data <- data.frame(
+#'   coordinateUncertaintyInMeters = c(NA, "N/A", 50, "30", NA, "N/A", NA),
+#'   locality = c("Santa Cruz", NA, "Los Angeles", "N/A", "", "San Diego", NA),
+#'   verbatimLocality = c(NA, "CA coast", "", "N/A", "Long Beach", NA, "")
+#' )
 
 #' data$flag_check_geolocate <- ec_flag_with_locality(data)
 #'

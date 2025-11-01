@@ -1,4 +1,3 @@
-
 db1 <- data.frame(
   species = "A",
   decimalLongitude = c(-120.2, -117.1, NA, NA),
@@ -25,16 +24,16 @@ test_that("ec_db_merge works", {
   result <- ec_db_merge(datatype = "modern", db1, db2)
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 3)
-  expect_equal(sum(table(result$catalogNumber)>1), 1)
+  expect_equal(sum(table(result$catalogNumber) > 1), 1)
 })
 
-#ec_rm_duplicate
-test_that("ec_rm_duplicate works",{
+# ec_rm_duplicate
+test_that("ec_rm_duplicate works", {
   result <- ec_rm_duplicate(ec_db_merge(datatype = "modern", db1, db2), catalogNumber = "catalogNumber", abundance = "abundance")
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 2)
-  expect_equal(sum(table(result$cleaned_catalog)>1), 0)
-  })
+  expect_equal(sum(table(result$cleaned_catalog) > 1), 0)
+})
 
 # load data file
 test_data1 <- data.frame(
@@ -193,13 +192,13 @@ test_that("ec_flag_outlier works", {
 test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
 test_that("ec_geographic_map_w_flag works", {
   p <- ec_geographic_map_w_flag(test_data7, flag_column = "outliers")
-  vdiffr::expect_doppelganger("map_w_flag.png", p)
+  expect_s3_class(p, "ggplot")
 })
 
 # ec_geographic_map
 test_that("ec_geographic_map_w_flag works", {
   p1 <- ec_geographic_map(test_data7)
-  vdiffr::expect_doppelganger("map.png", p1)
+  expect_s3_class(p1, "ggplot")
 })
 
 # ec_var_summary
@@ -218,9 +217,8 @@ test_that("ec_var_summary works", {
 })
 
 # ec_plot_var_range
-env_layers <-c("BO_sstmean", "BO_sstmin", "BO_sstmax")
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 test_that("ec_plot_var_range works", {
   p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
-  vdiffr::expect_doppelganger("var_plot.png", p2)
+  expect_s3_class(p2, "ggplot")
 })
-

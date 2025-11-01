@@ -21,12 +21,12 @@ flag bad precision data points
 }
 \examples{
 \dontrun{
-data <- data.frame(species = "A",
-                  decimalLongitude = c(-120.67, -78, -110, -60, -75.5, -130.78, -10.2, 5.4),
-                  decimalLatitude = c(20.7, 34.6, 30.0, 10.5, 40.4, 25.66, 15.0, 35.9)
-                  )
+data <- data.frame(
+  species = "A",
+  decimalLongitude = c(-120.67, -78, -110, -60, -75.5, -130.78, -10.2, 5.4),
+  decimalLatitude = c(20.7, 34.6, 30.0, 10.5, 40.4, 25.66, 15.0, 35.9)
+)
 
 data$flag_cordinate_precision <- ec_flag_precision(data$decimalLongitude, data$decimalLatitude)
-
 }
 }

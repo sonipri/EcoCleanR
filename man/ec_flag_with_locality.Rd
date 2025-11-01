@@ -32,9 +32,9 @@ Definition, a record has no coordinate uncertainty information, but it does have
 }
 \examples{
 data <- data.frame(
- coordinateUncertaintyInMeters = c(NA, "N/A", 50, "30", NA, "N/A", NA),
- locality = c("Santa Cruz", NA, "Los Angeles", "N/A", "", "San Diego", NA),
- verbatimLocality = c(NA, "CA coast", "", "N/A", "Long Beach", NA, "")
+  coordinateUncertaintyInMeters = c(NA, "N/A", 50, "30", NA, "N/A", NA),
+  locality = c("Santa Cruz", NA, "Los Angeles", "N/A", "", "San Diego", NA),
+  verbatimLocality = c(NA, "CA coast", "", "N/A", "Long Beach", NA, "")
 )
 data$flag_check_geolocate <- ec_flag_with_locality(data)
 

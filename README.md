@@ -4,6 +4,7 @@
 # EcoCleanR V1.0
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 **The goal of EcoCleanR is to provides functions to integrate
@@ -30,9 +31,9 @@ Key features:<br>
     Create a summary and plot to represent suitable range of a species
     for spatial and non spatial attributes<br>
 
-## Installation from GitHub
+# Installation from GitHub
 
-You can install the development version of *EcoCleanR* from
+Install the development version of *EcoCleanR* from
 [GitHub](https://github.com/) with:
 <https://github.com/xxx/EcoCleanR/><br>
 
@@ -58,7 +59,7 @@ How to install package through zip file:<br>
 5)  Detail script with example scenario is given in
     vignettes/articles/stepbystep.Rmd.
 
-## Example
+# Example
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -78,9 +79,9 @@ head(ecodata)
 #> 6 6        modern          PRESENT              LI
 #>                         verbatimEventDate
 #> 1 Tue Nov 02 2021 12:32:42 GMT-0700 (PDT)
-#> 2                             02 Jan 1975
+#> 2                                2-Jan-75
 #> 3 Sat Nov 13 2021 14:00:19 GMT-0800 (PST)
-#> 4                             01 Jan 1975
+#> 4                                1-Jan-75
 #> 5                  2021/03/19 3:34 PM CDT
 #> 6                                    <NA>
 #>                                scientificName individualCount organismQuantity
@@ -125,7 +126,7 @@ ec_geographic_map(ecodata)
 #> (`geom_point()`).
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="70%" />
 
 ``` r
 
@@ -179,32 +180,49 @@ if (FALSE) {
 }
 # step 3.1 - visualize the map with outlier probability index, bind the ecodata_x with ecodata with updated column flag_outlier
 ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
+#> Ignoring unknown labels:
+#> • colour : "Flag"
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="70%" />
 
 ``` r
 # at this stage we can decide the acceptable outlier probability and after removing higher probable a new datafram called ecodata_cleaned can be source of summary table (next step)
 # step 3.2 - Visualize the summary table
-env_layers <- c("temperature_mean_BO", "temperature_min_BO", "temperature_max_BO")
+env_layers <-  c("BO_sstmean", "BO_sstmax", "BO_sstmin")
 data("ecodata_cleaned")
 ec_geographic_map(ecodata_cleaned)
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example-3.png" width="70%" />
 
 ``` r
 
 summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
 print(summary_table)
-#>              variable     Max     Min    Mean
-#> 1     decimalLatitude   34.04   22.92   31.73
-#> 2    decimalLongitude -106.10 -118.94 -116.58
-#> 3 temperature_mean_BO   29.04   16.15   17.97
-#> 4  temperature_min_BO   24.96   11.42   14.41
-#> 5  temperature_max_BO   32.68   18.79   22.47
+#>           variable     Max     Min    Mean
+#> 1  decimalLatitude   34.04   22.92   31.73
+#> 2 decimalLongitude -106.10 -118.94 -116.58
+#> 3       BO_sstmean   29.04   16.15   17.97
+#> 4        BO_sstmax   32.68   18.79   22.47
+#> 5        BO_sstmin   24.96   11.42   14.41
 # step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
 ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
 ```
 
-<img src="man/figures/README-example-4.png" width="100%" />
+<img src="man/figures/README-example-4.png" width="70%" />
+
+Further documents:<br>
+
+\*see data merging vignette: \[`data_merging`\]<br>
+
+\*see data cleaning steps on merged dataset at vignette:
+\[`data_cleaning`\]<br>
+
+\*see the Step-by-Step Workflow vignette for a detailed explanation of
+the complete process — from data downloading to merging, cleaning, and
+visualization at vignettes/article/stepbystep.rmd.<br>
+
+\*see citation guidelines for the downloaded data from gbif, obis,
+idigbio and InvertEbase \[cite_data\] at
+vignettes/article/cite_data.rmd.

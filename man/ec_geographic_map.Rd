@@ -23,6 +23,6 @@ data <- data.frame(
   temperature_mean = c(12, 13, 14),
   temperature_min = c(9, 6, 10),
   temperature_max = c(14, 16, 18)
-  )
+)
 ec_geographic_map(data)
 }

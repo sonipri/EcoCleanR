@@ -15,25 +15,27 @@
 #' @importFrom dplyr filter
 #' @examples
 #'
-#' db1<- data.frame(species = "A",
-#'                   decimalLongitude = c(-120, -117, NA, NA),
-#'                   decimalLatitude = c(20, 34, NA, NA),
-#'                   catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
-#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
-#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
-#'                   source = "db1",
-#'                   abundance = c(1,NA,8,23)
-#'                   )
+#' db1 <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -117, NA, NA),
+#'   decimalLatitude = c(20, 34, NA, NA),
+#'   catalogNumber = c("12345", "89888", "LACM8898", "SDNHM6767"),
+#'   occurrenceStatus = c("present", "", "ABSENT", "Present"),
+#'   basisOfRecord = c("preserved_specimen", "", "fossilspecimen", "material_sample"),
+#'   source = "db1",
+#'   abundance = c(1, NA, 8, 23)
+#' )
 #'
-#'db2<- data.frame(species = "A",
-#'                   decimalLongitude = c(-120.2, -117.1, NA, NA),
-#'                   decimalLatitude = c(20.2, 34.1, NA, NA),
-#'                   catalogNumber = c("123452", "898828", "LACM82898", "SDNHM62767"),
-#'                   occurrenceStatus = c("present","","ABSENT", "Present"),
-#'                   basisOfRecord = c("preserved_specimen", "","fossilspecimen", "material_sample"),
-#'                   source = "db2",
-#'                   abundance = c(1,2,3,19)
-#'                   )
+#' db2 <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120.2, -117.1, NA, NA),
+#'   decimalLatitude = c(20.2, 34.1, NA, NA),
+#'   catalogNumber = c("123452", "898828", "LACM82898", "SDNHM62767"),
+#'   occurrenceStatus = c("present", "", "ABSENT", "Present"),
+#'   basisOfRecord = c("preserved_specimen", "", "fossilspecimen", "material_sample"),
+#'   source = "db2",
+#'   abundance = c(1, 2, 3, 19)
+#' )
 #' merge_modern_data <- ec_db_merge("modern", db1, db2)
 #'
 ec_db_merge <- function(datatype = "modern", ...) {

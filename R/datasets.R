@@ -28,7 +28,6 @@
 "ecodata"
 
 
-
 #' dataset2: Documentation of data file - ecodata_corrected.rda
 #'
 #' @description This data file created by using GEOLocate tool and we only kept 4 columns. These georeference information will be merge back with the main data file ecodata
@@ -80,11 +79,11 @@
 #'   \item{flag_cc_inst}{Flag for coordinates matching institution location}
 #'   \item{flag_non_region}{Flag for coordinates outside the study region}
 #'   \item{outliers}{Flag for outliers based clustering of spatial and env variables}
-#'   \item{temperature_mean_BO}{Mean sea surface temperature from Bio-ORACLE}
-#'   \item{temperature_max_BO}{Maximum sea surface temperature from Bio-ORACLE}
-#'   \item{temperature_min_BO}{Minimum sea surface temperature from Bio-ORACLE}
-#'   \item{Chloro_BO}{Chlorophyll concentration from Bio-ORACLE}
-#'   \item{dissox_BO}{Dissolved oxygen level from Bio-ORACLE}
+#'   \item{BO_sstmean}{Mean sea surface temperature from Bio-ORACLE}
+#'   \item{BO_sstmax}{Maximum sea surface temperature from Bio-ORACLE}
+#'   \item{BO_sstmin}{Minimum sea surface temperature from Bio-ORACLE}
+#'   \item{BO_chloro}{Chlorophyll concentration from Bio-ORACLE}
+#'   \item{BO_dissox}{Dissolved oxygen level from Bio-ORACLE}
 #' }
 #' @source - this file was created manually after extracting the csv file from GEOLocate online software to assign coordiante and uncertainty values for the records has locality information
 "ecodata_with_outliers"
@@ -126,16 +125,15 @@
 #'   \item{flag_cc_inst}{Flag for coordinates matching institution location}
 #'   \item{flag_non_region}{Flag for coordinates outside the study region}
 #'   \item{outliers}{Flag for outliers based on clustering of spatial and environmental variables}
-#'   \item{temperature_mean_BO}{Mean sea surface temperature from Bio-ORACLE}
-#'   \item{temperature_max_BO}{Maximum sea surface temperature from Bio-ORACLE}
-#'   \item{temperature_min_BO}{Minimum sea surface temperature from Bio-ORACLE}
-#'   \item{Chloro_BO}{Chlorophyll concentration from Bio-ORACLE}
-#'   \item{dissox_BO}{Dissolved oxygen level from Bio-ORACLE}
+#'   \item{BO_sstmean}{Mean sea surface temperature from Bio-ORACLE}
+#'   \item{BO_sstmax}{Maximum sea surface temperature from Bio-ORACLE}
+#'   \item{BO_sstmin}{Minimum sea surface temperature from Bio-ORACLE}
+#'   \item{BO_chloro}{Chlorophyll concentration from Bio-ORACLE}
+#'   \item{BO_dissox}{Dissolved oxygen level from Bio-ORACLE}
 #' }
 #'
 #' @source Generated after filtering outlier data points
 "ecodata_cleaned"
-
 
 
 #' dataset5: Documentation of data file - ecodata_x.rda
@@ -153,3 +151,34 @@
 #' }
 #' @source - this file has unique coordinate information with unique values of enviornemnt variables
 "ecodata_x"
+
+#' dataset6: Documentation of data file - example_sp_invertebase.rda
+#'
+#' @description This is a data dump downloaded from invertEbase, as the R package link with InverEbase is currently archive and not maintained, we are providing an example file.
+#'
+#' @format A data frame with 710 rows and 20 variables:
+#' \describe{
+#'   \item{source}{invertEbase}
+#'   \item{catalogNumber}{CatalogNumber}
+#'   \item{basisOfRecord}{type of observations}
+#'   \item{occurrenceStatus}{presence or absent}
+#'   \item{institutionCode}{Institution code}
+#'   \item{verbatimEventDate}{when was this occurrence created}
+#'   \item{scientificName}{species name}
+#'   \item{individualCount}{abundance}
+#'   \item{organismQuantity}{abundance}
+#'   \item{abundance}{abundance}
+#'   \item{decimalLatitude}{Latitude in decimal degrees}
+#'   \item{decimalLongitude}{Longitude in decimal degrees}
+#'   \item{coordinateUncertaintyInMeters}{uncertainty of coordiantes}
+#'   \item{locality}{location information}
+#'   \item{verbatimLocality}{verbatim location information}
+#'
+#'   \item{municipality}{municipality}
+#'   \item{country}{country}
+#'   \item{stateProvince}{State or Provinces}
+#'   \item{county}{county}
+#'   \item{countryCode}{country code}
+#' }
+#' @source - this file is downloaded file from invertEBase for species - "Mexacanthina lugubris" and modified field names based on TDWG standard.
+"example_sp_invertebase"

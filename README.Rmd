@@ -9,7 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "70%"
 )
 ```
 
@@ -37,9 +39,9 @@ Key features:<br>
 3.2. Execute a summary table with max, min and mean limits of variables<br>
 3.3. Create a summary and plot to represent suitable range of a species for spatial and non spatial attributes<br>
 
-## Installation from GitHub
+# Installation from GitHub
 
-You can install the development version of *EcoCleanR* from [GitHub](https://github.com/) with:
+Install the development version of *EcoCleanR* from [GitHub](https://github.com/) with:
 https://github.com/xxx/EcoCleanR/<br>
 
 How to install package through zip file:<br>
@@ -69,7 +71,7 @@ How to install package through zip file:<br>
     
  e) Detail script with example scenario is given in vignettes/articles/stepbystep.Rmd.
 
-## Example
+# Example
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -117,7 +119,7 @@ if (FALSE) {
 ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
 # at this stage we can decide the acceptable outlier probability and after removing higher probable a new datafram called ecodata_cleaned can be source of summary table (next step)
 # step 3.2 - Visualize the summary table
-env_layers <- c("temperature_mean_BO", "temperature_min_BO", "temperature_max_BO")
+env_layers <-  c("BO_sstmean", "BO_sstmax", "BO_sstmin")
 data("ecodata_cleaned")
 ec_geographic_map(ecodata_cleaned)
 
@@ -126,3 +128,13 @@ print(summary_table)
 # step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
 ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
 ```
+
+Further documents:<br>
+
+*see data merging vignette: [`data_merging`]<br>
+
+*see data cleaning steps on merged dataset at vignette: [`data_cleaning`]<br>
+
+*see the Step-by-Step Workflow vignette for a detailed explanation of the complete process — from data downloading to merging, cleaning, and visualization at vignettes/article/stepbystep.rmd.<br>
+
+*see citation guidelines for the downloaded data from gbif, obis, idigbio and InvertEbase [cite_data] at vignettes/article/cite_data.rmd.

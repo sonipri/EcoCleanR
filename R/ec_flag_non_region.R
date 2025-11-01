@@ -16,13 +16,13 @@
 #' direction <- "east"
 #' buffer <- 25000
 #' ocean <- "pacific"
-#' data <- data.frame(species = "A",
-#'                   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
-#'                   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
-#'                   )
+#' data <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
+#'   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
+#' )
 #' data$flag_non_region <- ec_flag_non_region(direction, ocean, buffer = 50000, data)
-#'
-#'}
+#' }
 ec_flag_non_region <- function(direction, ocean, buffer = 50000, data) {
   # Sanitize inputs
   # Sanitize inputs

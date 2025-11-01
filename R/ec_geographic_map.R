@@ -18,7 +18,7 @@
 #'   temperature_mean = c(12, 13, 14),
 #'   temperature_min = c(9, 6, 10),
 #'   temperature_max = c(14, 16, 18)
-#'   )
+#' )
 #' ec_geographic_map(data)
 ec_geographic_map <- function(data) {
   # Calculate latitude and longitude boundaries
@@ -31,7 +31,7 @@ ec_geographic_map <- function(data) {
   geographic_extent <- ext(x = c(min_lon, max_lon, min_lat, max_lat))
 
   # Load and crop world map
-  world_map <- world(resolution = 3, path = "data/") # Load world map
+  world_map <- world(resolution = 3, path = tempdir()) # Load world map
   cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
 
   # Convert cropped map to sf object

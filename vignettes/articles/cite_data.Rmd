@@ -14,51 +14,53 @@ knitr::opts_chunk$set(
 library(EcoCleanR)
 ```
 ```{r example}
-#Method1: Generate a general citation for publication purposes:
-usethis::edit_r_environ() 
-###this code opens Renviron file- to generate citation we have to add credentials to access gbif with userid specific query. 
-GBIF_USER="myuser"
-GBIF_PWD="mypwd"
-GBIF_EMAIL="myemail@gmail.com"
+# Method1: Generate a general citation for publication purposes:
+usethis::edit_r_environ()
+### this code opens Renviron file- to generate citation we have to add credentials to access gbif with userid specific query.
+GBIF_USER <- "myuser"
+GBIF_PWD <- "mypwd"
+GBIF_EMAIL <- "myemail@gmail.com"
 
-d1 <-occ_download_meta(occ_download(pred("taxonKey", taxonkey)))
+d1 <- occ_download_meta(occ_download(pred("taxonKey", taxonkey)))
 gbif_citation_general <- gbif_citation(d1)[1]
 DOI <- d1[["doi"]]
 DOI
 gbif_citation_general
 
-###A DOI will save in gbif_citation_general variable which can be use to add in the publication.
+### A DOI will save in gbif_citation_general variable which can be use to add in the publication.
 
 ### for example: "GBIF Occurrence Download https://www.gbif.org/occurrence/download/0035415-250802193616735 Accessed from R via rgbif (https://github.com/ropensci/rgbif) on 2025-08-10"
 
-#Method2: Generate derived citation:
-###This citation is generated specifically for the cleaned/significantly reduced datasets. This method can generate one DOI for the subset dataset as well as provide detailed DOIs for each dataset: https://docs.ropensci.org/rgbif/reference/derived_dataset.html
+# Method2: Generate derived citation:
+### This citation is generated specifically for the cleaned/significantly reduced datasets. This method can generate one DOI for the subset dataset as well as provide detailed DOIs for each dataset: https://docs.ropensci.org/rgbif/reference/derived_dataset.html
 
-###Other methods include: function rgbif::dataset_get() or occCite::occCitation() to extract DOI for each data based on datasetKey values.
-### In this case as our requirement is merging several databases, we have to create a seperate dataframe call "datasetkey_lookup" with datasetKey and catalogNumber. This lookup file can be used later to merge with cleaned records. 
-###Code for datasetKey_lookup file:
-datasetkey_lookup <- gbif.occ %>% 
+### Other methods include: function rgbif::dataset_get() or occCite::occCitation() to extract DOI for each data based on datasetKey values.
+### In this case as our requirement is merging several databases, we have to create a seperate dataframe call "datasetkey_lookup" with datasetKey and catalogNumber. This lookup file can be used later to merge with cleaned records.
+### Code for datasetKey_lookup file:
+datasetkey_lookup <- gbif.occ %>%
   select(datasetKey, catalogNumber)
-###run all the steps to get final file called: cleaned_data
-cleaned_data_w_datasetKey <- cleaned_data %>% 
-  left_join(datasetkey_lookup %>% 
-              filter(catalogNumber %in% cleaned_data$cleaned_catalog) %>%
-              select(catalogNumber, datasetKey),
-              by = c("cleaned_catalog" = "catalogNumber"))
+### run all the steps to get final file called: cleaned_data
+cleaned_data_w_datasetKey <- cleaned_data %>%
+  left_join(
+    datasetkey_lookup %>%
+      filter(catalogNumber %in% cleaned_data$cleaned_catalog) %>%
+      select(catalogNumber, datasetKey),
+    by = c("cleaned_catalog" = "catalogNumber")
+  )
 
 lookup_first <- datasetkey_lookup %>%
   arrange(catalogNumber, datasetKey) %>%
-  distinct(catalogNumber, .keep_all = TRUE) %>% 
+  distinct(catalogNumber, .keep_all = TRUE) %>%
   select(catalogNumber, datasetKey)
 
 cleaned_data_w_datasetKey <- cleaned_data %>%
   left_join(lookup_first, by = c("cleaned_catalog" = "catalogNumber"))
 
 write.csv(cleaned_data_w_datasetKey %>% count(datasetKey), "xxx.csv")
-##clean_data_w_datasetKey will have datasetKey for each record if there is any.
-##this csv file can be used to get derived cite from gbif portal: https://www.gbif.org/derived-dataset
-#or through rgbif and occCite
-#use article - to get the derived citation using rgbif: https://docs.ropensci.org/rgbif/reference/derived_dataset.html
+## clean_data_w_datasetKey will have datasetKey for each record if there is any.
+## this csv file can be used to get derived cite from gbif portal: https://www.gbif.org/derived-dataset
+# or through rgbif and occCite
+# use article - to get the derived citation using rgbif: https://docs.ropensci.org/rgbif/reference/derived_dataset.html
 
-#Another method using function rgbif::dataset_get() or occCite::occCitation() to extract DOI for each data based on datasetKey values.
+# Another method using function rgbif::dataset_get() or occCite::occCitation() to extract DOI for each data based on datasetKey values.
 ```

@@ -29,7 +29,4 @@ data <- data.frame(
 )
 ec_geographic_map_w_flag(data, flag_column = "flag_outlier")
 
-
-
-
 }

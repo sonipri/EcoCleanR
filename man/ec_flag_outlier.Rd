@@ -43,7 +43,11 @@ data <- data.frame(
 )
 
 env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-res <- ec_flag_outlier(data, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
+res <- ec_flag_outlier(data, env_layers,
+  itr = 100,
+  k = 3, geo_quantile = 0.99,
+  maha_quantile = 0.99
+)
 data$outlier <- res$outlier
 iteration_list <- res$result$list
 

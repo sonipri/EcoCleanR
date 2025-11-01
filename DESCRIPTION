@@ -7,39 +7,28 @@ Description: This package provides tools to integrate biodiversity data from mul
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: 
     knitr,
+    rgbif,
+    robis,
+    ridigbio,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    devtools,
     dplyr,
     geodata,
     geosphere,
     ggplot2,
-    moments,
     mregions2,
     patchwork,
-    predicts,
-    raster,
-    remotes,
-    rgbif,
-    ridigbio,
     rlang,
-    rnaturalearth,
-    robis,
     sdmpredictors,
     sf,
-    sp,
-    stats,
     taxize,
     terra,
-    tidygeocoder,
-    tidyr,
-    vdiffr,
-    viridis
+    tidyr
 Depends: 
     R (>= 3.5)
 LazyData: true

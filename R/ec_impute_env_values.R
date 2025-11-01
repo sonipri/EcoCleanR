@@ -9,15 +9,16 @@
 #' @importFrom geosphere distVincentySphere
 #' @examples
 #'
-#' data_x <- data.frame(scientificName = "Mexacanthina lugubris",
-#'                   decimalLongitude = c(-117, -117.8, -116.9),
-#'                   decimalLatitude = c(32.9, 33.5, 31.9),
-#'                   BO_sstmean = c(12, NA, 14),
-#'                   BO_sstmin = c(9, NA, 10),
-#'                   BO_sstmax = c(14, NA, 18)
-#'                   )
-#' radius_km = 10
-#' iter = 3
+#' data_x <- data.frame(
+#'   scientificName = "Mexacanthina lugubris",
+#'   decimalLongitude = c(-117, -117.8, -116.9),
+#'   decimalLatitude = c(32.9, 33.5, 31.9),
+#'   BO_sstmean = c(12, NA, 14),
+#'   BO_sstmin = c(9, NA, 10),
+#'   BO_sstmax = c(14, NA, 18)
+#' )
+#' radius_km <- 10
+#' iter <- 3
 #' data_x <- ec_impute_env_values(data_x, radius_km, iter)
 #'
 #' @export
@@ -50,7 +51,7 @@ ec_impute_env_values <- function(data_x, radius_km = 10, iter = 3) {
       )
 
       # Select nearby valid points within the given radius
-      nearby_points <- data_x[distances <= radius_km*1000 & apply(data_x[, env_cols], 1, function(row) all(!is.na(row))), ]
+      nearby_points <- data_x[distances <= radius_km * 1000 & apply(data_x[, env_cols], 1, function(row) all(!is.na(row))), ]
 
       if (nrow(nearby_points) > 0) {
         for (var in env_cols) {

@@ -9,29 +9,28 @@
 #' @export
 #'
 #' @examples
-#'data <- data.frame(
-#'  species = "A",
-#'  decimalLongitude = c(-120, -119.8, NA, NA),
-#'  decimalLatitude = c(20, 34, NA, NA),
-#'  cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
-#'  locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
-#'  coordinateUncertaintyInMeters = c(9999, NA, NA, NA)
-#')
+#' data <- data.frame(
+#'   species = "A",
+#'   decimalLongitude = c(-120, -119.8, NA, NA),
+#'   decimalLatitude = c(20, 34, NA, NA),
+#'   cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
+#'   locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
+#'   coordinateUncertaintyInMeters = c(9999, NA, NA, NA)
+#' )
 
-#'data_corrected <- data.frame(
+#' data_corrected <- data.frame(
 #'  species = "A",
 #'  decimalLongitude = c(-120, -119.8, 118, 118.3),
 #'  decimalLatitude = c(20, 34, 33, 32.9),
 #'  cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
 #'  locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
 #'  coordinateUncertaintyInMeters = c(9999, NA, 5000, 1000)
-#')
+#' )
 #'
 #'
-#'data<- ec_merge_corrected_coordinates(data, data_corrected)
+#' data<- ec_merge_corrected_coordinates(data, data_corrected)
 #'
 ec_merge_corrected_coordinates <- function(data_corrected, data) {
-
   idx <- match(data$cleaned_catalog, data_corrected$cleaned_catalog)
 
   # Merge corrected values into the original data
