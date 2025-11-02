@@ -232,7 +232,7 @@ list_outlier <- list()
 list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
 
 # running below code will provide a sense how many and what data points are considered out of the quantile. If you are not satisfied you can re-run the code with different quantile values and run again the plot view.
-ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99)
+ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE)
 ### press q to exit from the plot
 
 ecodata_unique$flag_outliers <- list_outlier$outliers

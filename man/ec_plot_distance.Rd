@@ -4,7 +4,12 @@
 \alias{ec_plot_distance}
 \title{Scatter plot between geo_distance vs maha_distance}
 \usage{
-ec_plot_distance(x, geo_quantile = 0.99, maha_quantile = 0.99)
+ec_plot_distance(
+  x,
+  geo_quantile = 0.99,
+  maha_quantile = 0.99,
+  iterative = TRUE
+)
 }
 \arguments{
 \item{x}{iteration_list derived from ec_flag_outlier can be used to plot these scatter plots between geo_distance vs maha_distance}
@@ -12,6 +17,8 @@ ec_plot_distance(x, geo_quantile = 0.99, maha_quantile = 0.99)
 \item{geo_quantile}{value with geo_quantile percentile would consider has threshold for geo_distance to derive the outlier. e.g. default 0.99}
 
 \item{maha_quantile}{value with maha_quantile percentile would consider has threshold for maha_distance to derive the outlier. e.g. default 0.99}
+
+\item{iterative}{= TRUE/FALSE, default set on TRUE, which provide a iterative loop to check maps of each iteration of listed outcome of outlier probability, if it is FALSE, loop exit with first iteration outcome of outlier probability.}
 }
 \value{
 a list of plot for each iteration outcome
@@ -44,6 +51,6 @@ df2 <- data.frame(
 iteration_list <- list(df1, df2)#Store both data frames in a list
 
 iteration_list <- list(df1, df2)
-plot <- ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99)
+plot <- ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE)
 
 }

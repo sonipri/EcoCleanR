@@ -18,7 +18,7 @@ a data table which has unique coordinates and env predictors
 extract the environmental layers
 }
 \examples{
-env_layers <- c("BO_sstmean", "BO_Chlomean", "BO_dissox", "BO_salinity")
+env_layers <- c("BO_sstmean", "BO_chlomean", "BO_dissox", "BO_salinity")
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),

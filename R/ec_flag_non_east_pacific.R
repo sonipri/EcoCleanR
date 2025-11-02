@@ -21,7 +21,6 @@
 #' )
 #' data$flag_non_region <- ec_flag_non_east_pacific(ocean_names, buffer_distance, data)
 #' }
-
 ec_flag_non_east_pacific <- function(ocean_names, buffer_distance = 50000, ecodata) {
   # Validate inputs
   if (missing(ocean_names) || length(ocean_names) == 0) {

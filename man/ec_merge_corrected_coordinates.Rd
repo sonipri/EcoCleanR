@@ -4,12 +4,14 @@
 \alias{ec_merge_corrected_coordinates}
 \title{merge the update georeferences back to the main file.}
 \usage{
-ec_merge_corrected_coordinates(data_corrected, data)
+ec_merge_corrected_coordinates(data_corrected, data, catalog = cleaned_catalog)
 }
 \arguments{
 \item{data_corrected}{After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected}
 
 \item{data}{data table which needs to updated with the assign coordiantes}
+
+\item{catalog}{this is an important attribute to use matching the records back to the main data file.}
 }
 \value{
 data table with updated coordinate information
@@ -27,15 +29,13 @@ data <- data.frame(
   coordinateUncertaintyInMeters = c(9999, NA, NA, NA)
 )
 data_corrected <- data.frame(
- species = "A",
- decimalLongitude = c(-120, -119.8, 118, 118.3),
- decimalLatitude = c(20, 34, 33, 32.9),
+corrected_longitude = c(-120, -119.8, 118, 118.3),
+ corrected_latitude = c(20, 34, 33, 32.9),
  cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767"),
- locality = c(NA, NA, "Los Angeles, CA", "San Pedro, CA"),
- coordinateUncertaintyInMeters = c(9999, NA, 5000, 1000)
+ corrected_uncertainty = c(9999, NA, 5000, 1000)
 )
 
 
-data<- ec_merge_corrected_coordinates(data, data_corrected)
+data<- ec_merge_corrected_coordinates(data_corrected, data, catalog = cleaned_catalog)
 
 }

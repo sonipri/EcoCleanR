@@ -14,10 +14,10 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  #eval = FALSE,
- fig.width = 8,
- fig.height = 6,
- out.width = "70%"
+  # eval = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "70%"
 )
 ```
 # Introduction:
@@ -39,12 +39,12 @@ Below is the demonstration of each steps:
 **Note:** For details on data integration, see the [`data_merging`]
 
 ```{r setup}
-#package loading
+# package loading
 library(EcoCleanR)
 library(dplyr)
 ```
 ```{r}
-#provide example species name
+# provide example species name
 species_name <- "Mexacanthina lugubris"
 ```
 
@@ -58,16 +58,18 @@ ecodata <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance
 str(ecodata[,1:3])
 
 ### Optional to perform: check the institution code
-# inst_counts <- ecodata_cl %>%
+# inst_counts <- ecodata %>%
 # group_by(institutionCode) %>%
 # summarise(record_count = n(), .groups = "drop")
 
 ### optional to perform..
-# ecodata_cl <- ecodata_cl %>%
+# ecodata <- ecodata %>%
 # filter(is.na(institutionCode) | institutionCode != "NRM")
 
 ```
-
+```{r}
+ec_geographic_map(ecodata)
+```
 
 # Step2: Remove bad taxa
 This step helps to check if any wrong taxonomy has fetched from online datasources by checking if it is an accepted synonym in the WoRMS (World Register of Marine Species) taxonomy database
@@ -75,9 +77,9 @@ This step helps to check if any wrong taxonomy has fetched from online datasourc
 `ec_worms_synonym` returns a table named comparison with two columns: the first column lists the synonyms accepted in the WoRMS database, and the second column lists the unique species names from ecodata with the counts of occurrences
 
 ```{r}
-str(ecodata[, 1:3])
 comparison <- ec_worms_synonym(species_name, ecodata)
 print(comparison)
+# compare the columns to know if any taxa found that is not a synonym in WoRMS data base, filter bad taxa from ecodata using dplyr::filter()
 ```
 
 # Step3: Georeferencing using external tool
@@ -86,25 +88,31 @@ This step generates a table "data_need_correction" that can potentially assign g
 
 This table can be further used as an input file for the GEOLocate tool to perform georeferencing. Currently, there is no R code available to automate this process. This process require manual validation on each records for the assigned coordinates and uncertainty. (see Scenario B in the manuscript for this example)
 
+Use `ec_merge_coorected_Coordinates` to assigned corrected coordinates - latitude, longitude and coordinte uncertainty, back into main data table. 
+Pre-saved data file ecodata_corrected.rda, an example to use as template.
+
 ```r
-ecodata_cl$flag_check_geolocate <- ec_flag_with_locality(ecodata_cl)
-str(ecodata_cl[,1:3])
+ecodata$flag_check_geolocate <- ec_flag_with_locality(ecodata)
+str(ecodata[,1:3])
 data_need_correction <- ecodata %>%
 filter(flag_check_geolocate!= 1)
+#save the data as local file to insert in GEOLocate web tool
 #write.csv(data_need_correction, "data_check_geolocate.csv")
+
+#Load back the corrected coordinate file extracted from GEOLocate 
 #ecodata_corrected <- read.csv("M lugubris_corrected_geolocate.csv")
+
 ### Merged records with improved georeference:
-ecodata_cl <- ec_merge_corrected_coordinates(ecodata_corrected, ecodata_cl)
-str(ecodata_cl[,1:3]) 
+ecodata <- ec_merge_corrected_coordinates(ecodata_corrected, ecodata, catalog = "cleaned_catalog")
+str(ecodata[,1:3]) 
 
 ### Plot the map to visualize the datapoints
-ec_geographic_map(ecodata_cl)###plot the map
-
+ec_geographic_map(ecodata)###plot the map
 ```
-
 # Step4: Extreme high uncertainty
 
 `ec_filter_by_uncertainty` function can be used in all scenarios (see manuscript) to help remove extremely high uncertainty from the remaining data. 
+
 ```{r}
 ecodata_cl <- ec_filter_by_uncertainty(ecodata, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.95, ask = FALSE)
 str(ecodata_cl[, 1:3])
@@ -117,7 +125,7 @@ ec_geographic_map(ecodata_cl)
 ```{r}
 ecodata_cl$flag_precision <- ec_flag_precision(ecodata_cl$decimalLongitude, ecodata_cl$decimalLatitude)
 
-#filter the flag - flag_cordinate_precision
+# filter the flag - flag_cordinate_precision
 ecodata_cl <- ecodata_cl %>%
   filter(flag_precision != 1)
 str(ecodata_cl[1:3])
@@ -137,7 +145,7 @@ buffer <- 25000
 ocean <- "pacific"
 ecodata_cl$flag_non_region <- ec_flag_non_region(direction, ocean, buffer, ecodata_cl)
 str(ecodata_cl[, 1:3])
-#filter flagged records
+# filter flagged records
 ecodata_cl <- ecodata_cl %>%
   filter(flag_non_region != 1)
 ### map view to see accepted records
@@ -183,13 +191,11 @@ ecodata_cl <- ecodata_cl %>%
   left_join(ecodata_unique[, c("decimalLatitude", "decimalLongitude", "flag_outliers", env_layers)],
     by = c("decimalLatitude", "decimalLongitude")
   )
-
 ```
 ```{r}
-#pre-saved file ecodata_with_outliers instead of using ecodata_cl
+# pre-saved file ecodata_with_outliers instead of using ecodata_cl
 ### map view to see records with outlier probability
 ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
-
 ```
 ```r
 ### Filter outliers those have higher outlier probability >0.90, 0.95 etc.

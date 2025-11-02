@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Codecov test
+coverage](https://codecov.io/gh/sonipri/EcoCleanR/graph/badge.svg)](https://app.codecov.io/gh/sonipri/EcoCleanR)
 <!-- badges: end -->
 
 **The goal of EcoCleanR is to provides functions to integrate
@@ -189,7 +191,7 @@ ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
 ``` r
 # at this stage we can decide the acceptable outlier probability and after removing higher probable a new datafram called ecodata_cleaned can be source of summary table (next step)
 # step 3.2 - Visualize the summary table
-env_layers <-  c("BO_sstmean", "BO_sstmax", "BO_sstmin")
+env_layers <- c("BO_sstmean", "BO_sstmax", "BO_sstmin")
 data("ecodata_cleaned")
 ec_geographic_map(ecodata_cleaned)
 ```
