@@ -28,7 +28,7 @@ test_that("ec_db_merge works", {
   result2 <- ec_db_merge(datatype = "fossil", db1, db2)
   expect_s3_class(result2, "data.frame")
   expect_equal(nrow(result2), 1)
-  })
+})
 
 # ec_rm_duplicate
 test_that("ec_rm_duplicate works", {
@@ -146,9 +146,9 @@ test_that("ec_flag_non_region works", {
   ocean <- "pacific"
   buffer <- 25000
 
-  #skip("Skipping ec_flag_non_region test - big shape files required to load for it")
-  #skip_on_cran() # skip on cran due to heaving data load
-  #skip_on_ci()
+  # skip("Skipping ec_flag_non_region test - big shape files required to load for it")
+  # skip_on_cran() # skip on cran due to heaving data load
+  # skip_on_ci()
   expect_equal(sum(ec_flag_non_region(direction, ocean, buffer, test_data4)), 6)
 })
 
@@ -160,9 +160,9 @@ test_that("ec_extract_env_layers works", {
     decimalLatitude = 30.8
   )
   env_layers <- "BO_sstmean"
-  #skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
-  #skip_on_cran() # skip on cran as external env layers load
-  #skip_on_ci()
+  # skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
+  # skip_on_cran() # skip on cran as external env layers load
+  # skip_on_ci()
   result <- ec_extract_env_layers(test_data5, env_layers)
   expect_s3_class(result, "data.frame")
   expect_true(all(env_layers %in% colnames(result)))
@@ -221,27 +221,26 @@ test_that("ec_flag_outlier works", {
 # ec_plot_distance (Testing)
 test_that("ec_plot_distance works", {
   df1 <- data.frame(
-   latitude = runif(5, 30, 35),
-   longitude = runif(5, -120, -115),
-   temperature = rnorm(5, 15, 2),
-   pH = rnorm(5, 8, 0.1),
-   geo_distance = runif(5, 0, 100),
-   maha_distance = runif(5, 0, 10)
+    latitude = runif(5, 30, 35),
+    longitude = runif(5, -120, -115),
+    temperature = rnorm(5, 15, 2),
+    pH = rnorm(5, 8, 0.1),
+    geo_distance = runif(5, 0, 100),
+    maha_distance = runif(5, 0, 10)
   )
 
- df2 <- data.frame(
-   latitude = runif(5, 30, 35),
-   longitude = runif(5, -120, -115),
-   temperature = rnorm(5, 16, 2),
-   pH = rnorm(5, 7.9, 0.1),
-   geo_distance = runif(5, 0, 100),
-   maha_distance = runif(5, 0, 10)
-   )
+  df2 <- data.frame(
+    latitude = runif(5, 30, 35),
+    longitude = runif(5, -120, -115),
+    temperature = rnorm(5, 16, 2),
+    pH = rnorm(5, 7.9, 0.1),
+    geo_distance = runif(5, 0, 100),
+    maha_distance = runif(5, 0, 10)
+  )
 
- iteration_list <- list(df1, df2)
- expect_silent(ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99, iterative = FALSE))
-}
-)
+  iteration_list <- list(df1, df2)
+  expect_silent(ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99, iterative = FALSE))
+})
 
 # ec_geographic_map_w_flag
 test_that("ec_geographic_map_w_flag works", {
@@ -392,9 +391,9 @@ test_that("ec_flag_non_east_atlantic works", {
   )
   ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
   buffer_distance <- 25000
-  skip("Skipping ec_flag_non_east_atlantic test - big shape files required to load for it")
-  skip_on_cran() # skip on cran due to heaving data load
-  skip_on_ci()
+  # skip("Skipping ec_flag_non_east_atlantic test - big shape files required to load for it")
+  # skip_on_cran() # skip on cran due to heaving data load
+  # skip_on_ci()
   expect_equal(sum(ec_flag_non_east_atlantic(ocean_names, buffer_distance, test_data4)), 8)
 })
 
@@ -407,9 +406,9 @@ test_that("ec_flag_non_west_atlantic works", {
   )
   ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
   buffer_distance <- 25000
-  skip("Skipping ec_flag_non_west_atlantic test - big shape files required to load for it")
-  skip_on_cran() # skip on cran due to heaving data load
-  skip_on_ci()
+  # skip("Skipping ec_flag_non_west_atlantic test - big shape files required to load for it")
+  # skip_on_cran() # skip on cran due to heaving data load
+  # skip_on_ci()
   expect_equal(sum(ec_flag_non_west_atlantic(ocean_names, buffer_distance, test_data4)), 5)
 })
 
@@ -422,8 +421,8 @@ test_that("ec_flag_non_west_pacific works", {
   )
   ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
   buffer_distance <- 25000
-  skip("Skipping ec_flag_non_west_pacific test - big shape files required to load for it")
-  skip_on_cran() # skip on cran due to heaving data load
-  skip_on_ci()
+  # skip("Skipping ec_flag_non_west_pacific test - big shape files required to load for it")
+  # skip_on_cran() # skip on cran due to heaving data load
+  # skip_on_ci()
   expect_equal(sum(ec_flag_non_west_pacific(ocean_names, buffer_distance, test_data4)), 8)
 })

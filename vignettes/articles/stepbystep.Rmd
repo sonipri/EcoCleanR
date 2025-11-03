@@ -106,14 +106,10 @@ str(idig.occ_temp[, 1:3])
 
 ## end of idigbio data extraction
 
-# InvertEbase - data extraction and standardization---------
-### rSymbiota is utilize for invertEBase which required addition soft loading called - docker to run ther server. We are not running this code due to system dependency
+# Local file (InvertEbase) - data read and standardization---------
 
-### mycoportal <- "http://invertebase.org/portal/index.php"
-### sym.occ <- symbiota(taxon = "mexacanthina lugubris", db = mycoportal)
-
-# Instead we will use csv file downloaded from invertEBase, please use this file as template
-sym.occ <- example_sp_invertebase # this file is currently loaded in package "/data" folder. We can either make a file manually of use rsymbiota for automation.
+# This local file "example_sp_invertebase" is a manual downloaded file from InvertEbase for Mexacanthina lugubris. See the example_sp_invertEbase dataset for its attributes and DwC format.
+sym.occ <- example_sp_invertebase # this file is currently loaded in package "/data" folder.
 sym.occ$abundance <- as.numeric(sym.occ$individualCount)
 
 for (field in attribute_list) {

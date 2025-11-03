@@ -122,9 +122,9 @@ idig.occ_temp <- idig.occ[, attribute_list]
 str(idig.occ_temp[, 1:3])
 ```
 
-# InvertEbase - data extraction and standardization
+# Local file (InvertEbase) - data read and standardization
 
-Since the rsymbiota package has been archived and is no longer functional, a sample file "example_sp_invertebase" downloaded from InvertEbase for Mexacanthina lugubris is provided instead. See the example_sp_invertEbase dataset for its attributes and format.
+This local file "example_sp_invertebase" is a manual downloaded file from InvertEbase for Mexacanthina lugubris. See the example_sp_invertEbase dataset for its attributes and DwC format.
 ```{r}
 sym.occ <- example_sp_invertebase
 sym.occ$abundance <- as.numeric(sym.occ$individualCount)

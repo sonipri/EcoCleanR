@@ -19,8 +19,8 @@ biogeographic analyses.**
 Key features:<br>
 
 1.  Data Merging: Merge data from GBIF (with *rgbif*), iDigBio (with
-    *ridigbio*), OBIS (with *robis*), InvertEBase (with *rsymbiota*),
-    and local input data files (with read.csv local drive). <br>
+    *ridigbio*), OBIS (with *robis*) and local input data file
+    (e.g. used csv file downloaded from InvertEBase database). <br>
 2.  Data Cleaning: <br> 2.1. Remove duplicates<br> 2.2. Check bad taxon
     using WoRMs<br> 2.3. Improve the coordinate information utilizing
     external georeference tools<br> 2.4. check the coordinate precision
@@ -58,18 +58,25 @@ How to install package through zip file:<br>
 
     \#devtools::check()
 
-5)  Detail script with example scenario is given in
-    vignettes/articles/stepbystep.Rmd.
+5)  see data merging steps vignette: \[`data_merging`\]<br>
+
+    see data cleaning steps on merged dataset at vignette:
+    \[`data_cleaning`\]<br>
+
+**Recommanded** :see the Step-by-Step Workflow for complete process —
+from data downloading, processing, merging, cleaning, and visualization
+at vignettes/article/stepbystep.rmd.
 
 # Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example to demonstrate data processing, merging and
+cleanings steps for a species name “Mexacanthina lugubris”
 
 ``` r
 library(EcoCleanR)
 ## basic example code
 # After execution of step 1 and 2.1, output file called "ecodata"
-# This dataset contains ~1100 occurrence records for the species Mexacanthina lugubris. It was compiled by merging data from multiple online repositories — GBIF, OBIS, iDigBio, InvertEBase — along with personal field observations (step 1). Duplicate records were removed to retain only unique occurrences (2.1).
+# This dataset contains ~1100 occurrence records for the species Mexacanthina lugubris. It was compiled by merging data from multiple online repositories — GBIF, OBIS, iDigBio and local file (InvertEbase) — consider as step 1 (Vignette: data_merging). Duplicate records were removed to retain only unique occurrences (2.1) using function "ec_rm_duplicate".
 # The algorithm for these steps can be found on article folder - documentation
 head(ecodata)
 #>   X basisOfRecord occurrenceStatus institutionCode

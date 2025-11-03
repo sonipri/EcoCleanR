@@ -36,7 +36,8 @@
 #' iteration_list <- list(df1, df2)#Store both data frames in a list
 #'
 #' iteration_list <- list(df1, df2)
-#' plot <- ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE)
+#' plot <- ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99,
+#' iterative = TRUE)
 #'
 ec_plot_distance <- function(x, geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE) # x is the list derived from distance calc for e.g. 100 or 1000 iter
 {
