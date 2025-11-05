@@ -4,8 +4,9 @@
 #' @param uncertainty_col coordinateUncertaintyInMeters column
 #' @param percentile to derive threshold, e.g. extreme 5% uncertainty data points to be removed. give percentile value as 0.95
 #' @param ask this allow user to decide if the uncertainty threshold value is okay or too high/low
-#'
+#' @param decimalLatitude default set on decimalLatitude, this column is use to filter records those does not have georeferences.
 #' @return a clean data table with removed extreme uncertain data points
+#' @importFrom stats quantile
 #' @export
 #'
 #' @examples
@@ -21,15 +22,16 @@
 #'   data,
 #'   uncertainty_col = "coordinateUncertaintyInMeters",
 #'   percentile = 0.96,
-#'   ask = TRUE
+#'   ask = TRUE,
+#'   decimalLatitude = "decimalLatitude"
 #' )
 #'
-ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE) {
+ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE, decimalLatitude = "decimalLatitude") {
   # Ensure the uncertainty column is numeric
   data[[uncertainty_col]] <- as.numeric(data[[uncertainty_col]])
 
   # Calculate the threshold value
-  threshold <- quantile(data[[uncertainty_col]], percentile, na.rm = TRUE)
+  threshold <- stats::quantile(data[[uncertainty_col]], percentile, na.rm = TRUE)
   message("Suggested threshold at ", percentile * 100, "th percentile: ", round(threshold, 2))
 
   # Ask user to confirm before filtering (if ask = TRUE)

@@ -2,7 +2,7 @@
 #'
 #' @param species_name input species name.e.g. Mexacanthina lugubris
 #' @param data data table which has information of all occurrence data of the selected species
-#'
+#' @param scientificName default set to scientificName, this is a column in the data extracted from online sources, may have various synonyms of species_name.
 #' @return a table with two columns, column one represent the accepted synonyms, and column two demonstrate the unique species names from the occurrence data base with the number of records tagged under species names.
 #' @importFrom taxize get_wormsid
 #' @importFrom taxize synonyms
@@ -19,20 +19,20 @@
 #' comparison <- ec_worms_synonym(species_name, data)
 #' print(comparison)
 #'
-ec_worms_synonym <- function(species_name, data) {
+ec_worms_synonym <- function(species_name, data, scientificName = "scientificName") {
   # Step 1: Get WoRMS ID and synonyms
   worms_id <- get_wormsid(species_name)
   worms_syn <- synonyms(worms_id[1], db = "worms")
 
   # Step 2: Extract unique scientific names from WoRMS synonyms and input ecodata
   worms_syn_df <- worms_syn[[1]]
-  unique_worms <- unique(dplyr::select(worms_syn_df, scientificname))
+  unique_worms <- unique(dplyr::select(worms_syn_df, "scientificname"))#this is a column name from worms database.
   ecodata_counts <- data %>%
-    dplyr::group_by(scientificName) %>%
+    dplyr::group_by(.data$scientificName) %>%
     dplyr::summarise(record_count = n(), .groups = "drop")
 
   ecodata_counts <- ecodata_counts %>%
-    dplyr::mutate(scientificName_with_count = paste0(scientificName, " (", record_count, ")"))
+    dplyr::mutate(scientificName_with_count = paste0(.data$scientificName, " (", .data$record_count, ")"))
 
   # Step 3: Convert to vectors and sort
   vec_worms <- sort(c(as.vector(unique_worms$scientificname), species_name))

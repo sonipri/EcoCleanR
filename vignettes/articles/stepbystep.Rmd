@@ -122,7 +122,8 @@ str(sym.occ[, 1:3])
 ### end of InvertEBase
 
 # Step1: Merging the databases------
-Mixdb.occ <- ec_db_merge(datatype = "modern", gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+db_list = list(gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+Mixdb.occ <- ec_db_merge(db_list = db_list, datatype = "modern")
 
 str(Mixdb.occ[, 1:3])
 ### end of merge data. Note - we have duplicates which will be removed as part of data cleaning file.

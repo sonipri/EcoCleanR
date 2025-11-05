@@ -8,7 +8,9 @@ ec_plot_distance(
   x,
   geo_quantile = 0.99,
   maha_quantile = 0.99,
-  iterative = TRUE
+  iterative = TRUE,
+  geo_distance = "geo_distance",
+  maha_distance = "maha_distance"
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ ec_plot_distance(
 \item{maha_quantile}{value with maha_quantile percentile would consider has threshold for maha_distance to derive the outlier. e.g. default 0.99}
 
 \item{iterative}{= TRUE/FALSE, default set on TRUE, which provide a iterative loop to check maps of each iteration of listed outcome of outlier probability, if it is FALSE, loop exit with first iteration outcome of outlier probability.}
+
+\item{geo_distance}{default set on "geo_distance", this column has calculated distance - output of ec_flag_outlier}
+
+\item{maha_distance}{default set on "maha_distance", this column has calculated distance - output of ec_flag_outlier}
 }
 \value{
 a list of plot for each iteration outcome

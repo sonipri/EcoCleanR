@@ -4,12 +4,21 @@
 \alias{ec_db_merge}
 \title{merge the data bases from different sources.}
 \usage{
-ec_db_merge(datatype = "modern", ...)
+ec_db_merge(
+  db_list,
+  datatype = "modern",
+  occurrenceStatus = "occurrenceStatus",
+  basisOfRecord = "basisOfRecord"
+)
 }
 \arguments{
+\item{db_list}{list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.}
+
 \item{datatype}{default "modern". datatype accept text input as "modern" or "fossil"}
 
-\item{...}{list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.}
+\item{occurrenceStatus}{default name for occurrenceStatus column is occurrenceStatus but a different name can be inserted if required.}
+
+\item{basisOfRecord}{default name for basis of record column is basis of record but a different name can be inserted if required.}
 }
 \value{
 A merge data frame which is filtered with "modern" or "fossil" records
@@ -48,6 +57,7 @@ db2 <- data.frame(
   source = "db2",
   abundance = c(1, 2, 3, 19)
 )
-merge_modern_data <- ec_db_merge("modern", db1, db2)
+db_list = list(db1, db2)
+merge_modern_data <- ec_db_merge(db_list = db_list, "modern")
 
 }

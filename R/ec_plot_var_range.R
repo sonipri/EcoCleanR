@@ -45,7 +45,7 @@
 #'
 ec_plot_var_range <- function(data, summary_df, env_layers) {
   range_data <- summary_df %>%
-    mutate(ymin = Min, ymax = Max)
+    mutate(ymin = .data$Min, ymax = .data$Max)
   mydata_long <- data %>%
     tidyr::pivot_longer(
       cols = tidyr::all_of(c("decimalLatitude", "decimalLongitude", env_layers)),
@@ -55,13 +55,13 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
 
   P1 <- ggplot() +
     geom_errorbar(
-      data = range_data %>% filter(variable == "decimalLatitude"),
-      aes(x = variable, ymin = ymin, ymax = ymax),
+      data = range_data %>% filter(.data$variable == "decimalLatitude"),
+      aes(x = .data$variable, ymin = .data$ymin, ymax = .data$ymax),
       width = 0.15, color = "blue", linewidth = 1.0
     ) +
     geom_point(
-      data = mydata_long %>% filter(variable == "decimalLatitude"),
-      aes(x = variable, y = value),
+      data = mydata_long %>% filter(.data$variable == "decimalLatitude"),
+      aes(x = .data$variable, y = .data$value),
       size = 2, shape = 1, color = "black", stroke = 1
     ) +
     ggtitle("Latitude") +
@@ -70,13 +70,13 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
 
   P2 <- ggplot() +
     geom_errorbar(
-      data = range_data %>% filter(variable == "decimalLongitude"),
-      aes(x = variable, ymin = ymin, ymax = ymax),
+      data = range_data %>% filter(.data$variable == "decimalLongitude"),
+      aes(x = .data$variable, ymin = .data$ymin, ymax = .data$ymax),
       width = 0.15, color = "blue", linewidth = 1.0
     ) +
     geom_point(
-      data = mydata_long %>% filter(variable == "decimalLongitude"),
-      aes(x = variable, y = value),
+      data = mydata_long %>% filter(.data$variable == "decimalLongitude"),
+      aes(x = .data$variable, y = .data$value),
       size = 2, shape = 1, color = "black", stroke = 1
     ) +
     ggtitle("Longitude") +
@@ -84,13 +84,13 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
     theme(axis.text = element_text(size = 14))
   P3 <- ggplot() +
     geom_errorbar(
-      data = range_data %>% filter(variable %in% env_layers),
-      aes(x = variable, ymin = ymin, ymax = ymax),
+      data = range_data %>% filter(.data$variable %in% env_layers),
+      aes(x = .data$variable, ymin = .data$ymin, ymax = .data$ymax),
       width = 0.15, color = "blue", linewidth = 1.0
     ) +
     geom_point(
-      data = mydata_long %>% filter(variable %in% env_layers),
-      aes(x = variable, y = value),
+      data = mydata_long %>% filter(.data$variable %in% env_layers),
+      aes(x = .data$variable, y = .data$value),
       size = 2, shape = 1, color = "black", stroke = 1, na.rm = TRUE
     ) +
     ggtitle("Environmental Variables") +

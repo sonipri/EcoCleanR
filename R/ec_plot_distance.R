@@ -4,6 +4,8 @@
 #' @param geo_quantile value with geo_quantile percentile would consider has threshold for geo_distance to derive the outlier. e.g. default 0.99
 #' @param maha_quantile value with maha_quantile percentile would consider has threshold for maha_distance to derive the outlier. e.g. default 0.99
 #' @param iterative = TRUE/FALSE, default set on TRUE, which provide a iterative loop to check maps of each iteration of listed outcome of outlier probability, if it is FALSE, loop exit with first iteration outcome of outlier probability.
+#' @param geo_distance default set on "geo_distance", this column has calculated distance - output of ec_flag_outlier
+#' @param maha_distance default set on "maha_distance", this column has calculated distance - output of ec_flag_outlier
 #'
 #' @return a list of plot for each iteration outcome
 #' @import ggplot2
@@ -39,7 +41,7 @@
 #' plot <- ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99,
 #' iterative = TRUE)
 #'
-ec_plot_distance <- function(x, geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE) # x is the list derived from distance calc for e.g. 100 or 1000 iter
+ec_plot_distance <- function(x, geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE, geo_distance = "geo_distance", maha_distance = "maha_distance") # x is the list derived from distance calc for e.g. 100 or 1000 iter
 {
   x <- x[!sapply(x, anyNA)]
   for (j in seq_along(x)) {

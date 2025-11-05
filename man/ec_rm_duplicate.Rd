@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_rm_duplicate.R
 \name{ec_rm_duplicate}
 \alias{ec_rm_duplicate}
-\title{remove duplicate records based on catalogNumber and abundance columns.
+\title{This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
 mandatory fields are catalogNumber, source and abundance}
 \usage{
 ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
@@ -18,7 +18,7 @@ ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
 A data frame which has unique catalog numbers. the output file will have cleaned_catalog field instead of catalogNumber. Also the unique record will be chosen with the abundance value if there is any.
 }
 \description{
-remove duplicate records based on catalogNumber and abundance columns.
+This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
 mandatory fields are catalogNumber, source and abundance
 }
 \examples{
@@ -44,7 +44,8 @@ db2 <- data.frame(
   source = "db2",
   abundance = c(1, 2, 3, 19)
 )
-merge_modern_data <- ec_db_merge("modern", db1, db2)
+db_list = list(db1, db2)
+merge_modern_data <- ec_db_merge(db_list = db_list, "modern")
 ecodata <- ec_rm_duplicate(merge_modern_data,
   catalogNumber = "catalogNumber",
   abundance = "abundance"

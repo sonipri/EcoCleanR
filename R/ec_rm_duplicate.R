@@ -1,4 +1,4 @@
-#' remove duplicate records based on catalogNumber and abundance columns.
+#' This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
 #' mandatory fields are catalogNumber, source and abundance
 #' @param data this is merge data frame which is a output file after running ec_db_merge
 #' @param catalogNumber this is a mandatory field which consider unique for each occurrence record.
@@ -31,7 +31,8 @@
 #'   source = "db2",
 #'   abundance = c(1, 2, 3, 19)
 #' )
-#' merge_modern_data <- ec_db_merge("modern", db1, db2)
+#' db_list = list(db1, db2)
+#' merge_modern_data <- ec_db_merge(db_list = db_list, "modern")
 #' ecodata <- ec_rm_duplicate(merge_modern_data,
 #'   catalogNumber = "catalogNumber",
 #'   abundance = "abundance"
@@ -63,7 +64,7 @@ ec_rm_duplicate <- function(data, catalogNumber = "catalogNumber", abundance = "
 
   # Remove duplicates, prioritizing by non-NA numeric abundance
   data <- data %>%
-    dplyr::group_by(cleaned_catalog) %>%
+    dplyr::group_by(.data$cleaned_catalog) %>%
     dplyr::slice(
       if (any(!is.na(!!abun_col) & is.numeric(!!abun_col))) {
         which(!is.na(!!abun_col) & is.numeric(!!abun_col))[1]

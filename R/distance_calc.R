@@ -8,6 +8,8 @@
 #' @return result_list is a list which shows result of calculated distance for each iteration
 #' @importFrom geosphere distm
 #' @importFrom geosphere distHaversine
+#' @importFrom stats cov
+#' @importFrom stats mahalanobis
 #'
 #' @export
 #'

@@ -6,9 +6,12 @@
 #' Assign manually the source name in "source" field. example - gbif, obis, invertEBase etc
 #' Assign values of individual count or organism count into abundance. Most online sources has one of them updated with specimen count.
 #' this function depends on successful download of data files, it also allow to input csv files from local system
+#' @param db_list list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.
+
 #' @param datatype default "modern". datatype accept text input as "modern" or "fossil"
-#' @param ... list of data frames which we want to merge. e.g. GBIF, iDigbio, InvertEBase and any local file.
-#'
+#' @param occurrenceStatus default name for occurrenceStatus column is occurrenceStatus but a different name can be inserted if required.
+#' @param basisOfRecord default name for basis of record column is basis of record but a different name can be inserted if required.
+
 #' @return A merge data frame which is filtered with "modern" or "fossil" records
 #' @export
 #' @importFrom dplyr mutate
@@ -36,11 +39,11 @@
 #'   source = "db2",
 #'   abundance = c(1, 2, 3, 19)
 #' )
-#' merge_modern_data <- ec_db_merge("modern", db1, db2)
+#' db_list = list(db1, db2)
+#' merge_modern_data <- ec_db_merge(db_list = db_list, "modern")
 #'
-ec_db_merge <- function(datatype = "modern", ...) {
+ec_db_merge <- function(db_list, datatype = "modern", occurrenceStatus = "occurrenceStatus", basisOfRecord = "basisOfRecord") {
   # Collect all input databases
-  db_list <- list(...)
 
   # Filter out invalid inputs
   db_list <- Filter(function(x) is.data.frame(x) && nrow(x) > 0, db_list)

@@ -37,7 +37,7 @@ Key features:<br>
 
 Install the development version of *EcoCleanR* from
 [GitHub](https://github.com/) with:
-<https://github.com/xxx/EcoCleanR/><br>
+<https://github.com/sonipri/EcoCleanR/><br>
 
 How to install package through zip file:<br>
 

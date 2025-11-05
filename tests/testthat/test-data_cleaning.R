@@ -21,11 +21,11 @@ test_that("ec_db_merge works", {
     source = "db2",
     abundance = c(1, 3, 8, 19)
   )
-  result <- ec_db_merge(datatype = "modern", db1, db2)
+  result <- ec_db_merge(db_list = list(db1, db2), datatype = "modern")
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 3)
   expect_equal(sum(table(result$catalogNumber) > 1), 1)
-  result2 <- ec_db_merge(datatype = "fossil", db1, db2)
+  result2 <- ec_db_merge(db_list = list(db1, db2), datatype = "fossil")
   expect_s3_class(result2, "data.frame")
   expect_equal(nrow(result2), 1)
 })
@@ -53,7 +53,7 @@ test_that("ec_rm_duplicate works", {
     source = "db2",
     abundance = c(1, 3, 8, 19)
   )
-  result <- ec_rm_duplicate(ec_db_merge(datatype = "modern", db1, db2), catalogNumber = "catalogNumber", abundance = "abundance")
+  result <- ec_rm_duplicate(ec_db_merge(db_list = list(db1, db2), "modern"), catalogNumber = "catalogNumber", abundance = "abundance")
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 2)
   expect_equal(sum(table(result$cleaned_catalog) > 1), 0)
@@ -108,7 +108,7 @@ test_that("ec_merge_corrected_coordinates works", {
     cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767", "67676", "ABC", "M9099")
   )
 
-  expect_equal(sum(!is.na(ec_merge_corrected_coordinates(test_data_corrected, test_data2, catalog = cleaned_catalog)$decimalLatitude)), 5)
+  expect_equal(sum(!is.na(ec_merge_corrected_coordinates(test_data_corrected, test_data2, catalog = "cleaned_catalog")$decimalLatitude)), 5)
 }) # 5 records got correct georeferences
 
 # ec_filter_by_uncertainty (Testing)

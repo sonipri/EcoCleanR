@@ -4,14 +4,27 @@
 \alias{ec_merge_corrected_coordinates}
 \title{merge the update georeferences back to the main file.}
 \usage{
-ec_merge_corrected_coordinates(data_corrected, data, catalog = cleaned_catalog)
+ec_merge_corrected_coordinates(
+  data_corrected,
+  data,
+  catalog = "cleaned_catalog",
+  decimalLatitude = "decimalLatitude",
+  decimalLongitude = "decimalLongitude",
+  coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters"
+)
 }
 \arguments{
-\item{data_corrected}{After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected}
+\item{data_corrected}{After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected, we hardcoded the field names as "corrected_longitude", "corrected_latitude" and "corrected_uncertainty" and "cleaned_catalog" for column names of data_corrected dataset" which will be merge with "decimalLongitude", "decimalLantitude",  "coordinateUncertaintyInMeters" and "cleaned_catalog" of data table.}
 
 \item{data}{data table which needs to updated with the assign coordiantes}
 
 \item{catalog}{this is an important attribute to use matching the records back to the main data file.}
+
+\item{decimalLatitude}{default set to "decimalLatitude", this is a column name of data}
+
+\item{decimalLongitude}{default set to "decimalLongitude", this is a column name of data}
+
+\item{coordinateUncertaintyInMeters}{this is a column name of data and default set to "coordinateUncertaintyInMeters"}
 }
 \value{
 data table with updated coordinate information
@@ -36,6 +49,10 @@ corrected_longitude = c(-120, -119.8, 118, 118.3),
 )
 
 
-data<- ec_merge_corrected_coordinates(data_corrected, data, catalog = cleaned_catalog)
+data<- ec_merge_corrected_coordinates(data_corrected, data,
+catalog = "cleaned_catalog",
+decimalLatitude = "decimalLatitude",
+decimalLongitude = "decimalLongitude",
+coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" )
 
 }

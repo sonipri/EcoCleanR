@@ -4,12 +4,21 @@
 \alias{ec_geographic_map_w_flag}
 \title{A map view to visualize data points with outlier probability 0 to 1 on a map view}
 \usage{
-ec_geographic_map_w_flag(data, flag_column)
+ec_geographic_map_w_flag(
+  data,
+  flag_column,
+  decimalLatitude = "decimalLatitude",
+  decimalLongitude = "decimalLongitude"
+)
 }
 \arguments{
 \item{data}{Data table which has information of coordinates (decimalLongitude and decimalLatitude) and a column which has flags 0 to 1}
 
 \item{flag_column}{column name which has flag, e.g. flag_outlier}
+
+\item{decimalLatitude}{default set on "decimalLatitude", change if the name of column is different.}
+
+\item{decimalLongitude}{default set on "decimalLongitude", change if the name of column is different.}
 }
 \value{
 a geographic map which shows occurrence data points with the color gradient to show flagged records

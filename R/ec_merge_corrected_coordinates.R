@@ -1,8 +1,11 @@
 #' merge the update georeferences back to the main file.
 #'
-#' @param data_corrected After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected
+#' @param data_corrected After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected, we hardcoded the field names as "corrected_longitude", "corrected_latitude" and "corrected_uncertainty" and "cleaned_catalog" for column names of data_corrected dataset" which will be merge with "decimalLongitude", "decimalLantitude",  "coordinateUncertaintyInMeters" and "cleaned_catalog" of data table.
 #' @param data data table which needs to updated with the assign coordiantes
 #' @param catalog this is an important attribute to use matching the records back to the main data file.
+#' @param decimalLatitude default set to "decimalLatitude", this is a column name of data
+#' @param decimalLongitude default set to "decimalLongitude", this is a column name of data
+#' @param coordinateUncertaintyInMeters this is a column name of data and default set to "coordinateUncertaintyInMeters"
 #'
 #' @return data table with updated coordinate information
 #' @importFrom dplyr coalesce
@@ -27,17 +30,21 @@
 #' )
 #'
 #'
-#' data<- ec_merge_corrected_coordinates(data_corrected, data, catalog = cleaned_catalog)
+#' data<- ec_merge_corrected_coordinates(data_corrected, data,
+#' catalog = "cleaned_catalog",
+#' decimalLatitude = "decimalLatitude",
+#' decimalLongitude = "decimalLongitude",
+#' coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" )
 #'
-ec_merge_corrected_coordinates <- function(data_corrected, data, catalog = cleaned_catalog) {
-  idx <- match(data$cleaned_catalog, data_corrected$cleaned_catalog)
+ec_merge_corrected_coordinates <- function(data_corrected, data, catalog = "cleaned_catalog", decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude", coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" ) {
+  idx <- match(data[[catalog]], data_corrected[[catalog]])
 
   # Merge corrected values into the original data
   data <- data %>%
     dplyr::mutate(
-      decimalLatitude = dplyr::coalesce(data_corrected$corrected_latitude[idx], decimalLatitude),
-      decimalLongitude = dplyr::coalesce(data_corrected$corrected_longitude[idx], decimalLongitude),
-      coordinateUncertaintyInMeters = dplyr::coalesce(data_corrected$corrected_uncertainty[idx], coordinateUncertaintyInMeters)
+      decimalLatitude = dplyr::coalesce(data_corrected$corrected_latitude[idx], .data$decimalLatitude),
+      decimalLongitude = dplyr::coalesce(data_corrected$corrected_longitude[idx], .data$decimalLongitude),
+      coordinateUncertaintyInMeters = dplyr::coalesce(data_corrected$corrected_uncertainty[idx], .data$coordinateUncertaintyInMeters)
     )
 
   return(data)

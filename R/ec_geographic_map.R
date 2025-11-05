@@ -1,6 +1,8 @@
 #' a map view of data
 #'
 #' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table
+#' @param decimalLatitude default set to "decimalLatitude"
+#' @param decimalLongitude default set to "decimalLongitude"
 #'
 #' @return A map view shows occurrence records.
 #' @importFrom terra ext
@@ -20,7 +22,7 @@
 #'   temperature_max = c(14, 16, 18)
 #' )
 #' ec_geographic_map(data)
-ec_geographic_map <- function(data) {
+ec_geographic_map <- function(data, decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude") {
   # Calculate latitude and longitude boundaries
   max_lat <- ceiling(max(data$decimalLatitude, na.rm = TRUE))
   min_lat <- floor(min(data$decimalLatitude, na.rm = TRUE))

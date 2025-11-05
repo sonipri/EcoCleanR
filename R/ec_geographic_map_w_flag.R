@@ -2,7 +2,8 @@
 #'
 #' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude) and a column which has flags 0 to 1
 #' @param flag_column column name which has flag, e.g. flag_outlier
-#'
+#' @param decimalLatitude default set on "decimalLatitude", change if the name of column is different.
+#' @param decimalLongitude default set on "decimalLongitude", change if the name of column is different.
 #' @return a geographic map which shows occurrence data points with the color gradient to show flagged records
 #' @importFrom terra ext
 #' @importFrom terra crop
@@ -23,7 +24,7 @@
 #' )
 #' ec_geographic_map_w_flag(data, flag_column = "flag_outlier")
 #'
-ec_geographic_map_w_flag <- function(data, flag_column) {
+ec_geographic_map_w_flag <- function(data, flag_column, decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude" ) {
   # Ensure the flag column is a factor
   data[[flag_column]] <- as.numeric(data[[flag_column]])
 

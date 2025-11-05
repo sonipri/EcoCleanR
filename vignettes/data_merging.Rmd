@@ -139,9 +139,10 @@ str(sym.occ[, 1:3])
 ```
 
 # Merging the databases
-`ec_db_merge` unction in the EcoCleanR package helps merge data from all sources, provided that each source has the same attribute names and number of columns. It also filters the data based on the specified type (e.g., modern or fossil) and removes records marked as 'absent' occurrenceStatus.
+`ec_db_merge` function in the EcoCleanR package helps merge data from all sources, provided that each source has the same attribute names and number of columns. It also filters the data based on the specified type (e.g., modern or fossil) and removes records marked as 'absent' occurrenceStatus.
 ```{r}
-Mixdb.occ <- ec_db_merge(datatype = "modern", gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+db_list <- list(gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+Mixdb.occ <- ec_db_merge(db_list = db_list, datatype = "modern")
 
 str(Mixdb.occ[, 1:3])
 ec_geographic_map(Mixdb.occ) # display records those has coordinate values
