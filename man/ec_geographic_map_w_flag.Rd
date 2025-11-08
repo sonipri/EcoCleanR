@@ -7,8 +7,8 @@
 ec_geographic_map_w_flag(
   data,
   flag_column,
-  decimalLatitude = "decimalLatitude",
-  decimalLongitude = "decimalLongitude"
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
 )
 }
 \arguments{
@@ -16,9 +16,9 @@ ec_geographic_map_w_flag(
 
 \item{flag_column}{column name which has flag, e.g. flag_outlier}
 
-\item{decimalLatitude}{default set on "decimalLatitude", change if the name of column is different.}
+\item{latitude}{default set on "decimalLatitude", change if the name of column is different.}
 
-\item{decimalLongitude}{default set on "decimalLongitude", change if the name of column is different.}
+\item{longitude}{default set on "decimalLongitude", change if the name of column is different.}
 }
 \value{
 a geographic map which shows occurrence data points with the color gradient to show flagged records
@@ -36,6 +36,10 @@ data <- data.frame(
   temperature_max = c(14, 16, 18),
   flag_outlier = c(0, 0.5, 1)
 )
-ec_geographic_map_w_flag(data, flag_column = "flag_outlier")
+ec_geographic_map_w_flag(data,
+  flag_column = "flag_outlier",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 
 }

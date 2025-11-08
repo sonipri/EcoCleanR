@@ -3,8 +3,9 @@
 #' @param ocean_names, Insert the name of oceans:
 #'  "South Pacific Ocean", "North Pacific Ocean", North Atlantic Ocean", "South Atlantic Ocean"
 #' @param buffer_distance, Its a certain buffer distance to consider if a data point is inland. Beyond this distance data points consider as bad data points. e.g. buffer_distance <- 25000
-#' @param ecodata, Data table which has latitude and longitude information
-#'
+#' @param data, Data table which has latitude and longitude information
+#' @param latitude default set to "decimalLatitude"
+#' @param longitude default set to "decimalLongitude"
 #' @return a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 #' @import sf
 #' @importFrom mregions2 mrp_get
@@ -19,15 +20,25 @@
 #'   decimalLongitude = c(-120, -78, -110),
 #'   decimalLatitude = c(20, 34, 30)
 #' )
-#' data$flag_non_region <- ec_flag_non_east_pacific(ocean_names, buffer_distance, data)
+#' data$flag_non_region <- ec_flag_non_east_pacific(
+#'   ocean_names,
+#'   buffer_distance,
+#'   data,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude"
+#' )
 #' }
-ec_flag_non_east_pacific <- function(ocean_names, buffer_distance = 50000, ecodata) {
+ec_flag_non_east_pacific <- function(ocean_names,
+                                     buffer_distance = 50000,
+                                     data,
+                                     latitude = "decimalLatitude",
+                                     longitude = "decimalLongitude") {
   # Validate inputs
   if (missing(ocean_names) || length(ocean_names) == 0) {
     stop("Please provide at least one ocean name.")
   }
-  if (missing(ecodata)) {
-    stop("Please provide the ecodata dataset.")
+  if (missing(data)) {
+    stop("Please provide the dataset.")
   }
   ecodata_sf <- sf::st_sf(geometry = st_sfc())
   # Get ocean shapes
@@ -55,8 +66,8 @@ ec_flag_non_east_pacific <- function(ocean_names, buffer_distance = 50000, ecoda
 
   valid_ocean <- sf::st_make_valid(cropped_buffered_ocean)
 
-  # Convert ecodata to sf object
-  ecodata_sf <- sf::st_as_sf(ecodata, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
+  # Convert data to sf object
+  ecodata_sf <- sf::st_as_sf(data, coords = c(longitude, latitude), crs = 4326)
   ecodata_sf <- sf::st_transform(ecodata_sf, st_crs(valid_ocean))
 
   # Identify points inside or outside the ocean boundary

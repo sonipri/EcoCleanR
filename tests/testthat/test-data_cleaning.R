@@ -132,7 +132,7 @@ test_that("ec_flag_precision", {
     decimalLongitude = c(-120.67, -78, -110, -60, -75.5, -130.78, -10.2, 5.4),
     decimalLatitude = c(20.7, 34.6, 30.0, 10.5, 40.4, 25.66, 15.0, 35.9)
   )
-  expect_equal(sum(ec_flag_precision(test_data3$decimalLongitude, test_data3$decimalLatitude)), 2)
+  expect_equal(sum(ec_flag_precision(test_data3, longitude = "decimalLongitude", latitude = "decimalLatitude")), 2)
 })
 
 # ec_flag_non_region (testing)
@@ -163,7 +163,7 @@ test_that("ec_extract_env_layers works", {
   # skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
   # skip_on_cran() # skip on cran as external env layers load
   # skip_on_ci()
-  result <- ec_extract_env_layers(test_data5, env_layers)
+  result <- ec_extract_env_layers(test_data5, env_layers, latitude = "decimalLatitude", longitude = "decimalLongitude")
   expect_s3_class(result, "data.frame")
   expect_true(all(env_layers %in% colnames(result)))
   expect_equal(nrow(result), nrow(test_data5))
@@ -214,7 +214,7 @@ test_that("ec_flag_outlier works", {
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 
-  result <- ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99)
+  result <- ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99)
   expect_equal(sum(result$outliers) > 0, TRUE)
 })
 
@@ -242,7 +242,7 @@ test_that("ec_plot_distance works", {
   expect_silent(ec_plot_distance(iteration_list, geo_quantile = 0.99, maha_quantile = 0.99, iterative = FALSE))
 })
 
-# ec_geographic_map_w_flag
+# ec_geographic_map_w_flag and flag_outlier
 test_that("ec_geographic_map_w_flag works", {
   test_data7 <- data.frame(
     decimalLatitude = c(
@@ -269,9 +269,13 @@ test_that("ec_geographic_map_w_flag works", {
   )
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-  test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
 
-  p <- ec_geographic_map_w_flag(test_data7, flag_column = "outliers")
+  p <- ec_geographic_map_w_flag(test_data7,
+    flag_column = "outliers",
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )
   expect_s3_class(p, "ggplot")
 })
 
@@ -302,8 +306,11 @@ test_that("ec_geographic_map works", {
   )
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-  test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
-  p1 <- ec_geographic_map(test_data7)
+  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+  p1 <- ec_geographic_map(test_data7,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )
   expect_s3_class(p1, "ggplot")
 })
 
@@ -334,12 +341,12 @@ test_that("ec_var_summary works", {
   )
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-  test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
   test_data8 <- test_data7 %>%
     dplyr::filter(outliers == 0)
 
 
-  result <- ec_var_summary(test_data8, env_layers)
+  result <- ec_var_summary(test_data8, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers)
   expect_s3_class(result, "data.frame")
   # Check required columns exist
   expect_true(all(c("Max", "Min", "Mean") %in% colnames(result)))
@@ -374,11 +381,11 @@ test_that("ec_plot_var_range works", {
   )
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-  test_data7$outliers <- (ec_flag_outlier(test_data7, env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
   test_data8 <- test_data7 %>%
     dplyr::filter(outliers == 0)
 
-  p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
+  p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
   expect_s3_class(p2, "ggplot")
 })
 
@@ -394,7 +401,13 @@ test_that("ec_flag_non_east_atlantic works", {
   # skip("Skipping ec_flag_non_east_atlantic test - big shape files required to load for it")
   # skip_on_cran() # skip on cran due to heaving data load
   # skip_on_ci()
-  expect_equal(sum(ec_flag_non_east_atlantic(ocean_names, buffer_distance, test_data4)), 8)
+  expect_equal(sum(ec_flag_non_east_atlantic(
+    ocean_names,
+    buffer_distance,
+    test_data4,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )), 8)
 })
 
 # ec_flag_non_west_atlantic (testing)
@@ -409,7 +422,13 @@ test_that("ec_flag_non_west_atlantic works", {
   # skip("Skipping ec_flag_non_west_atlantic test - big shape files required to load for it")
   # skip_on_cran() # skip on cran due to heaving data load
   # skip_on_ci()
-  expect_equal(sum(ec_flag_non_west_atlantic(ocean_names, buffer_distance, test_data4)), 5)
+  expect_equal(sum(ec_flag_non_west_atlantic(
+    ocean_names,
+    buffer_distance,
+    test_data4,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )), 5)
 })
 
 # ec_flag_non_west_pacific (testing)
@@ -424,5 +443,11 @@ test_that("ec_flag_non_west_pacific works", {
   # skip("Skipping ec_flag_non_west_pacific test - big shape files required to load for it")
   # skip_on_cran() # skip on cran due to heaving data load
   # skip_on_ci()
-  expect_equal(sum(ec_flag_non_west_pacific(ocean_names, buffer_distance, test_data4)), 8)
+  expect_equal(sum(ec_flag_non_west_pacific(
+    ocean_names,
+    buffer_distance,
+    test_data4,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )), 8)
 })

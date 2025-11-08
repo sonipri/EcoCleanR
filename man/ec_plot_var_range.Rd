@@ -45,7 +45,11 @@ data_x <- data.frame(
 
 
 env_layers <- c("temperature_mean", "temperature_min", "temperature_max")
-summary_df <- ec_var_summary(data_x, env_layers)
+summary_df <- ec_var_summary(data_x,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 # this is the final cleaned data table which
 # will be used to derive summary of acceptable niche
 

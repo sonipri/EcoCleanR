@@ -16,7 +16,7 @@
 #'   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
 #'   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 #' )
-#' comparison <- ec_worms_synonym(species_name, data)
+#' comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
 #' print(comparison)
 #'
 ec_worms_synonym <- function(species_name, data, scientificName = "scientificName") {
@@ -26,7 +26,7 @@ ec_worms_synonym <- function(species_name, data, scientificName = "scientificNam
 
   # Step 2: Extract unique scientific names from WoRMS synonyms and input ecodata
   worms_syn_df <- worms_syn[[1]]
-  unique_worms <- unique(dplyr::select(worms_syn_df, "scientificname"))#this is a column name from worms database.
+  unique_worms <- unique(dplyr::select(worms_syn_df, "scientificname")) # this is a column name from worms database.
   ecodata_counts <- data %>%
     dplyr::group_by(.data$scientificName) %>%
     dplyr::summarise(record_count = n(), .groups = "drop")

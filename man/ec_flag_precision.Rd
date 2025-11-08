@@ -4,12 +4,19 @@
 \alias{ec_flag_precision}
 \title{flag bad precision data points}
 \usage{
-ec_flag_precision(longitude, latitude, threshold = 2)
+ec_flag_precision(
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  threshold = 2
+)
 }
 \arguments{
-\item{longitude}{decimalLongitude, this a field in the data file. We prefer to use decimalLongitude as accepeted name based on TDWG standards}
+\item{data}{dataframe}
 
 \item{latitude}{decimalLatitude, this a field in the data file. We prefer to use decimalLatitude as accepeted name based on TDWG standards}
+
+\item{longitude}{decimalLongitude, this a field in the data file. We prefer to use decimalLongitude as accepeted name based on TDWG standards}
 
 \item{threshold}{set on 2}
 }
@@ -20,13 +27,17 @@ a column which has flagged records showed bad records based on low precision as 
 flag bad precision data points
 }
 \examples{
-\dontrun{
 data <- data.frame(
   species = "A",
   decimalLongitude = c(-120.67, -78, -110, -60, -75.5, -130.78, -10.2, 5.4),
   decimalLatitude = c(20.7, 34.6, 30.0, 10.5, 40.4, 25.66, 15.0, 35.9)
 )
 
-data$flag_cordinate_precision <- ec_flag_precision(data$decimalLongitude, data$decimalLatitude)
-}
+data$flag_cordinate_precision <- ec_flag_precision(
+  data,
+  latitude = "decimalLongitude",
+  longitude = "decimalLatitude",
+  threshold = 2
+)
+
 }

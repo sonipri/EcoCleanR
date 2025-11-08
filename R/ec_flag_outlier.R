@@ -1,6 +1,8 @@
 #' flag outliers - using spatial and non spatial attributes
 
 #' @param data data table with spatial and environmental variables
+#' @param latitude default set to "deciamlLatitude"
+#' @param longitude default set to "decimalLongitude"
 #' @param env_layers header names of env variables. env_layers <- c("Temperature", "pH")
 #' @param itr iteration to run the clustering 100 or 1000 times
 #' @param k number of cluster to choose in each iteration
@@ -24,17 +26,28 @@
 #' )
 #'
 #' env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-#' res <- ec_flag_outlier(data, env_layers,
+#' res <- ec_flag_outlier(data,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude",
+#'   env_layers,
 #'   itr = 100,
-#'   k = 3, geo_quantile = 0.99,
+#'   k = 3,
+#'   geo_quantile = 0.99,
 #'   maha_quantile = 0.99
 #' )
 #' data$outlier <- res$outlier
 #' iteration_list <- res$result$list
 #'
-ec_flag_outlier <- function(data, env_layers, itr = 50, k = 3, geo_quantile = 0.99, maha_quantile = 0.99) {
+ec_flag_outlier <- function(data,
+                            latitude = "decimalLatitude",
+                            longitude = "decimalLongitude",
+                            env_layers,
+                            itr = 50,
+                            k = 3,
+                            geo_quantile = 0.99,
+                            maha_quantile = 0.99) {
   outliers <- 0
-  result_list <- distance_calc(data, env_layers, itr, k = 3)
+  result_list <- distance_calc(data, latitude = latitude, longitude = longitude, env_layers, itr, k = 3)
   result_list <- result_list[!sapply(result_list, is.null)]
   result_list <- result_list[!sapply(result_list, function(p) anyNA(p$maha_distance))]
 

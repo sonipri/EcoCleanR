@@ -2,9 +2,11 @@
 #'
 #' @param data data table which need to be cleaned with unwanted uncertainty values - extreme values
 #' @param uncertainty_col coordinateUncertaintyInMeters column
+#' @param latitude default set on decimalLatitude, this column is use to filter records those does not have georeferences.
+#' @param longitude default set on decimalLongitude.
 #' @param percentile to derive threshold, e.g. extreme 5% uncertainty data points to be removed. give percentile value as 0.95
 #' @param ask this allow user to decide if the uncertainty threshold value is okay or too high/low
-#' @param decimalLatitude default set on decimalLatitude, this column is use to filter records those does not have georeferences.
+
 #' @return a clean data table with removed extreme uncertain data points
 #' @importFrom stats quantile
 #' @export
@@ -21,12 +23,13 @@
 #' data <- ec_filter_by_uncertainty(
 #'   data,
 #'   uncertainty_col = "coordinateUncertaintyInMeters",
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude",
 #'   percentile = 0.96,
-#'   ask = TRUE,
-#'   decimalLatitude = "decimalLatitude"
+#'   ask = TRUE
 #' )
 #'
-ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE, decimalLatitude = "decimalLatitude") {
+ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE, latitude = "decimalLatitude", longitude = "decimalLongitude") {
   # Ensure the uncertainty column is numeric
   data[[uncertainty_col]] <- as.numeric(data[[uncertainty_col]])
 
@@ -47,7 +50,8 @@ ec_filter_by_uncertainty <- function(data, uncertainty_col = "coordinateUncertai
   data <- data %>%
     filter(
       is.na(.data[[uncertainty_col]]) | .data[[uncertainty_col]] <= threshold,
-      !is.na(decimalLatitude)
+      !is.na(.data[[latitude]]),
+      !is.na(.data[[longitude]])
     )
 
   return(data)

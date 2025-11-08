@@ -4,7 +4,8 @@
 #' @param ocean, values such as "pacific" or "atlantic"
 #' @param buffer, Its a certain buffer distance to consider if a data point is inland. Beyond this distance data points consider as bad data points. e.g. buffer <- 25000
 #' @param data, Data table which has latitude and longitude information
-#'
+#' @param latitude default set to "decimalLatitude"
+#' @param longitude default set to "decimalLongitude"
 #' @return a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 #' @import sf
 #' @importFrom mregions2 mrp_get
@@ -21,9 +22,14 @@
 #'   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
 #'   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 #' )
-#' data$flag_non_region <- ec_flag_non_region(direction, ocean, buffer = 50000, data)
+#' data$flag_non_region <- ec_flag_non_region(
+#'   direction,
+#'   ocean,
+#'   buffer = 50000,
+#'   data
+#' )
 #' }
-ec_flag_non_region <- function(direction, ocean, buffer = 50000, data) {
+ec_flag_non_region <- function(direction, ocean, buffer = 50000, data, latitude = "decimalLatitude", longitude = "decimalLongitude") {
   # Sanitize inputs
   # Sanitize inputs
   direction <- tolower(direction)
@@ -52,5 +58,11 @@ ec_flag_non_region <- function(direction, ocean, buffer = 50000, data) {
   # Get correct region names and call the function
   region_names <- ocean_lookup[[key]]
   flag_function <- get(func_name)
-  return(flag_function(ocean_names = region_names, buffer_distance = buffer, ecodata = data))
+  return(flag_function(
+    ocean_names = region_names,
+    buffer_distance = buffer,
+    data = data,
+    latitude = latitude,
+    longitude = longitude
+  ))
 }

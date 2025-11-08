@@ -6,6 +6,8 @@
 \usage{
 ec_flag_outlier(
   data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
   env_layers,
   itr = 50,
   k = 3,
@@ -15,6 +17,10 @@ ec_flag_outlier(
 }
 \arguments{
 \item{data}{data table with spatial and environmental variables}
+
+\item{latitude}{default set to "deciamlLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
 
 \item{env_layers}{header names of env variables. env_layers <- c("Temperature", "pH")}
 
@@ -43,9 +49,13 @@ data <- data.frame(
 )
 
 env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-res <- ec_flag_outlier(data, env_layers,
+res <- ec_flag_outlier(data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers,
   itr = 100,
-  k = 3, geo_quantile = 0.99,
+  k = 3,
+  geo_quantile = 0.99,
   maha_quantile = 0.99
 )
 data$outlier <- res$outlier

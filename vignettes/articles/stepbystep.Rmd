@@ -122,7 +122,7 @@ str(sym.occ[, 1:3])
 ### end of InvertEBase
 
 # Step1: Merging the databases------
-db_list = list(gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+db_list <- list(gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
 Mixdb.occ <- ec_db_merge(db_list = db_list, datatype = "modern")
 
 str(Mixdb.occ[, 1:3])
@@ -141,7 +141,7 @@ inst_counts <- ecodata_cl %>%
 ecodata_cl <- ecodata_cl %>%
   filter(is.na(institutionCode) | institutionCode != "NRM")
 
-ec_geographic_map(ecodata_cl)
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude")
 
 # Step3: check taxon error - ec_worms_synonym function--------
 comparison <- ec_worms_synonym(species_name, ecodata_cl)
@@ -172,14 +172,18 @@ str(ecodata_cl[, 1:3])
 # ecodata_cl$decimalLatitude <- as.numeric(ecodata_cl$decimalLatitude)
 # ecodata_cl$decimalLongitude <- as.numeric(ecodata_cl$decimalLongitude)
 
-ecodata_cl <- ec_filter_by_uncertainty(ecodata_cl, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.96, ask = TRUE)
+ecodata_cl <- ec_filter_by_uncertainty(ecodata_cl, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.965, ask = TRUE, latitude = "decimalLatitude", longitude = "decimalLongitude")
 
 str(ecodata_cl[, 1:3])
-ec_geographic_map(ecodata_cl) ### plot the map
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude") ### plot the map
 ### end of ec_flag_with locality
 
 # Step5: flag with poor precision - ec_flag_precision--------
-ecodata_cl$flag_precision <- ec_flag_precision(ecodata_cl$decimalLongitude, ecodata_cl$decimalLatitude)
+ecodata_cl$flag_precision <- ec_flag_precision(ecodata_cl,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  threshold = 2
+)
 ### filter the flag - flag_cordinate_precision
 ecodata_cl <- ecodata_cl %>%
   filter(flag_precision != 1) # remove flagged records
@@ -190,13 +194,23 @@ str(ecodata_cl[1:3])
 direction <- "east"
 buffer <- 25000
 ocean <- "pacific"
-ecodata_cl$flag_non_region <- ec_flag_non_region(direction, ocean, buffer, ecodata_cl)
+ecodata_cl$flag_non_region <- ec_flag_non_region(direction,
+  ocean,
+  buffer,
+  ecodata_cl,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 
-ec_geographic_map_w_flag(ecodata_cl, flag_column = "flag_non_region") # map view with flagged records
+ec_geographic_map_w_flag(ecodata_cl,
+  flag_column = "flag_non_region",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+) # map view with flagged records
 ecodata_cl <- ecodata_cl %>%
   filter(flag_non_region != 1) # remove flagged records
 str(ecodata_cl[1:3])
-ec_geographic_map(ecodata_cl)
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude")
 
 ### end of flagging recored from wrong ocean/sea - ec_flag_non_region
 
@@ -212,7 +226,12 @@ ecodata_unique <- base::unique(ecodata_unique)
 env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 
 ### extraction env layers
-ecodata_unique <- ec_extract_env_layers(ecodata_unique, env_layers = env_layers) # warning message, extraction of env data from the cache
+ecodata_unique <- ec_extract_env_layers(
+  ecodata_unique,
+  env_layers = env_layers,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+) # warning message, extraction of env data from the cache
 ### impute env var values those were missing after extraction
 ### Recommand to View the file to check coordinates with "NA" values for env variables.
 ### end of extraction env values
@@ -226,10 +245,18 @@ ecodata_unique <- ec_impute_env_values(ecodata_unique, radius_km = 15, iter = 4)
 ### omit the coordinate which couldn't get any env values after imputation
 ecodata_unique <- na.omit(ecodata_unique)
 list_outlier <- list()
-list_outlier <- ec_flag_outlier(ecodata_unique, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)
+list_outlier <- ec_flag_outlier(ecodata_unique,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers,
+  itr = 100,
+  k = 3,
+  geo_quantile = 0.99,
+  maha_quantile = 0.99
+)
 
 # running below code will provide a sense how many and what data points are considered out of the quantile. If you are not satisfied you can re-run the code with different quantile values and run again the plot view.
-ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE)
+ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE, geo_distance = "geo_distance", maha_distance = "maha_distance")
 ### press q to exit from the plot
 
 ecodata_unique$flag_outliers <- list_outlier$outliers
@@ -246,12 +273,19 @@ ecodata_cl <- ecodata_cl %>%
     by = c("decimalLatitude", "decimalLongitude")
   )
 
-ec_geographic_map_w_flag(ecodata_cl, flag_column = "flag_outliers")
+ec_geographic_map_w_flag(ecodata_cl,
+  flag_column = "flag_outliers",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 ### consider a threshold to accept a data point outlier with the outlier probability >0.8
 cleaned_data <- ecodata_cl %>%
   filter(flag_outliers < 0.95) # this threshold can be change based on requirements
 
-ec_geographic_map(cleaned_data)
+ec_geographic_map(cleaned_data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 str(cleaned_data)
 # Step8: Create summary table for the accepted occurrence record to define a species distribution range
 summary_table <- ec_var_summary(cleaned_data, env_layers = env_layers)

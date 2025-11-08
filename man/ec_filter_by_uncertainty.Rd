@@ -9,7 +9,8 @@ ec_filter_by_uncertainty(
   uncertainty_col = "coordinateUncertaintyInMeters",
   percentile = 0.96,
   ask = TRUE,
-  decimalLatitude = "decimalLatitude"
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
 )
 }
 \arguments{
@@ -21,7 +22,9 @@ ec_filter_by_uncertainty(
 
 \item{ask}{this allow user to decide if the uncertainty threshold value is okay or too high/low}
 
-\item{decimalLatitude}{default set on decimalLatitude, this column is use to filter records those does not have georeferences.}
+\item{latitude}{default set on decimalLatitude, this column is use to filter records those does not have georeferences.}
+
+\item{longitude}{default set on decimalLongitude.}
 }
 \value{
 a clean data table with removed extreme uncertain data points
@@ -41,9 +44,10 @@ data <- data.frame(
 data <- ec_filter_by_uncertainty(
   data,
   uncertainty_col = "coordinateUncertaintyInMeters",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
   percentile = 0.96,
-  ask = TRUE,
-  decimalLatitude = "decimalLatitude"
+  ask = TRUE
 )
 
 }

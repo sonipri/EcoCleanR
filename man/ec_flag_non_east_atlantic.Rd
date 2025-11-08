@@ -4,7 +4,13 @@
 \alias{ec_flag_non_east_atlantic}
 \title{flag data points not in east atlantic}
 \usage{
-ec_flag_non_east_atlantic(ocean_names, buffer_distance = 50000, ecodata)
+ec_flag_non_east_atlantic(
+  ocean_names,
+  buffer_distance = 50000,
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 }
 \arguments{
 \item{ocean_names, }{Insert the name of oceans:
@@ -12,7 +18,11 @@ ec_flag_non_east_atlantic(ocean_names, buffer_distance = 50000, ecodata)
 
 \item{buffer_distance, }{Its a certain buffer distance to consider if a data point is inland. Beyond this distance data points consider as bad data points. e.g. buffer_distance <- 25000}
 
-\item{ecodata, }{Data table which has latitude and longitude information}
+\item{data, }{Data table which has latitude and longitude information}
+
+\item{latitude}{default set to "decimalLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
 }
 \value{
 a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
@@ -22,14 +32,20 @@ flag data points not in east atlantic
 }
 \examples{
 \dontrun{
-ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
+ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
 buffer_distance <- 25000
 data <- data.frame(
   species = "A",
   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 )
-data$flag_non_region <- ec_flag_non_east_atlantic(ocean_names, buffer_distance, data)
+data$flag_non_region <- ec_flag_non_east_atlantic(
+  ocean_names,
+  buffer_distance,
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 }
 
 }

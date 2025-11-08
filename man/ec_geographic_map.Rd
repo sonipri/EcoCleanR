@@ -6,16 +6,16 @@
 \usage{
 ec_geographic_map(
   data,
-  decimalLatitude = "decimalLatitude",
-  decimalLongitude = "decimalLongitude"
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
 )
 }
 \arguments{
 \item{data}{Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table}
 
-\item{decimalLatitude}{default set to "decimalLatitude"}
+\item{latitude}{default set to "decimalLatitude"}
 
-\item{decimalLongitude}{default set to "decimalLongitude"}
+\item{longitude}{default set to "decimalLongitude"}
 }
 \value{
 A map view shows occurrence records.
@@ -32,5 +32,9 @@ data <- data.frame(
   temperature_min = c(9, 6, 10),
   temperature_max = c(14, 16, 18)
 )
-ec_geographic_map(data)
+ec_geographic_map(data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
+
 }

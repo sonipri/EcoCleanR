@@ -4,10 +4,14 @@
 \alias{distance_calc}
 \title{Calculate geographic distance and mahalanobis distance to estimate outlier probability of a data point}
 \usage{
-distance_calc(data, env_layers, itr = 15, k = 3)
+distance_calc(data, latitude, longitude, env_layers, itr = 15, k = 3)
 }
 \arguments{
 \item{data}{data table with spatial and environmental variables}
+
+\item{latitude}{nested input from ec_flag_outlier}
+
+\item{longitude}{nested input from ec_flag_outlier}
 
 \item{env_layers}{header names of env variables. env_layers <- c("Temperature", "pH")}
 
@@ -22,6 +26,7 @@ result_list is a list which shows result of calculated distance for each iterati
 Calculate geographic distance and mahalanobis distance to estimate outlier probability of a data point
 }
 \examples{
+\dontrun{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -33,6 +38,12 @@ data <- data.frame(
 
 env_layers <- c("temperature_mean", "temperature_min", " temperature_max")
 
-result_list <- distance_calc(data, env_layers, itr = 100, k = 3)
-
+result_list <- distance_calc(data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers,
+  itr = 100,
+  k = 3
+)
+}
 }

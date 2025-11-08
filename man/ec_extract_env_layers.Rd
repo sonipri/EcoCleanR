@@ -4,12 +4,21 @@
 \alias{ec_extract_env_layers}
 \title{extract the environmental layers}
 \usage{
-ec_extract_env_layers(data, env_layers = env_layers)
+ec_extract_env_layers(
+  data,
+  env_layers = env_layers,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 }
 \arguments{
 \item{data}{data table which has coordinate information}
 
 \item{env_layers}{make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.}
+
+\item{latitude}{default assigned as "decimalLatitude"}
+
+\item{longitude}{default assigned as "decimalLongitude"}
 }
 \value{
 a data table which has unique coordinates and env predictors
@@ -25,6 +34,10 @@ data <- data.frame(
   decimalLatitude = c(32.9, 33.5, 31.9)
 )
 
-data_x <- ec_extract_env_layers(data, env_layers = env_layers)
+data_x <- ec_extract_env_layers(data,
+  env_layers = env_layers,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 
 }

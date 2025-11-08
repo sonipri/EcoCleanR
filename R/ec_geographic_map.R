@@ -1,8 +1,8 @@
 #' a map view of data
 #'
 #' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table
-#' @param decimalLatitude default set to "decimalLatitude"
-#' @param decimalLongitude default set to "decimalLongitude"
+#' @param latitude default set to "decimalLatitude"
+#' @param longitude default set to "decimalLongitude"
 #'
 #' @return A map view shows occurrence records.
 #' @importFrom terra ext
@@ -21,19 +21,23 @@
 #'   temperature_min = c(9, 6, 10),
 #'   temperature_max = c(14, 16, 18)
 #' )
-#' ec_geographic_map(data)
-ec_geographic_map <- function(data, decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude") {
+#' ec_geographic_map(data,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude"
+#' )
+#'
+ec_geographic_map <- function(data, latitude = "decimalLatitude", longitude = "decimalLongitude") {
   # Calculate latitude and longitude boundaries
-  max_lat <- ceiling(max(data$decimalLatitude, na.rm = TRUE))
-  min_lat <- floor(min(data$decimalLatitude, na.rm = TRUE))
-  max_lon <- ceiling(max(data$decimalLongitude, na.rm = TRUE))
-  min_lon <- floor(min(data$decimalLongitude, na.rm = TRUE))
+  max_lat <- ceiling(max(data[[latitude]], na.rm = TRUE))
+  min_lat <- floor(min(data[[latitude]], na.rm = TRUE))
+  max_lon <- ceiling(max(data[[longitude]], na.rm = TRUE))
+  min_lon <- floor(min(data[[longitude]], na.rm = TRUE))
 
   # Create geographic extent
   geographic_extent <- ext(x = c(min_lon, max_lon, min_lat, max_lat))
 
   # Load and crop world map
-  world_map <- world(resolution = 3, path = tempdir()) # Load world map
+  world_map <- geodata::world(resolution = 3, path = tempdir()) # Load world map
   cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
 
   # Convert cropped map to sf object
@@ -44,7 +48,7 @@ ec_geographic_map <- function(data, decimalLatitude = "decimalLatitude", decimal
     geom_sf(fill = "grey95", color = "black") + # Plot the map
     geom_jitter(
       data = data,
-      aes(x = decimalLongitude, y = decimalLatitude),
+      aes(x = .data[[longitude]], y = .data[[latitude]]),
       color = "#000066", size = 3.5, alpha = 0.5
     ) + # Add jittered points
     theme_minimal() + # Minimal theme

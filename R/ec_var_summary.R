@@ -1,8 +1,10 @@
 #' summary table of spatial and environmental variables
 #'
 #' @param data data table after cleaning the records
+#' @param latitude default set to "decimalLatitude"
+#' @param longitude default set to "decimalLongitude"
 #' @param env_layers an array of col names of enviornmental layers
-#' @return a summary table with the mean, min and max values of spatial and environmenal variables
+#' @return a summary table with the mean, min and max values of spatial and environmental variables
 #'
 #' @export
 #' @examples
@@ -15,10 +17,14 @@
 #'   BO_sstmax = c(14, 16, 18, 17)
 #' )
 #' env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-#' ec_var_summary(data, env_layers)
+#' ec_var_summary(data,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude",
+#'   env_layers
+#' )
 #'
-ec_var_summary <- function(data, env_layers) {
-  vars_to_summarize <- c("decimalLatitude", "decimalLongitude", env_layers)
+ec_var_summary <- function(data, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers) {
+  vars_to_summarize <- c(latitude, longitude, env_layers)
 
   # Subset the data
   data_subset <- data[, vars_to_summarize]

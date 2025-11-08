@@ -1,6 +1,8 @@
 #' Calculate geographic distance and mahalanobis distance to estimate outlier probability of a data point
 #'
 #' @param data data table with spatial and environmental variables
+#' @param latitude nested input from ec_flag_outlier
+#' @param longitude nested input from ec_flag_outlier
 #' @param env_layers header names of env variables. env_layers <- c("Temperature", "pH")
 #' @param itr iteration to run the clustering 100 or 1000 times
 #' @param k number of cluster to choose in each iteration
@@ -14,6 +16,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
@@ -25,12 +28,18 @@
 #'
 #' env_layers <- c("temperature_mean", "temperature_min", " temperature_max")
 #'
-#' result_list <- distance_calc(data, env_layers, itr = 100, k = 3)
-#'
-distance_calc <- function(data, env_layers, itr = 15, k = 3) {
+#' result_list <- distance_calc(data,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude",
+#'   env_layers,
+#'   itr = 100,
+#'   k = 3
+#' )
+#' }
+distance_calc <- function(data, latitude, longitude, env_layers, itr = 15, k = 3) {
   result_list <- list()
   for (n in 1:itr) {
-    result <- haversine_kmeans(data[, c("decimalLatitude", "decimalLongitude")], k)
+    result <- haversine_kmeans(data, latitude = latitude, longitude = longitude, k)
     result_df <- result$clusters
     centroid_df <- result$centroids
     temp_data <- data
@@ -48,9 +57,9 @@ distance_calc <- function(data, env_layers, itr = 15, k = 3) {
       if (!is.na(cluster_id) && cluster_id > 0 && cluster_id <= nrow(centroid_df)) {
         # Retrieve centroid coordinates
         centroid <- centroid_df[cluster_id, ]
-        centroid_lon_lat <- as.numeric(c(centroid["decimalLongitude"], centroid["decimalLatitude"]))
+        centroid_lon_lat <- as.numeric(c(centroid[[longitude]], centroid[[latitude]]))
         temp_data$geo_distance[i] <- distHaversine(
-          c(temp_data$decimalLongitude[i], temp_data$decimalLatitude[i]), centroid_lon_lat
+          c(temp_data[[longitude]][i], temp_data[[latitude]][i]), centroid_lon_lat
         ) / 1000
         # Get data points belonging to the same cluster
         cluster_data <- temp_data[temp_data$cluster$cluster == cluster_id, env_layers]

@@ -17,7 +17,11 @@
 #'   verbatimLocality = c(NA, "CA coast", "", "N/A", "Long Beach", NA, "")
 #' )
 
-#' data$flag_check_geolocate <- ec_flag_with_locality(data)
+#' data$flag_check_geolocate <- ec_flag_with_locality(
+#' data, uncertainty = "coordinateUncertaintyInMeters",
+#' locality = "locality",
+#' verbatimLocality = "verbatimLocality"
+#' )
 #'
 
 #' @export

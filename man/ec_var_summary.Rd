@@ -4,15 +4,24 @@
 \alias{ec_var_summary}
 \title{summary table of spatial and environmental variables}
 \usage{
-ec_var_summary(data, env_layers)
+ec_var_summary(
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 }
 \arguments{
 \item{data}{data table after cleaning the records}
 
+\item{latitude}{default set to "decimalLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
+
 \item{env_layers}{an array of col names of enviornmental layers}
 }
 \value{
-a summary table with the mean, min and max values of spatial and environmenal variables
+a summary table with the mean, min and max values of spatial and environmental variables
 }
 \description{
 summary table of spatial and environmental variables
@@ -27,6 +36,10 @@ data <- data.frame(
   BO_sstmax = c(14, 16, 18, 17)
 )
 env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-ec_var_summary(data, env_layers)
+ec_var_summary(data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 
 }

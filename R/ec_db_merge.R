@@ -39,7 +39,7 @@
 #'   source = "db2",
 #'   abundance = c(1, 2, 3, 19)
 #' )
-#' db_list = list(db1, db2)
+#' db_list <- list(db1, db2)
 #' merge_modern_data <- ec_db_merge(db_list = db_list, "modern")
 #'
 ec_db_merge <- function(db_list, datatype = "modern", occurrenceStatus = "occurrenceStatus", basisOfRecord = "basisOfRecord") {

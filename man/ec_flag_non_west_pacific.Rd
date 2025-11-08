@@ -4,7 +4,13 @@
 \alias{ec_flag_non_west_pacific}
 \title{flag data points not in east pacific}
 \usage{
-ec_flag_non_west_pacific(ocean_names, buffer_distance = 50000, ecodata)
+ec_flag_non_west_pacific(
+  ocean_names,
+  buffer_distance = 50000,
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 }
 \arguments{
 \item{ocean_names, }{Insert the name of oceans:
@@ -12,7 +18,11 @@ ec_flag_non_west_pacific(ocean_names, buffer_distance = 50000, ecodata)
 
 \item{buffer_distance, }{Its a certain buffer distance to consider if a data point is inland. Beyond this distance data points consider as bad data points. e.g. buffer_distance <- 25000}
 
-\item{ecodata, }{Data table which has latitude and longitude information}
+\item{data, }{Data table which has latitude and longitude information}
+
+\item{latitude}{default set to "decimalLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
 }
 \value{
 a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
@@ -29,7 +39,13 @@ data <- data.frame(
   decimalLongitude = c(-120, -78, -110),
   decimalLatitude = c(20, 34, 30)
 )
-data$flag_non_region <- ec_flag_non_west_pacific(ocean_names, buffer_distance, data)
+data$flag_non_region <- ec_flag_non_west_pacific(
+  ocean_names,
+  buffer_distance,
+  data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 }
 
 }

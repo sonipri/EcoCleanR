@@ -4,12 +4,16 @@
 \alias{haversine_kmeans}
 \title{Calculate Harversine distance}
 \usage{
-haversine_kmeans(df, k)
+haversine_kmeans(data, latitude, longitude, k)
 }
 \arguments{
-\item{df}{df is a dataframe with spatial attributes - Latitude and Logitude}
+\item{data}{is a dataframe with spatial attributes - Latitude and Logitude}
 
-\item{k}{k is number of cluster required for the data set you have. Normally visual inspection can give a sense on number of clusters. Cautious to have more than expected clusters to fit all data points, as overfitting can end up inluding bad data points in the analysis. e.g. k = 3}
+\item{latitude}{nested imput from ec_flag_outlier}
+
+\item{longitude}{nested imput from ec_flag_outlier}
+
+\item{k}{is number of cluster required for the data set you have. Normally visual inspection can give a sense on number of clusters. Cautious to have more than expected clusters to fit all data points, as overfitting can end up inluding bad data points in the analysis. e.g. k = 3}
 }
 \value{
 its a dataframe with a new column call
@@ -26,7 +30,12 @@ data_x <- data.frame(
   BO_sstmin = c(9, 6, 10),
   BO_sstmax = c(14, 16, 18)
 )
-df <- data_x[, c("decimalLatitude", "decimalLongitude")] # selection of spatial attribute in df
-result <- haversine_kmeans(df, k = 3)
+
+result <- haversine_kmeans(
+  data_x,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  k = 3
+)
 
 }

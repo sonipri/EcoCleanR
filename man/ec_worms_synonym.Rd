@@ -26,7 +26,7 @@ data <- data.frame(
   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 )
-comparison <- ec_worms_synonym(species_name, data)
+comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
 print(comparison)
 
 }

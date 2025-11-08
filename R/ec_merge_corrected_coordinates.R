@@ -36,7 +36,7 @@
 #' decimalLongitude = "decimalLongitude",
 #' coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" )
 #'
-ec_merge_corrected_coordinates <- function(data_corrected, data, catalog = "cleaned_catalog", decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude", coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" ) {
+ec_merge_corrected_coordinates <- function(data_corrected, data, catalog = "cleaned_catalog", decimalLatitude = "decimalLatitude", decimalLongitude = "decimalLongitude", coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters") {
   idx <- match(data[[catalog]], data_corrected[[catalog]])
 
   # Merge corrected values into the original data
