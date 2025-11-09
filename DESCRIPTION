@@ -1,5 +1,5 @@
 Package: EcoCleanR
-Title: Cleaning Occurrence Data to Generate Species Bio-Geographic Range
+Title: Cleaning Occurrence Data to Generate Species Biogeographic Range
 Version: 0.0.0.9000
 Authors@R: 
     person("Priyanka", "Soni", , "sonip@usc.edu", role = c("aut", "cre"))
