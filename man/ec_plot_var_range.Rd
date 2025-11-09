@@ -4,12 +4,22 @@
 \alias{ec_plot_var_range}
 \title{Plot acceptable limits of spatial and non-spatial attributes}
 \usage{
-ec_plot_var_range(data, summary_df, env_layers)
+ec_plot_var_range(
+  data,
+  summary_df,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 }
 \arguments{
 \item{data}{data table which even has outlier data points}
 
 \item{summary_df}{summmary output of final cleaned data, after executing function ec_var_summary}
+
+\item{latitude}{default set to "decimalLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
 
 \item{env_layers}{list of environmental variables}
 }
@@ -53,6 +63,11 @@ summary_df <- ec_var_summary(data_x,
 # this is the final cleaned data table which
 # will be used to derive summary of acceptable niche
 
-ec_plot_var_range(data, summary_df, env_layers)
+ec_plot_var_range(data,
+  summary_df,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 
 }

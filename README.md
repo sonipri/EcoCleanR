@@ -3,12 +3,6 @@
 
 # EcoCleanR V1.0
 
-<!-- badges: start -->
-
-[![Codecov test
-coverage](https://codecov.io/gh/sonipri/EcoCleanR/graph/badge.svg)](https://app.codecov.io/gh/sonipri/EcoCleanR)
-<!-- badges: end -->
-
 **The goal of EcoCleanR is to provides functions to integrate
 biodiversity data from multiple aggregates and offers a step-by-step
 framework for data cleaning, outlier detection, and the generation of
@@ -33,11 +27,10 @@ Key features:<br>
     Create a summary and plot to represent suitable range of a species
     for spatial and non spatial attributes<br>
 
-# Installation from GitHub
+## Installation from GitHub
 
 Install the development version of *EcoCleanR* from
-[GitHub](https://github.com/) with:
-<https://github.com/sonipri/EcoCleanR/><br>
+[GitHub](https://github.com/) with: \[Private\]
 
 How to install package through zip file:<br>
 
@@ -67,7 +60,7 @@ How to install package through zip file:<br>
 from data downloading, processing, merging, cleaning, and visualization
 at vignettes/article/stepbystep.rmd.
 
-# Example
+## Example
 
 This is a basic example to demonstrate data processing, merging and
 cleanings steps for a species name “Mexacanthina lugubris”
@@ -130,7 +123,10 @@ head(ecodata)
 #> 6 United States of America       102083202
 
 # visualizing the raw data
-ec_geographic_map(ecodata)
+ec_geographic_map(ecodata,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 #> Warning: Removed 358 rows containing missing values or values outside the scale range
 #> (`geom_point()`).
 ```
@@ -141,7 +137,11 @@ ec_geographic_map(ecodata)
 
 # lets execute cleaning steps
 # step 2.2 - check taxon error for species name - "Mexacanthina lugubris"
-comparison <- ec_worms_synonym("Mexacanthina lugubris", ecodata)
+comparison <- ec_worms_synonym(
+  "Mexacanthina lugubris",
+  ecodata,
+  scientificName = "scientificName"
+)
 #> ══  1 queries  ═══════════════
 #> 
 #> Retrieving data for taxon 'Mexacanthina lugubris'
@@ -152,7 +152,12 @@ comparison <- ec_worms_synonym("Mexacanthina lugubris", ecodata)
 #> • Found: 1 
 #> • Not Found: 0
 # step 2.3 - check records with locality but no coordinate assignments
-ecodata$flag_with_locality <- ec_flag_with_locality(ecodata)
+ecodata$flag_with_locality <- ec_flag_with_locality(
+  ecodata,
+  uncertainty = "coordinateUncertaintyInMeters",
+  locality = "locality",
+  verbatimLocality = "verbatimLocality"
+)
 # upload back the corrected file with csv upload - name it as ecodata_corrected
 head(ecodata_corrected)
 #>   cleaned_catalog corrected_latitude corrected_longitude corrected_uncertainty
@@ -162,22 +167,51 @@ head(ecodata_corrected)
 #> 4       104087711           32.66767           -117.2452                  1771
 #> 5       104911613           32.72160           -117.2112                 23284
 #> 6       105885508           32.83330           -117.2667                  2962
-ecodata <- ec_merge_corrected_coordinates(ecodata_corrected, ecodata)
+ecodata <- ec_merge_corrected_coordinates(
+  ecodata_corrected,
+  ecodata,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  uncertainty_col = "coordinateUncertaintyInMeters"
+)
 
-ecodata <- ec_filter_by_uncertainty(ecodata, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.95, ask = TRUE)
+ecodata <- ec_filter_by_uncertainty(
+  ecodata,
+  uncertainty_col = "coordinateUncertaintyInMeters",
+  percentile = 0.95,
+  ask = TRUE,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 #> Suggested threshold at 95th percentile: 24015.45
 #> Do you want to apply this threshold? (y/n):
 #> No filtering applied.
 
 # step 2.4 - check records with bad precision <2 as well as rounding issue
-ecodata$flag_precision <- ec_flag_precision(ecodata$decimalLongitude, ecodata$decimalLatitude)
+ecodata$flag_precision <- ec_flag_precision(
+  ecodata,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 # step 2.5 - check records with wrong assignment of ocean/sea and inland with certain buffer range - not executing on run
 if (FALSE) {
-  ecodata$flag_non_region <- ec_flag_non_region("east", "pacific", buffer = 25000, ecodata)
+  ecodata$flag_non_region <- ec_flag_non_region(
+    "east",
+    "pacific",
+    buffer = 25000,
+    ecodata,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )
 }
 # step 2.6 - extract the environmental variables, here we are using a data table which has unique combination of coordinates - we call it ecodata_x - not executing on run
 if (FALSE) {
-  ecodata_x <- ec_extract_env_layers(ecodata_x, env_layers = env_layers)
+  env_layers <- c("BO_sstmean", "BO_sstmax", "BO_sstmin")
+  ecodata_x <- ec_extract_env_layers(ecodata_x,
+    env_layers = env_layers,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude"
+  )
 }
 # step 2.7 - impute the environmental variables for those coordinates with no assignment on online data sources.
 if (FALSE) {
@@ -185,10 +219,25 @@ if (FALSE) {
 }
 # step 2.8 - calculate outlier probability for each data points.
 if (FALSE) {
-  ecodata_x$flag_outliers <- ((ec_flag_outlier(ecodata_x, env_layers, itr = 100, k = 3, geo_quantile = 0.99, maha_quantile = 0.99)))$ouliers
+  ecodata_x$flag_outliers <- ((
+    ec_flag_outlier(
+      ecodata_x,
+      latitude = "decimalLatitude",
+      longitude = "decimalLongitude",
+      env_layers,
+      itr = 100,
+      k = 3,
+      geo_quantile = 0.99,
+      maha_quantile = 0.99
+  )))$ouliers
 }
 # step 3.1 - visualize the map with outlier probability index, bind the ecodata_x with ecodata with updated column flag_outlier
-ec_geographic_map_w_flag(ecodata_with_outliers, flag_column = "outliers")
+ec_geographic_map_w_flag(
+  ecodata_with_outliers,
+  flag_column = "outliers",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
 #> Ignoring unknown labels:
 #> • colour : "Flag"
 ```
@@ -207,7 +256,12 @@ ec_geographic_map(ecodata_cleaned)
 
 ``` r
 
-summary_table <- ec_var_summary(ecodata_cleaned, env_layers)
+summary_table <- ec_var_summary(
+  ecodata_cleaned,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers
+)
 print(summary_table)
 #>           variable     Max     Min    Mean
 #> 1  decimalLatitude   34.04   22.92   31.73
@@ -216,7 +270,13 @@ print(summary_table)
 #> 4        BO_sstmax   32.68   18.79   22.47
 #> 5        BO_sstmin   24.96   11.42   14.41
 # step 3.3 - Plot to visual the acceptable limit of a species which demonstrate a suitable habitat range:
-ec_plot_var_range(ecodata_with_outliers, summary_table, env_layers)
+ec_plot_var_range(
+  ecodata_with_outliers,
+  summary_table,
+  latitude = "decimalLatitude", 
+  longitude = "decimalLongitude",
+  env_layers
+)
 ```
 
 <img src="man/figures/README-example-4.png" width="70%" />

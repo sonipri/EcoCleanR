@@ -4,10 +4,20 @@
 \alias{ec_impute_env_values}
 \title{Impute env variables by mean values of data points within a certain radius}
 \usage{
-ec_impute_env_values(data_x, radius_km = 10, iter = 3)
+ec_impute_env_values(
+  data_x,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  radius_km = 10,
+  iter = 3
+)
 }
 \arguments{
 \item{data_x}{this is data_x which is the output of ec_extract_env_layers}
+
+\item{latitude}{default set to "decimalLatitude"}
+
+\item{longitude}{default set to "decimalLongitude"}
 
 \item{radius_km}{radius to average the values of data points within the circle to imput the values for missing datta points}
 
@@ -31,6 +41,10 @@ data_x <- data.frame(
 )
 radius_km <- 10
 iter <- 3
-data_x <- ec_impute_env_values(data_x, radius_km, iter)
+data_x <- ec_impute_env_values(data_x,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  radius_km, iter
+)
 
 }

@@ -114,8 +114,9 @@ filter(flag_check_geolocate!= 1)
 ecodata <- ec_merge_corrected_coordinates(
   ecodata_corrected, 
   ecodata, 
-  decimalLatitude = "decimalLatitude", 
-  decimalLongitude = "decimalLongitude",       coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters"
+  latitude = "decimalLatitude", 
+  longitude = "decimalLongitude",       
+  uncertainty_col = "coordinateUncertaintyInMeters"
 )
 str(ecodata[,1:3]) 
 
@@ -205,14 +206,19 @@ env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
 ### extraction env layers
 ecodata_unique <- ec_extract_env_layers(ecodata_unique,
   env_layers = env_layers,
-  env_layers = env_layers,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
 # A warning message if layers are in saved in cache.
 
 ### impute env var values those were missing after extraction
-ecodata_unique <- ec_impute_env_values(ecodata_unique, radius_km = 10, iter = 3)
+ecodata_unique <- ec_impute_env_values(
+  ecodata_unique,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  radius_km = 10,
+  iter = 3
+)
 
 ### omit the coordinate which couldn't get any env values after imputation
 ecodata_unique <- na.omit(ecodata_unique)
@@ -278,6 +284,8 @@ head(summary_table)
 
 ec_plot_var_range(ecodata_with_outliers,
   summary_df = summary_table,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
   env_layers = env_layers
 )
 ```

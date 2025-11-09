@@ -2,6 +2,8 @@
 #'
 #' @param data data table which even has outlier data points
 #' @param summary_df summmary output of final cleaned data, after executing function ec_var_summary
+#' @param latitude default set to "decimalLatitude"
+#' @param longitude default set to "decimalLongitude"
 #' @param env_layers list of environmental variables
 #'
 #' @return a plot which shows spatial and environmental variables with the acceptable range for species habitability
@@ -45,26 +47,35 @@
 #' # this is the final cleaned data table which
 #' # will be used to derive summary of acceptable niche
 #'
-#' ec_plot_var_range(data, summary_df, env_layers)
+#' ec_plot_var_range(data,
+#'   summary_df,
+#'   latitude = "decimalLatitude",
+#'   longitude = "decimalLongitude",
+#'   env_layers
+#' )
 #'
-ec_plot_var_range <- function(data, summary_df, env_layers) {
+ec_plot_var_range <- function(data,
+                              summary_df,
+                              latitude = "decimalLatitude",
+                              longitude = "decimalLongitude",
+                              env_layers) {
   range_data <- summary_df %>%
     mutate(ymin = .data$Min, ymax = .data$Max)
   mydata_long <- data %>%
     tidyr::pivot_longer(
-      cols = tidyr::all_of(c("decimalLatitude", "decimalLongitude", env_layers)),
+      cols = tidyr::all_of(c(latitude, longitude, env_layers)),
       names_to = "variable",
       values_to = "value"
     )
 
   P1 <- ggplot() +
     geom_errorbar(
-      data = range_data %>% filter(.data$variable == "decimalLatitude"),
+      data = range_data %>% filter(.data$variable == latitude),
       aes(x = .data$variable, ymin = .data$ymin, ymax = .data$ymax),
       width = 0.15, color = "blue", linewidth = 1.0
     ) +
     geom_point(
-      data = mydata_long %>% filter(.data$variable == "decimalLatitude"),
+      data = mydata_long %>% filter(.data$variable == latitude),
       aes(x = .data$variable, y = .data$value),
       size = 2, shape = 1, color = "black", stroke = 1
     ) +
@@ -74,12 +85,12 @@ ec_plot_var_range <- function(data, summary_df, env_layers) {
 
   P2 <- ggplot() +
     geom_errorbar(
-      data = range_data %>% filter(.data$variable == "decimalLongitude"),
+      data = range_data %>% filter(.data$variable == longitude),
       aes(x = .data$variable, ymin = .data$ymin, ymax = .data$ymax),
       width = 0.15, color = "blue", linewidth = 1.0
     ) +
     geom_point(
-      data = mydata_long %>% filter(.data$variable == "decimalLongitude"),
+      data = mydata_long %>% filter(.data$variable == longitude),
       aes(x = .data$variable, y = .data$value),
       size = 2, shape = 1, color = "black", stroke = 1
     ) +

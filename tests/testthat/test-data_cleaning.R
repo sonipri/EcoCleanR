@@ -108,7 +108,17 @@ test_that("ec_merge_corrected_coordinates works", {
     cleaned_catalog = c("12345", "89888", "LACM8898", "SDNHM6767", "67676", "ABC", "M9099")
   )
 
-  expect_equal(sum(!is.na(ec_merge_corrected_coordinates(test_data_corrected, test_data2, catalog = "cleaned_catalog")$decimalLatitude)), 5)
+  latitude <- "decimalLatitude"
+  longitude <- "decimalLongitude"
+
+  result <- ec_merge_corrected_coordinates(test_data_corrected, test_data2,
+    catalog = "cleaned_catalog",
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude",
+    uncertainty_col = "coordinateUncertaintyInMeters"
+  )
+
+  expect_equal(sum(!is.na(result[[latitude]])), 5)
 }) # 5 records got correct georeferences
 
 # ec_filter_by_uncertainty (Testing)
@@ -181,7 +191,13 @@ test_that("ec_impute_env_values works", {
 
   radius_km <- 30
   iter <- 3
-  result <- ec_impute_env_values(test_data6, radius_km, iter)
+  result <- ec_impute_env_values(
+    test_data6,
+    latitude = "decimalLatitude",
+    longitude = "decimalLongitude",
+    radius_km,
+    iter
+  )
   expect_s3_class(result, "data.frame")
   expect_true(!any(is.na(result))) # for this dataset
 })
@@ -385,7 +401,7 @@ test_that("ec_plot_var_range works", {
   test_data8 <- test_data7 %>%
     dplyr::filter(outliers == 0)
 
-  p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers), env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
+  p2 <- ec_plot_var_range(test_data7, ec_var_summary(test_data8, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers), latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers) # this is the final cleaned data table which will be used to derive summary of acceptable niche
   expect_s3_class(p2, "ggplot")
 })
 
@@ -398,9 +414,9 @@ test_that("ec_flag_non_east_atlantic works", {
   )
   ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
   buffer_distance <- 25000
-  # skip("Skipping ec_flag_non_east_atlantic test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran due to heaving data load
-  # skip_on_ci()
+  skip("Skipping ec_flag_non_east_atlantic test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heaving data load
+
   expect_equal(sum(ec_flag_non_east_atlantic(
     ocean_names,
     buffer_distance,
@@ -419,9 +435,9 @@ test_that("ec_flag_non_west_atlantic works", {
   )
   ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
   buffer_distance <- 25000
-  # skip("Skipping ec_flag_non_west_atlantic test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran due to heaving data load
-  # skip_on_ci()
+  skip("Skipping ec_flag_non_west_atlantic test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heaving data load
+
   expect_equal(sum(ec_flag_non_west_atlantic(
     ocean_names,
     buffer_distance,
@@ -440,9 +456,9 @@ test_that("ec_flag_non_west_pacific works", {
   )
   ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
   buffer_distance <- 25000
-  # skip("Skipping ec_flag_non_west_pacific test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran due to heaving data load
-  # skip_on_ci()
+  skip("Skipping ec_flag_non_west_pacific test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heaving data load
+
   expect_equal(sum(ec_flag_non_west_pacific(
     ocean_names,
     buffer_distance,

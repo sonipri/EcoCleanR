@@ -8,9 +8,9 @@ ec_merge_corrected_coordinates(
   data_corrected,
   data,
   catalog = "cleaned_catalog",
-  decimalLatitude = "decimalLatitude",
-  decimalLongitude = "decimalLongitude",
-  coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters"
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  uncertainty_col = "coordinateUncertaintyInMeters"
 )
 }
 \arguments{
@@ -20,11 +20,11 @@ ec_merge_corrected_coordinates(
 
 \item{catalog}{this is an important attribute to use matching the records back to the main data file.}
 
-\item{decimalLatitude}{default set to "decimalLatitude", this is a column name of data}
+\item{latitude}{default set to "decimalLatitude", this is a column name of data}
 
-\item{decimalLongitude}{default set to "decimalLongitude", this is a column name of data}
+\item{longitude}{default set to "decimalLongitude", this is a column name of data}
 
-\item{coordinateUncertaintyInMeters}{this is a column name of data and default set to "coordinateUncertaintyInMeters"}
+\item{uncertainty_col}{this is a column name of data and default set to "coordinateUncertaintyInMeters"}
 }
 \value{
 data table with updated coordinate information
@@ -51,8 +51,8 @@ corrected_longitude = c(-120, -119.8, 118, 118.3),
 
 data<- ec_merge_corrected_coordinates(data_corrected, data,
 catalog = "cleaned_catalog",
-decimalLatitude = "decimalLatitude",
-decimalLongitude = "decimalLongitude",
-coordinateUncertaintyInMeters = "coordinateUncertaintyInMeters" )
+latitude = "decimalLatitude",
+longitude = "decimalLongitude",
+uncertainty_col = "coordinateUncertaintyInMeters" )
 
 }
