@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EcoCleanR V1.0
+# EcoCleanR 1.0.1
 
 **The goal of EcoCleanR is to provides functions to integrate
 biodiversity data from multiple aggregates and offers a step-by-step

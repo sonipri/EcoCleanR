@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# EcoCleanR V1.0
+# EcoCleanR 1.0.1
 
 **The goal of EcoCleanR is to provides functions to integrate biodiversity data from multiple aggregates and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.**
 
