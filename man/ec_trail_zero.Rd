@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_trail_zero.R
 \name{ec_trail_zero}
 \alias{ec_trail_zero}
-\title{trail zeros from the coordinate values}
+\title{Trail Zeros from the Coordinate Values}
 \usage{
 ec_trail_zero(coord)
 }
@@ -10,10 +10,10 @@ ec_trail_zero(coord)
 \item{coord}{A coordinate value in the numeric format of decimal degree}
 }
 \value{
-A coordinate value: which is trailed.
+A numerical trailed coordinate value.
 }
 \description{
-trail zeros from the coordinate values
+Trail Zeros from the Coordinate Values
 }
 \examples{
 ec_trail_zero(12.7000000)

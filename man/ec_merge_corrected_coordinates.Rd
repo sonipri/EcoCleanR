@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_merge_corrected_coordinates.R
 \name{ec_merge_corrected_coordinates}
 \alias{ec_merge_corrected_coordinates}
-\title{merge the update georeferences back to the main file.}
+\title{Merge the Update Georeferenced Occurrence Points back to the Main Data File.}
 \usage{
 ec_merge_corrected_coordinates(
   data_corrected,
@@ -27,10 +27,10 @@ ec_merge_corrected_coordinates(
 \item{uncertainty_col}{this is a column name of data and default set to "coordinateUncertaintyInMeters"}
 }
 \value{
-data table with updated coordinate information
+A data frame with updated coordinate information
 }
 \description{
-merge the update georeferences back to the main file.
+Merge the Update Georeferenced Occurrence Points back to the Main Data File.
 }
 \examples{
 data <- data.frame(

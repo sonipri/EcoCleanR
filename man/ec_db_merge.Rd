@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_db_merge.R
 \name{ec_db_merge}
 \alias{ec_db_merge}
-\title{merge the data bases from different sources.}
+\title{Merge the Data sets Extracted from Various datasources.}
 \usage{
 ec_db_merge(
   db_list,
@@ -21,10 +21,10 @@ ec_db_merge(
 \item{basisOfRecord}{default name for basis of record column is basis of record but a different name can be inserted if required.}
 }
 \value{
-A merge data frame which is filtered with "modern" or "fossil" records
+A data frame of occurrence records filtered to include only those classified as "modern" or "fossil".
 }
 \description{
-merge the data bases from different sources.
+Merge the Data sets Extracted from Various datasources.
 }
 \details{
 condition to run this function:

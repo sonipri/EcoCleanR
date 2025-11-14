@@ -1,4 +1,4 @@
-#' flag data points from different ocean basins
+#' @title Flag Occurrences those are in wrong ocean basins and are inland
 
 #' @param direction, values as "east" or "west". These values help to filter the shape files for east or west of select ocean (e.g. pacific) for both north and south hemisphere.
 #' @param ocean, values such as "pacific" or "atlantic"
@@ -6,14 +6,14 @@
 #' @param data, Data table which has latitude and longitude information
 #' @param latitude default set to "decimalLatitude"
 #' @param longitude default set to "decimalLongitude"
-#' @return a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+#' @return A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 #' @import sf
 #' @importFrom mregions2 mrp_get
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' direction <- "east"
 #' buffer <- 25000
 #' ocean <- "pacific"

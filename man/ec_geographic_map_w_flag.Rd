@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_geographic_map_w_flag.R
 \name{ec_geographic_map_w_flag}
 \alias{ec_geographic_map_w_flag}
-\title{A map view to visualize data points with outlier probability 0 to 1 on a map view}
+\title{Map view to visualize data points with outlier probability 0 to 1 on a map view}
 \usage{
 ec_geographic_map_w_flag(
   data,
@@ -21,10 +21,10 @@ ec_geographic_map_w_flag(
 \item{longitude}{default set on "decimalLongitude", change if the name of column is different.}
 }
 \value{
-a geographic map which shows occurrence data points with the color gradient to show flagged records
+A geographic map which shows occurrence data points with the color gradient to show flagged records in warm color.
 }
 \description{
-A map view to visualize data points with outlier probability 0 to 1 on a map view
+Map view to visualize data points with outlier probability 0 to 1 on a map view
 }
 \examples{
 data <- data.frame(

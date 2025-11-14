@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_non_east_pacific.R
 \name{ec_flag_non_east_pacific}
 \alias{ec_flag_non_east_pacific}
-\title{flag data points not in east pacific}
+\title{Flag occurrences those are not in east Pacific and are inland}
 \usage{
 ec_flag_non_east_pacific(
   ocean_names,
@@ -25,13 +25,13 @@ ec_flag_non_east_pacific(
 \item{longitude}{default set to "decimalLongitude"}
 }
 \value{
-a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 }
 \description{
-flag data points not in east pacific
+Flag occurrences those are not in east Pacific and are inland
 }
 \examples{
-\dontrun{
+\donttest{
 ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 buffer_distance <- 25000
 data <- data.frame(

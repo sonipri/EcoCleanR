@@ -1,8 +1,7 @@
-#' trail zeros from the coordinate values
-#'
+#' @title Trail Zeros from the Coordinate Values
 #' @param coord A coordinate value in the numeric format of decimal degree
 #'
-#' @return A coordinate value: which is trailed.
+#' @return A numerical trailed coordinate value.
 
 #' @examples
 #' ec_trail_zero(12.7000000)

@@ -1,10 +1,10 @@
-#' extract the environmental layers
+#' @title Extract the Environmental data
 #'
 #' @param data data table which has coordinate information
 #' @param env_layers make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.
 #' @param latitude default assigned as "decimalLatitude"
 #' @param longitude default assigned as "decimalLongitude"
-#' @return a data table which has unique coordinates and env predictors
+#' @return A data table which has unique coordinates and env predictors
 #' @export
 #' @importFrom sdmpredictors list_layers
 #' @importFrom sdmpredictors load_layers

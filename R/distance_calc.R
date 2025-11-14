@@ -7,7 +7,7 @@
 #' @param itr iteration to run the clustering 100 or 1000 times
 #' @param k number of cluster to choose in each iteration
 #'
-#' @return result_list is a list which shows result of calculated distance for each iteration
+#' @return A list of results that shows result of calculated distance for each iteration
 #' @importFrom geosphere distm
 #' @importFrom geosphere distHaversine
 #' @importFrom stats cov
@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#'
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
@@ -35,7 +35,7 @@
 #'   itr = 100,
 #'   k = 3
 #' )
-#' }
+#'
 distance_calc <- function(data, latitude, longitude, env_layers, itr = 15, k = 3) {
   result_list <- list()
   for (n in 1:itr) {

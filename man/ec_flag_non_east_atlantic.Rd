@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_non_east_atlantic.R
 \name{ec_flag_non_east_atlantic}
 \alias{ec_flag_non_east_atlantic}
-\title{flag data points not in east atlantic}
+\title{Flag the occurrences those are not in east Atlantic and are inland}
 \usage{
 ec_flag_non_east_atlantic(
   ocean_names,
@@ -25,13 +25,13 @@ ec_flag_non_east_atlantic(
 \item{longitude}{default set to "decimalLongitude"}
 }
 \value{
-a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 }
 \description{
-flag data points not in east atlantic
+Flag the occurrences those are not in east Atlantic and are inland
 }
 \examples{
-\dontrun{
+\donttest{
 ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
 buffer_distance <- 25000
 data <- data.frame(

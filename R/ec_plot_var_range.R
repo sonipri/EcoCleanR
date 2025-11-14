@@ -1,4 +1,4 @@
-#' Plot acceptable limits of spatial and non-spatial attributes
+#' @title Plot cleaned data overlay overall occurrence data to demonstrate accepted ranges of spatial and non-spatial attributes
 #'
 #' @param data data table which even has outlier data points
 #' @param summary_df summmary output of final cleaned data, after executing function ec_var_summary
@@ -6,7 +6,7 @@
 #' @param longitude default set to "decimalLongitude"
 #' @param env_layers list of environmental variables
 #'
-#' @return a plot which shows spatial and environmental variables with the acceptable range for species habitability
+#' @return A plot which shows spatial and environmental variables with the acceptable range for species habitability
 #' @import ggplot2
 #' @import patchwork
 #' @importFrom tidyr pivot_longer

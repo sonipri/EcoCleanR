@@ -8,7 +8,7 @@ biodiversity data from multiple aggregates and offers a step-by-step
 framework for data cleaning, outlier detection, and the generation of
 species biogeographic ranges. It also supports the extraction of
 relevant environmental information to assist in ecological and
-biogeographic analyses.**
+conservation analyses.**
 
 Key features:<br>
 

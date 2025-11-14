@@ -1,4 +1,4 @@
-#' Scatter plot between geo_distance vs maha_distance
+#' @title Scatter Plot between geo_distance vs maha_distance with geo- and maha- Quantile Threshold to Demonstrate the Outliers outside those threshold.
 #'
 #' @param x iteration_list derived from ec_flag_outlier can be used to plot these scatter plots between geo_distance vs maha_distance
 #' @param geo_quantile value with geo_quantile percentile would consider has threshold for geo_distance to derive the outlier. e.g. default 0.99
@@ -7,7 +7,7 @@
 #' @param geo_distance default set on "geo_distance", this column has calculated distance - output of ec_flag_outlier
 #' @param maha_distance default set on "maha_distance", this column has calculated distance - output of ec_flag_outlier
 #'
-#' @return a list of plot for each iteration outcome
+#' @return A list of plots for each iteration outcome
 #' @import ggplot2
 #'
 #' @export
@@ -30,10 +30,6 @@
 #'  geo_distance = runif(5, 0, 100),
 #'  maha_distance = runif(5, 0, 10)
 #' )
-#'
-#'
-#'
-#'
 #'
 #' iteration_list <- list(df1, df2)#Store both data frames in a list
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_plot_var_range.R
 \name{ec_plot_var_range}
 \alias{ec_plot_var_range}
-\title{Plot acceptable limits of spatial and non-spatial attributes}
+\title{Plot cleaned data overlay overall occurrence data to demonstrate accepted ranges of spatial and non-spatial attributes}
 \usage{
 ec_plot_var_range(
   data,
@@ -24,10 +24,10 @@ ec_plot_var_range(
 \item{env_layers}{list of environmental variables}
 }
 \value{
-a plot which shows spatial and environmental variables with the acceptable range for species habitability
+A plot which shows spatial and environmental variables with the acceptable range for species habitability
 }
 \description{
-Plot acceptable limits of spatial and non-spatial attributes
+Plot cleaned data overlay overall occurrence data to demonstrate accepted ranges of spatial and non-spatial attributes
 }
 \examples{
 data <- data.frame(

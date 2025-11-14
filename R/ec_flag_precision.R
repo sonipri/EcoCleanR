@@ -1,11 +1,9 @@
-#' flag bad precision data points
+#' @title Flag occurrences those has bad precision
 #' @param data dataframe
 #' @param longitude decimalLongitude, this a field in the data file. We prefer to use decimalLongitude as accepeted name based on TDWG standards
 #' @param latitude decimalLatitude, this a field in the data file. We prefer to use decimalLatitude as accepeted name based on TDWG standards
 #' @param threshold set on 2
-#'
-#' @return a column which has flagged records showed bad records based on low precision as well as rounding
-
+#' @return A column which has flagged records represents bad records based on low precision as well as rounding
 #' @export
 #' @examples
 #' data <- data.frame(

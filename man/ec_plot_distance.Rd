@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_plot_distance.R
 \name{ec_plot_distance}
 \alias{ec_plot_distance}
-\title{Scatter plot between geo_distance vs maha_distance}
+\title{Scatter Plot between geo_distance vs maha_distance with geo- and maha- Quantile Threshold to Demonstrate the Outliers outside those threshold.}
 \usage{
 ec_plot_distance(
   x,
@@ -27,10 +27,10 @@ ec_plot_distance(
 \item{maha_distance}{default set on "maha_distance", this column has calculated distance - output of ec_flag_outlier}
 }
 \value{
-a list of plot for each iteration outcome
+A list of plots for each iteration outcome
 }
 \description{
-Scatter plot between geo_distance vs maha_distance
+Scatter Plot between geo_distance vs maha_distance with geo- and maha- Quantile Threshold to Demonstrate the Outliers outside those threshold.
 }
 \examples{
 df1 <- data.frame(
@@ -49,10 +49,6 @@ df2 <- data.frame(
  geo_distance = runif(5, 0, 100),
  maha_distance = runif(5, 0, 10)
 )
-
-
-
-
 
 iteration_list <- list(df1, df2)#Store both data frames in a list
 

@@ -1,4 +1,4 @@
-#' flag outliers - using spatial and non spatial attributes
+#' @title Flag Outlier Occurrences - using Spatial and Non-spatial Attributes
 
 #' @param data data table with spatial and environmental variables
 #' @param latitude default set to "deciamlLatitude"
@@ -9,7 +9,7 @@
 #' @param geo_quantile value with geo_quantile percentile would consider has threshold for geo_distance to derive the outlier. e.g. default 0.99
 #' @param maha_quantile value with maha_quantile percentile would consider has threshold for maha_distance to derive the outlier. e.g. default 0.99
 #'
-#' @return a column outlier which has outlier proportion from 0 to 1. 1 is more towards outlier, 0 more towards good data points.
+#' @return A column call flag_outlier which has outlier probability from 0 to 1. 1 is more towards outlier, 0 more towards good data points.
 #' @importFrom geosphere distm
 #' @importFrom geosphere distHaversine
 #'

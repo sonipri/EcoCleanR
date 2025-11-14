@@ -1,10 +1,10 @@
-#' summary table of spatial and environmental variables
+#' @title A Summary Table of Final Cleaned Spatial and Environmental Variables
 #'
 #' @param data data table after cleaning the records
 #' @param latitude default set to "decimalLatitude"
 #' @param longitude default set to "decimalLongitude"
 #' @param env_layers an array of col names of enviornmental layers
-#' @return a summary table with the mean, min and max values of spatial and environmental variables
+#' @return A summary table with the mean, min and max values of final cleaned spatial and environmental variables
 #'
 #' @export
 #' @examples

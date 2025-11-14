@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_with_locality.R
 \name{ec_flag_with_locality}
 \alias{ec_flag_with_locality}
-\title{filter records to georeference using GEOLocate}
+\title{Filter records to georeference using GEOLocate}
 \usage{
 ec_flag_with_locality(
   data,
@@ -21,14 +21,13 @@ ec_flag_with_locality(
 \item{verbatimLocality}{Mandatory to have verbatimLocality in the data table.}
 }
 \value{
-a column with flagged records as 1, which means these records has potential to be georeferenced.
+A column with flagged records as 1, which means these records has potential to be georeferenced.
 }
 \description{
-filter records to georeference using GEOLocate
+Filter records to georeference using GEOLocate
 }
 \details{
-Records which has potential to manual georeferenced
-Definition, a record has no coordinate uncertainty information, but it does have locality or verbatimLocality information, so it might be possible to georeference it manually.”
+Records those does not have coordinates assigned but has locality and varbatim locality information to assign coordinates by using external tools such as GEOLocate
 }
 \examples{
 data <- data.frame(

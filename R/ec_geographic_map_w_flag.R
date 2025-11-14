@@ -1,10 +1,10 @@
-#' A map view to visualize data points with outlier probability 0 to 1 on a map view
-#'
+#' @title Map view to visualize data points with outlier probability 0 to 1 on a map view
+
 #' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude) and a column which has flags 0 to 1
 #' @param flag_column column name which has flag, e.g. flag_outlier
 #' @param latitude default set on "decimalLatitude", change if the name of column is different.
 #' @param longitude default set on "decimalLongitude", change if the name of column is different.
-#' @return a geographic map which shows occurrence data points with the color gradient to show flagged records
+#' @return A geographic map which shows occurrence data points with the color gradient to show flagged records in warm color.
 #' @importFrom terra ext
 #' @importFrom terra crop
 #' @importFrom geodata world

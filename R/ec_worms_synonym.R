@@ -1,9 +1,8 @@
-#' Synonym check using WoRMs taxonomy
-#'
+#' @title Check Accepted Synonyms from WoRMs Taxonomy
 #' @param species_name input species name.e.g. Mexacanthina lugubris
 #' @param data data table which has information of all occurrence data of the selected species
 #' @param scientificName default set to scientificName, this is a column in the data extracted from online sources, may have various synonyms of species_name.
-#' @return a table with two columns, column one represent the accepted synonyms, and column two demonstrate the unique species names from the occurrence data base with the number of records tagged under species names.
+#' @return A table with two columns, column one represent the accepted synonyms, and column two demonstrate the unique species names from the occurrence data base with the number of records tagged under species names.
 #' @importFrom taxize get_wormsid
 #' @importFrom taxize synonyms
 #' @import dplyr

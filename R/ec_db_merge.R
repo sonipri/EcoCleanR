@@ -1,4 +1,4 @@
-#' @title merge the data bases from different sources.
+#' @title Merge the Data sets Extracted from Various datasources.
 #' @details
 #' condition to run this function:
 #' all the data frames should have same fields follwing DwC standards:
@@ -12,7 +12,7 @@
 #' @param occurrenceStatus default name for occurrenceStatus column is occurrenceStatus but a different name can be inserted if required.
 #' @param basisOfRecord default name for basis of record column is basis of record but a different name can be inserted if required.
 
-#' @return A merge data frame which is filtered with "modern" or "fossil" records
+#' @return A data frame of occurrence records filtered to include only those classified as "modern" or "fossil".
 #' @export
 #' @importFrom dplyr mutate
 #' @importFrom dplyr filter

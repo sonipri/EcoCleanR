@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_var_summary.R
 \name{ec_var_summary}
 \alias{ec_var_summary}
-\title{summary table of spatial and environmental variables}
+\title{A Summary Table of Final Cleaned Spatial and Environmental Variables}
 \usage{
 ec_var_summary(
   data,
@@ -21,10 +21,10 @@ ec_var_summary(
 \item{env_layers}{an array of col names of enviornmental layers}
 }
 \value{
-a summary table with the mean, min and max values of spatial and environmental variables
+A summary table with the mean, min and max values of final cleaned spatial and environmental variables
 }
 \description{
-summary table of spatial and environmental variables
+A Summary Table of Final Cleaned Spatial and Environmental Variables
 }
 \examples{
 data <- data.frame(

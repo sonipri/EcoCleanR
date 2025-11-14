@@ -20,13 +20,13 @@ distance_calc(data, latitude, longitude, env_layers, itr = 15, k = 3)
 \item{k}{number of cluster to choose in each iteration}
 }
 \value{
-result_list is a list which shows result of calculated distance for each iteration
+A list of results that shows result of calculated distance for each iteration
 }
 \description{
 Calculate geographic distance and mahalanobis distance to estimate outlier probability of a data point
 }
 \examples{
-\dontrun{
+
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -45,5 +45,5 @@ result_list <- distance_calc(data,
   itr = 100,
   k = 3
 )
-}
+
 }

@@ -1,4 +1,4 @@
-#' flag data points not in east pacific
+#' @title Flag occurrences those are not in east Pacific and are inland
 #'
 #' @param ocean_names, Insert the name of oceans:
 #'  "South Pacific Ocean", "North Pacific Ocean", North Atlantic Ocean", "South Atlantic Ocean"
@@ -6,13 +6,13 @@
 #' @param data, Data table which has latitude and longitude information
 #' @param latitude default set to "decimalLatitude"
 #' @param longitude default set to "decimalLongitude"
-#' @return a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+#' @return A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 #' @import sf
 #' @importFrom mregions2 mrp_get
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 #' buffer_distance <- 25000
 #' data <- data.frame(

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_filter_by_uncertainty.R
 \name{ec_filter_by_uncertainty}
 \alias{ec_filter_by_uncertainty}
-\title{flag extreme uncertainty points}
+\title{Flag the Occurrences those has Extreme Uncertainty Error Radius}
 \usage{
 ec_filter_by_uncertainty(
   data,
@@ -27,10 +27,10 @@ ec_filter_by_uncertainty(
 \item{longitude}{default set on decimalLongitude.}
 }
 \value{
-a clean data table with removed extreme uncertain data points
+A data frame as result of removing extreme uncertain occurrences
 }
 \description{
-flag extreme uncertainty points
+Flag the Occurrences those has Extreme Uncertainty Error Radius
 }
 \examples{
 data <- data.frame(

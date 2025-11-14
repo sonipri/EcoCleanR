@@ -16,7 +16,7 @@ haversine_kmeans(data, latitude, longitude, k)
 \item{k}{is number of cluster required for the data set you have. Normally visual inspection can give a sense on number of clusters. Cautious to have more than expected clusters to fit all data points, as overfitting can end up inluding bad data points in the analysis. e.g. k = 3}
 }
 \value{
-its a dataframe with a new column call
+A data frame with centroid and clusters using Harversine distance matrix
 }
 \description{
 Calculate Harversine distance

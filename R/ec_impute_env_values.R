@@ -1,4 +1,4 @@
-#' Impute env variables by mean values of data points within a certain radius
+#' @title Impute Environmental Variables using Mean Values of occurrences within a certain radius
 #'
 #' @param data_x this is data_x which is the output of ec_extract_env_layers
 #' @param latitude default set to "decimalLatitude"
@@ -6,7 +6,7 @@
 #' @param radius_km radius to average the values of data points within the circle to imput the values for missing datta points
 #' @param iter number of times to iterate the imputation, e.g. 1 or 2 or 3
 #'
-#' @return an updated table of data_x which has imputed values for the missing env variables, condition applies that the this imputation wont work if the data points are too sparse.
+#' @return An updated table of data_x which has imputed values for the missing env variables, condition applies that the this imputation wont work if the data points are too sparse.
 
 #' @importFrom geosphere distVincentySphere
 #' @examples

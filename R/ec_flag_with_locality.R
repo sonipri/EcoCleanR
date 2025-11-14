@@ -1,14 +1,12 @@
-#' @title filter records to georeference using GEOLocate
+#' @title Filter records to georeference using GEOLocate
 #' @details
-#' Records which has potential to manual georeferenced
-#' Definition, a record has no coordinate uncertainty information, but it does have locality or verbatimLocality information, so it might be possible to georeference it manually.”
-#'
+#' Records those does not have coordinates assigned but has locality and varbatim locality information to assign coordinates by using external tools such as GEOLocate
 #' @param data data table with occurrence information
 #' @param uncertainty Mendatory to have coordinateUncertaintyInMeters column in the data table
 #' @param locality Mandatory to have locality column in the data table.
 #' @param verbatimLocality Mandatory to have verbatimLocality in the data table.
 #'
-#' @return a column with flagged records as 1, which means these records has potential to be georeferenced.
+#' @return A column with flagged records as 1, which means these records has potential to be georeferenced.
 #'
 #' @examples
 #' data <- data.frame(

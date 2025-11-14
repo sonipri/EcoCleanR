@@ -1,9 +1,8 @@
-#' Get decimal places of coordinate values
+#' @title Get Decimal Places of Coordinate Values
 #'
 #' @param coord A coordinate value in the numeric format of decimal degree
 #'
 #' @return a numerical value which represent the number of decimal places for the coordiante
-#' Get decimal places of coordinate values
 #' @examples
 #' decimal_places(12.7000000)
 #' decimal_places(45.67788)

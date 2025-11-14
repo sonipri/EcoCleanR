@@ -1,5 +1,5 @@
-#' flag extreme uncertainty points
-#'
+#' @title Flag the Occurrences those has Extreme Uncertainty Error Radius
+
 #' @param data data table which need to be cleaned with unwanted uncertainty values - extreme values
 #' @param uncertainty_col coordinateUncertaintyInMeters column
 #' @param latitude default set on decimalLatitude, this column is use to filter records those does not have georeferences.
@@ -7,7 +7,7 @@
 #' @param percentile to derive threshold, e.g. extreme 5% uncertainty data points to be removed. give percentile value as 0.95
 #' @param ask this allow user to decide if the uncertainty threshold value is okay or too high/low
 
-#' @return a clean data table with removed extreme uncertain data points
+#' @return A data frame as result of removing extreme uncertain occurrences
 #' @importFrom stats quantile
 #' @export
 #'

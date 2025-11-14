@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_precision.R
 \name{ec_flag_precision}
 \alias{ec_flag_precision}
-\title{flag bad precision data points}
+\title{Flag occurrences those has bad precision}
 \usage{
 ec_flag_precision(
   data,
@@ -21,10 +21,10 @@ ec_flag_precision(
 \item{threshold}{set on 2}
 }
 \value{
-a column which has flagged records showed bad records based on low precision as well as rounding
+A column which has flagged records represents bad records based on low precision as well as rounding
 }
 \description{
-flag bad precision data points
+Flag occurrences those has bad precision
 }
 \examples{
 data <- data.frame(

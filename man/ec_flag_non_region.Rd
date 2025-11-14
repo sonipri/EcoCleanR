@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_non_region.R
 \name{ec_flag_non_region}
 \alias{ec_flag_non_region}
-\title{flag data points from different ocean basins}
+\title{Flag Occurrences those are in wrong ocean basins and are inland}
 \usage{
 ec_flag_non_region(
   direction,
@@ -27,13 +27,13 @@ ec_flag_non_region(
 \item{longitude}{default set to "decimalLongitude"}
 }
 \value{
-a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 }
 \description{
-flag data points from different ocean basins
+Flag Occurrences those are in wrong ocean basins and are inland
 }
 \examples{
-\dontrun{
+\donttest{
 direction <- "east"
 buffer <- 25000
 ocean <- "pacific"

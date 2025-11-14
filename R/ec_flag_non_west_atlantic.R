@@ -1,5 +1,5 @@
-#' flag data points not in west atlantic
-#'
+#' @title Flag Occurrences those are not in west Atlantic and are inland
+
 #' @param ocean_names, Insert the name of oceans:
 #'  "South Pacific Ocean", "North Pacific Ocean", North Atlantic Ocean", "South Atlantic Ocean"
 #' @param buffer_distance, Its a certain buffer distance to consider if a data point is inland. Beyond this distance data points consider as bad data points. e.g. buffer_distance <- 25000
@@ -7,13 +7,13 @@
 #' @param latitude default set to "decimalLatitude"
 #' @param longitude default set to "decimalLongitude"
 #'
-#' @return a new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
+#' @return A new column with flagged values, 1 means bad records 0 means good record. Column name: flag_non_region
 #' @import sf
 #' @importFrom mregions2 mrp_get
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
 #' buffer_distance <- 25000
 #' data <- data.frame(

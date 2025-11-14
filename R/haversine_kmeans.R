@@ -1,11 +1,11 @@
-#' Calculate Harversine distance
+#' @title Calculate Harversine distance
 #'
 #' @param data is a dataframe with spatial attributes - Latitude and Logitude
 #' @param latitude nested imput from ec_flag_outlier
 #' @param longitude nested imput from ec_flag_outlier
 #' @param k is number of cluster required for the data set you have. Normally visual inspection can give a sense on number of clusters. Cautious to have more than expected clusters to fit all data points, as overfitting can end up inluding bad data points in the analysis. e.g. k = 3
 #'
-#' @return its a dataframe with a new column call
+#' @return A data frame with centroid and clusters using Harversine distance matrix
 #' @importFrom geosphere distm
 #' @importFrom geosphere distHaversine
 #'

@@ -1,9 +1,8 @@
 Package: EcoCleanR
-Title: Tools for Cleaning Occurrence Data to Generate Species Biogeographic Ranges
+Title: Automated and Controlled Extraction, Cleaning, and Processing of Occurrence Data for Generating Biogeographic Ranges of Marine Organisms
 Version: 1.0.1
-Authors@R: 
-    person("Priyanka", "Soni", , "sonip@usc.edu", role = c("aut", "cre"))
-Description: A tool to integrate biodiversity data from multiple aggregators and offers a step-by-step framework for data cleaning, outlier detection, and the generation of species biogeographic ranges. It also supports the extraction of relevant environmental information to assist in ecological and biogeographic analyses.
+Authors@R: c(person("Priyanka", "Soni", , "sonip@usc.edu", role = c("aut", "cre")),person("Austin", "Hendy", , "ahendy@nhm.org", role = c("ctb")),person("David", "Bottjer", , "dbottjer@usc.edu", role = c("ctb")))
+Description: Provides step-by-step automation for integrating biodiversity data from multiple online aggregators, merging and cleaning datasets while addressing challenges such as taxonomic inconsistencies, georeferencing issues, and spatial or environmental outliers. Includes functions to extract environmental data and to define the biogeographic ranges in which species are most likely to occur.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -2,8 +2,7 @@
 % Please edit documentation in R/ec_rm_duplicate.R
 \name{ec_rm_duplicate}
 \alias{ec_rm_duplicate}
-\title{This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
-mandatory fields are catalogNumber, source and abundance}
+\title{Remove Duplicate Records from the Merged Data}
 \usage{
 ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
 }
@@ -18,6 +17,9 @@ ec_rm_duplicate(data, catalogNumber = "catalogNumber", abundance = "abundance")
 A data frame which has unique catalog numbers. the output file will have cleaned_catalog field instead of catalogNumber. Also the unique record will be chosen with the abundance value if there is any.
 }
 \description{
+Remove Duplicate Records from the Merged Data
+}
+\details{
 This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
 mandatory fields are catalogNumber, source and abundance
 }

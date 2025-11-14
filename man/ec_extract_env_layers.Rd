@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_extract_env_layers.R
 \name{ec_extract_env_layers}
 \alias{ec_extract_env_layers}
-\title{extract the environmental layers}
+\title{Extract the Environmental data}
 \usage{
 ec_extract_env_layers(
   data,
@@ -21,10 +21,10 @@ ec_extract_env_layers(
 \item{longitude}{default assigned as "decimalLongitude"}
 }
 \value{
-a data table which has unique coordinates and env predictors
+A data table which has unique coordinates and env predictors
 }
 \description{
-extract the environmental layers
+Extract the Environmental data
 }
 \examples{
 env_layers <- c("BO_sstmean", "BO_chlomean", "BO_dissox", "BO_salinity")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_flag_outlier.R
 \name{ec_flag_outlier}
 \alias{ec_flag_outlier}
-\title{flag outliers - using spatial and non spatial attributes}
+\title{Flag Outlier Occurrences - using Spatial and Non-spatial Attributes}
 \usage{
 ec_flag_outlier(
   data,
@@ -33,10 +33,10 @@ ec_flag_outlier(
 \item{maha_quantile}{value with maha_quantile percentile would consider has threshold for maha_distance to derive the outlier. e.g. default 0.99}
 }
 \value{
-a column outlier which has outlier proportion from 0 to 1. 1 is more towards outlier, 0 more towards good data points.
+A column call flag_outlier which has outlier probability from 0 to 1. 1 is more towards outlier, 0 more towards good data points.
 }
 \description{
-flag outliers - using spatial and non spatial attributes
+Flag Outlier Occurrences - using Spatial and Non-spatial Attributes
 }
 \examples{
 data <- data.frame(

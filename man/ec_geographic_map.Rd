@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_geographic_map.R
 \name{ec_geographic_map}
 \alias{ec_geographic_map}
-\title{a map view of data}
+\title{map view of occurrence data points}
 \usage{
 ec_geographic_map(
   data,
@@ -21,7 +21,7 @@ ec_geographic_map(
 A map view shows occurrence records.
 }
 \description{
-a map view of data
+map view of occurrence data points
 }
 \examples{
 data <- data.frame(

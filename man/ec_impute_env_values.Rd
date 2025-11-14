@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_impute_env_values.R
 \name{ec_impute_env_values}
 \alias{ec_impute_env_values}
-\title{Impute env variables by mean values of data points within a certain radius}
+\title{Impute Environmental Variables using Mean Values of occurrences within a certain radius}
 \usage{
 ec_impute_env_values(
   data_x,
@@ -24,10 +24,10 @@ ec_impute_env_values(
 \item{iter}{number of times to iterate the imputation, e.g. 1 or 2 or 3}
 }
 \value{
-an updated table of data_x which has imputed values for the missing env variables, condition applies that the this imputation wont work if the data points are too sparse.
+An updated table of data_x which has imputed values for the missing env variables, condition applies that the this imputation wont work if the data points are too sparse.
 }
 \description{
-Impute env variables by mean values of data points within a certain radius
+Impute Environmental Variables using Mean Values of occurrences within a certain radius
 }
 \examples{
 
