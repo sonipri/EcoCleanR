@@ -273,7 +273,7 @@ print(summary_table)
 ec_plot_var_range(
   ecodata_with_outliers,
   summary_table,
-  latitude = "decimalLatitude", 
+  latitude = "decimalLatitude",
   longitude = "decimalLongitude",
   env_layers
 )
