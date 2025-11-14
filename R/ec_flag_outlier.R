@@ -1,4 +1,4 @@
-#' @title Flag Outlier Occurrences - using Spatial and Non-spatial Attributes
+#' Flag Outlier Occurrences - using Spatial and Non-spatial Attributes
 
 #' @param data data table with spatial and environmental variables
 #' @param latitude default set to "deciamlLatitude"

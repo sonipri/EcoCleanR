@@ -1,4 +1,4 @@
-#' @title Scatter Plot between geo_distance vs maha_distance with geo- and maha- Quantile Threshold to Demonstrate the Outliers outside those threshold.
+#' Scatter Plot between geo_distance vs maha_distance with geo- and maha- Quantile Threshold to Demonstrate the Outliers outside those threshold.
 #'
 #' @param x iteration_list derived from ec_flag_outlier can be used to plot these scatter plots between geo_distance vs maha_distance
 #' @param geo_quantile value with geo_quantile percentile would consider has threshold for geo_distance to derive the outlier. e.g. default 0.99

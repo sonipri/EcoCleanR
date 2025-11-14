@@ -2,7 +2,7 @@
 % Please edit documentation in R/ec_geographic_map.R
 \name{ec_geographic_map}
 \alias{ec_geographic_map}
-\title{map view of occurrence data points}
+\title{Map view of occurrence data points}
 \usage{
 ec_geographic_map(
   data,
@@ -11,7 +11,7 @@ ec_geographic_map(
 )
 }
 \arguments{
-\item{data}{Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table}
+\item{data}{Data table}
 
 \item{latitude}{default set to "decimalLatitude"}
 
@@ -21,7 +21,7 @@ ec_geographic_map(
 A map view shows occurrence records.
 }
 \description{
-map view of occurrence data points
+Map view of occurrence data points
 }
 \examples{
 data <- data.frame(

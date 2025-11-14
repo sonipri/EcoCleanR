@@ -1,4 +1,4 @@
-#' @title Flag the Occurrences those has Extreme Uncertainty Error Radius
+#' Flag the Occurrences those has Extreme Uncertainty Error Radius
 
 #' @param data data table which need to be cleaned with unwanted uncertainty values - extreme values
 #' @param uncertainty_col coordinateUncertaintyInMeters column

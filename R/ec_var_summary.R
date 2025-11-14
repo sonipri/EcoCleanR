@@ -1,4 +1,4 @@
-#' @title A Summary Table of Final Cleaned Spatial and Environmental Variables
+#' A Summary Table of Final Cleaned Spatial and Environmental Variables
 #'
 #' @param data data table after cleaning the records
 #' @param latitude default set to "decimalLatitude"

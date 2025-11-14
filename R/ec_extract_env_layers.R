@@ -1,4 +1,4 @@
-#' @title Extract the Environmental data
+#' Extract the Environmental data
 #'
 #' @param data data table which has coordinate information
 #' @param env_layers make a list of enviornmental layers which need to be extracted, example :BO_sstmean, BO_sstmax, BO_sstmin, BO_chomean, BO_phosphate or marspec layer, must check list_layer to know exact name of the layer code.

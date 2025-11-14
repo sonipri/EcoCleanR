@@ -1,4 +1,4 @@
-#' @title Merge the Update Georeferenced Occurrence Points back to the Main Data File.
+#' Merge the Update Georeferenced Occurrence Points back to the Main Data File.
 #' @param data_corrected After assigning coordinate values using online georeference tools such as GeoLocate, upload the csv file back to R with the name call data_corrected, we hardcoded the field names as "corrected_longitude", "corrected_latitude" and "corrected_uncertainty" and "cleaned_catalog" for column names of data_corrected dataset" which will be merge with "decimalLongitude", "decimalLantitude",  "coordinateUncertaintyInMeters" and "cleaned_catalog" of data table.
 #' @param data data table which needs to updated with the assign coordiantes
 #' @param catalog this is an important attribute to use matching the records back to the main data file.

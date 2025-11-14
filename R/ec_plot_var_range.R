@@ -1,4 +1,4 @@
-#' @title Plot cleaned data overlay overall occurrence data to demonstrate accepted ranges of spatial and non-spatial attributes
+#' Plot cleaned data overlay overall occurrence data to demonstrate accepted ranges of spatial and non-spatial attributes
 #'
 #' @param data data table which even has outlier data points
 #' @param summary_df summmary output of final cleaned data, after executing function ec_var_summary

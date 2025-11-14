@@ -1,4 +1,4 @@
-#' @title Filter records to georeference using GEOLocate
+#' Filter records to georeference using GEOLocate
 #' @details
 #' Records those does not have coordinates assigned but has locality and varbatim locality information to assign coordinates by using external tools such as GEOLocate
 #' @param data data table with occurrence information

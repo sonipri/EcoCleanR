@@ -1,5 +1,5 @@
-#' @title Merge the Data sets Extracted from Various datasources.
-#' @details
+#' Merge the Data sets Extracted from Various datasources.
+#' @description
 #' condition to run this function:
 #' all the data frames should have same fields follwing DwC standards:
 #' e.g. attribute_list <- c("source","catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode",	"verbatimEventDate",	"scientificName",	"individualCount",	"organismQuantity",	"abundance",	"decimalLatitude",	"decimalLongitude",	"coordinateUncertaintyInMeters",	"locality",	"verbatimLocality",	"municipality",	"county",	"stateProvince",	"country",	"countryCode")

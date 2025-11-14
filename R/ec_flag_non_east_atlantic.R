@@ -1,4 +1,4 @@
-#' @title Flag the occurrences those are not in east Atlantic and are inland
+#' Flag the occurrences those are not in east Atlantic and are inland
 
 #' @param ocean_names, Insert the name of oceans:
 #'  "South Pacific Ocean", "North Pacific Ocean", North Atlantic Ocean", "South Atlantic Ocean"

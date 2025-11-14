@@ -1,4 +1,4 @@
-#' @title Get Decimal Places of Coordinate Values
+#' Get Decimal Places of Coordinate Values
 #'
 #' @param coord A coordinate value in the numeric format of decimal degree
 #'

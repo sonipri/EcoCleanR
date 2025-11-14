@@ -1,4 +1,4 @@
-#' @title Check Accepted Synonyms from WoRMs Taxonomy
+#' Check Accepted Synonyms from WoRMs Taxonomy
 #' @param species_name input species name.e.g. Mexacanthina lugubris
 #' @param data data table which has information of all occurrence data of the selected species
 #' @param scientificName default set to scientificName, this is a column in the data extracted from online sources, may have various synonyms of species_name.

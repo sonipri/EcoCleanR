@@ -1,4 +1,4 @@
-#' @title Remove Duplicate Records from the Merged Data
+#' Remove Duplicate Records from the Merged Data
 #' @details This function will provide a cleaned_catalog column as output, which has catalog numbers standardize and removed duplicates based on generated cleaned_catalog and abundance columns of data.
 #' mandatory fields are catalogNumber, source and abundance
 #' @param data this is merge data frame which is a output file after running ec_db_merge

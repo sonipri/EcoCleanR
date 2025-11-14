@@ -1,4 +1,4 @@
-#' @title Calculate Harversine distance
+#' Calculate Harversine distance
 #'
 #' @param data is a dataframe with spatial attributes - Latitude and Logitude
 #' @param latitude nested imput from ec_flag_outlier

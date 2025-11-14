@@ -1,4 +1,4 @@
-#' @title Flag occurrences those has bad precision
+#' Flag occurrences those has bad precision
 #' @param data dataframe
 #' @param longitude decimalLongitude, this a field in the data file. We prefer to use decimalLongitude as accepeted name based on TDWG standards
 #' @param latitude decimalLatitude, this a field in the data file. We prefer to use decimalLatitude as accepeted name based on TDWG standards

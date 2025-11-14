@@ -6,7 +6,9 @@
 
 * NOTE: "Possibly misspelled words: Biogeographic, biogeographic and georeferencing"
   This is correct scientific terminology and intentional.
+  
+*NOTE: example run for \donttest{} - load heavy geographic marine gazetteer layers data files 
+Functions: ec_flag_non_east_atlantic(), ec_flag_non_east_pacific(), ec_flag_non_west_atlantic(), ec_flag_non_west_pacific(), ec_flag_non_region()
 
 * Additional comments
-* References and citation information will be added to the CITATION file and documentation after the manuscript is accepted.
-* GitHub repository will be linked in the URL/BugReports fields after the manuscript is accepted.
+* References and GitHub repository will be linked in the URL/BugReports fields after the manuscript is accepted.

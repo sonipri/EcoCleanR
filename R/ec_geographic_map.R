@@ -1,6 +1,5 @@
-#' @title map view of occurrence data points
-#'
-#' @param data Data table which has information of coordinates (decimalLongitude and decimalLatitude), you don't have to call any flagged column as this function will display all data points of the input data table
+#' Map view of occurrence data points
+#' @param data Data table
 #' @param latitude default set to "decimalLatitude"
 #' @param longitude default set to "decimalLongitude"
 #'

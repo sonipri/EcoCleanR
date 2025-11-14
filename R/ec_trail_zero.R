@@ -1,4 +1,4 @@
-#' @title Trail Zeros from the Coordinate Values
+#' Trail Zeros from the Coordinate Values
 #' @param coord A coordinate value in the numeric format of decimal degree
 #'
 #' @return A numerical trailed coordinate value.

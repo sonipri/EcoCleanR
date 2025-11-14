@@ -1,4 +1,4 @@
-#' @title Impute Environmental Variables using Mean Values of occurrences within a certain radius
+#' Impute Environmental Variables using Mean Values of occurrences within a certain radius
 #'
 #' @param data_x this is data_x which is the output of ec_extract_env_layers
 #' @param latitude default set to "decimalLatitude"

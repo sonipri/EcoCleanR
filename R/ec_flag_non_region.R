@@ -1,4 +1,4 @@
-#' @title Flag Occurrences those are in wrong ocean basins and are inland
+#' Flag Occurrences those are in wrong ocean basins and are inland
 
 #' @param direction, values as "east" or "west". These values help to filter the shape files for east or west of select ocean (e.g. pacific) for both north and south hemisphere.
 #' @param ocean, values such as "pacific" or "atlantic"
