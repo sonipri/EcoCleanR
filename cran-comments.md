@@ -4,7 +4,7 @@
 
 * This is a new release.
 
-* NOTE: "Possibly misspelled words: Biogeographic biogeographic"
+* NOTE: "Possibly misspelled words: Biogeographic, biogeographic and georeferencing"
   This is correct scientific terminology and intentional.
 
 * Additional comments
