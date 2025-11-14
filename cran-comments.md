@@ -4,4 +4,9 @@
 
 * This is a new release.
 
-'Biogeography' error with the word
+* NOTE: "Possibly misspelled words: Biogeographic biogeographic"
+  This is correct scientific terminology and intentional.
+
+## Additional comments
+* References and citation information will be added to the CITATION file and documentation after the manuscript is accepted.
+* GitHub repository will be linked in the URL/BugReports fields after the manuscript is accepted.
