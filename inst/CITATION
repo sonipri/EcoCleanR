@@ -8,17 +8,14 @@ bibentry(
          comment = c(ORCID = "0000-0001-8358-1645")),
 
   person("Austin", "Hendy",
-         role = "ctb",
+         role = "aut",
          comment = "Advising on building the method- PI),
 
   person("David", "Bottjer",
-         role = "ctb".,
-         comment = "Advising on building the method- PI"),
+         role = "aut".,
+         comment = "Advising on building the method- PI")
 
-  person("Vijay", "Barve",
-         role = "ctb",
-         comment = "Provided code development feedback")
-),
+  ),
   journal  = "Ecography",
   year     =  2026,
   url      = "https://github.com/sonipri/EcoCleanR"
