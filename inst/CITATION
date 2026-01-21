@@ -17,7 +17,7 @@ bibentry(
 
   person("Vijay", "Barve",
          role = "ctb",
-         comment = "Provided methodological feedback")
+         comment = "Provided code development feedback")
 ),
   journal  = "Ecography",
   year     =  2026,
