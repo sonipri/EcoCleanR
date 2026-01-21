@@ -1,4 +1,5 @@
 
+<a href="https://sonipri.github.io/EcoCleanR/"><img src="man/figures/logo.png" align="right" height="138" alt="EcoCleanR website" /></a>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # EcoCleanR 1.0.1
@@ -139,7 +140,7 @@ ec_geographic_map(ecodata,
 #> (`geom_point()`).
 ```
 
-<img src="man/figures/README-example-1.png" width="70%" />
+<img src="man/figures/README-example-1.png" alt="" width="70%" />
 
 ``` r
 
@@ -250,7 +251,7 @@ ec_geographic_map_w_flag(
 #> • colour : "Flag"
 ```
 
-<img src="man/figures/README-example-2.png" width="70%" />
+<img src="man/figures/README-example-2.png" alt="" width="70%" />
 
 ``` r
 # at this stage we can decide the acceptable outlier probability and after removing higher probable a new datafram called ecodata_cleaned can be source of summary table (next step)
@@ -260,7 +261,7 @@ data("ecodata_cleaned")
 ec_geographic_map(ecodata_cleaned)
 ```
 
-<img src="man/figures/README-example-3.png" width="70%" />
+<img src="man/figures/README-example-3.png" alt="" width="70%" />
 
 ``` r
 
@@ -287,7 +288,7 @@ ec_plot_var_range(
 )
 ```
 
-<img src="man/figures/README-example-4.png" width="70%" />
+<img src="man/figures/README-example-4.png" alt="" width="70%" />
 
 Further documents:<br>
 
