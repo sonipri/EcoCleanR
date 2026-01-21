@@ -27,21 +27,29 @@ Key features:<br>
     Create a summary and plot to represent suitable range of a species
     for spatial and non spatial attributes<br>
 
-## Installation from GitHub
+## Installation from CRAN (stable version) or GitHub (development version)
+
+      install.package("EcoCleanR")#cran version
 
 Install the development version of *EcoCleanR* from
-[GitHub](https://github.com/) with: \[Private\]
+[GitHub](https://github.com/sonipri/EcoCleanR):
 
-How to install package through zip file:<br>
+How to install package from github or through zip file downloaded from
+github:<br>
 
 1)  Install *devtools* and *remotes* packages and load them.<br>
 
     \#install.packages(“devtools”)<br> \#install.packages(“remotes”)<br>
     \#library(devtools)<br> \#library(remotes)<br>
 
-2)  Install *EcoCleanR* package from zip file.<br>
+2)  Install *EcoCleanR* package from \[github\] development version
 
-    \#devtools::install_local(“EcoCleanR-xxx.zip”, dependencies = TRUE)
+    \#remotes::install_github(“sonipri/EcoCleanR”)
+
+or install *EcoCleanR* package from downloaded zip file.<br>
+
+      #devtools::install_local("EcoCleanR.zip",
+      dependencies = TRUE)                   
 
 3)  unzip the zip file EcoCleanR and set it as working directory.<br>
 

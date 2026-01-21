@@ -13,6 +13,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
@@ -27,7 +28,7 @@
 #'   latitude = "decimalLatitude",
 #'   longitude = "decimalLongitude"
 #' )
-#'
+#' }
 ec_geographic_map_w_flag <- function(data, flag_column, latitude = "decimalLatitude", longitude = "decimalLongitude") {
   # Ensure the flag column is a factor
   data[[flag_column]] <- as.numeric(data[[flag_column]])
@@ -43,7 +44,7 @@ ec_geographic_map_w_flag <- function(data, flag_column, latitude = "decimalLatit
 
   # Load and crop world map
   world_map <- geodata::world(resolution = 3, path = tempdir()) # Load world map
-  cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
+  cropped_map <- terra::crop(x = world_map, y = geographic_extent) # Crop map
 
   # Convert cropped map to sf object
   my_map <- st_as_sf(cropped_map)

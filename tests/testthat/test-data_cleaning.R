@@ -61,6 +61,7 @@ test_that("ec_rm_duplicate works", {
 
 # ec_worms_synonym (Testing)
 test_that("ec_worms_synonym works", {
+  skip_if_not_installed("taxize")
   test_data1 <- data.frame(
     scientificName = c("Mexacanthina lugubris", "Mexacanthina angelica", "Notareal species"),
     stringsAsFactors = FALSE
@@ -147,6 +148,7 @@ test_that("ec_flag_precision", {
 
 # ec_flag_non_region (testing)
 test_that("ec_flag_non_region works", {
+  skip_if_not_installed("mregions2")
   test_data4 <- data.frame(
     species = "A",
     decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
@@ -157,13 +159,14 @@ test_that("ec_flag_non_region works", {
   buffer <- 25000
 
   # skip("Skipping ec_flag_non_region test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran due to heaving data load
+  # skip_on_cran() # skip on cran due to heavy data load
   # skip_on_ci()
   expect_equal(sum(ec_flag_non_region(direction, ocean, buffer, test_data4)), 6)
 })
 
 # ec_extract_env_layers(testing)
 test_that("ec_extract_env_layers works", {
+  skip_if_not_installed("sdmpredictors")
   test_data5 <- data.frame(
     scientificName = "Mexacanthina lugubris",
     decimalLongitude = -116.24,
@@ -260,6 +263,7 @@ test_that("ec_plot_distance works", {
 
 # ec_geographic_map_w_flag and flag_outlier
 test_that("ec_geographic_map_w_flag works", {
+  skip_if_not_installed("geodata")
   test_data7 <- data.frame(
     decimalLatitude = c(
       8.40, 16.80, 19.28, 20.25, 20.25, 20.25, 22.92, 23.22, 23.95, 24.36,
@@ -297,6 +301,7 @@ test_that("ec_geographic_map_w_flag works", {
 
 # ec_geographic_map
 test_that("ec_geographic_map works", {
+  skip_if_not_installed("geodata")
   test_data7 <- data.frame(
     decimalLatitude = c(
       8.40, 16.80, 19.28, 20.25, 20.25, 20.25, 22.92, 23.22, 23.95, 24.36,
@@ -407,6 +412,7 @@ test_that("ec_plot_var_range works", {
 
 # ec_flag_non_east_atlantic (testing)
 test_that("ec_flag_non_east_atlantic works", {
+  skip_if_not_installed("mregions2")
   test_data4 <- data.frame(
     species = "A",
     decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
@@ -428,6 +434,7 @@ test_that("ec_flag_non_east_atlantic works", {
 
 # ec_flag_non_west_atlantic (testing)
 test_that("ec_flag_non_west_atlantic works", {
+  skip_if_not_installed("mregions2")
   test_data4 <- data.frame(
     species = "A",
     decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
@@ -449,6 +456,7 @@ test_that("ec_flag_non_west_atlantic works", {
 
 # ec_flag_non_west_pacific (testing)
 test_that("ec_flag_non_west_pacific works", {
+  skip_if_not_installed("mregions2")
   test_data4 <- data.frame(
     species = "A",
     decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),

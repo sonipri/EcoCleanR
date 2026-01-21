@@ -27,6 +27,7 @@ A geographic map which shows occurrence data points with the color gradient to s
 Map view to visualize data points with outlier probability 0 to 1 on a map view
 }
 \examples{
+\donttest{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -41,5 +42,5 @@ ec_geographic_map_w_flag(data,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-
+}
 }

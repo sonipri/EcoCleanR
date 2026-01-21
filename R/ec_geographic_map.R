@@ -12,6 +12,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),
@@ -24,7 +25,7 @@
 #'   latitude = "decimalLatitude",
 #'   longitude = "decimalLongitude"
 #' )
-#'
+#' }
 ec_geographic_map <- function(data, latitude = "decimalLatitude", longitude = "decimalLongitude") {
   # Calculate latitude and longitude boundaries
   max_lat <- ceiling(max(data[[latitude]], na.rm = TRUE))
@@ -37,7 +38,7 @@ ec_geographic_map <- function(data, latitude = "decimalLatitude", longitude = "d
 
   # Load and crop world map
   world_map <- geodata::world(resolution = 3, path = tempdir()) # Load world map
-  cropped_map <- crop(x = world_map, y = geographic_extent) # Crop map
+  cropped_map <- terra::crop(x = world_map, y = geographic_extent) # Crop map
 
   # Convert cropped map to sf object
   my_map <- st_as_sf(cropped_map)

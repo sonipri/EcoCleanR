@@ -36,11 +36,14 @@ Key features:<br>
 3.2. Execute a summary table with max, min and mean limits of variables<br>
 3.3. Create a summary and plot to represent suitable range of a species for spatial and non spatial attributes<br>
 
-## Installation from GitHub
+## Installation from CRAN (stable version) or GitHub (development version)
 
-Install the development version of *EcoCleanR* from [GitHub](https://github.com/) with: [Private]
+      install.package("EcoCleanR")#cran version
 
-How to install package through zip file:<br>
+Install the development version of *EcoCleanR* from [GitHub](https://github.com/sonipri/EcoCleanR):
+
+     
+How to install package from github or through zip file downloaded from github:<br>
 
  a) Install *devtools* and *remotes* packages and load them.<br>
 
@@ -51,9 +54,14 @@ How to install package through zip file:<br>
       
  
 
- b) Install *EcoCleanR* package from zip file.<br>
+ b) Install *EcoCleanR* package from [github] development version
+ 
+      #remotes::install_github("sonipri/EcoCleanR")
+ 
+ or install *EcoCleanR* package from downloaded zip file.<br>
 
-      #devtools::install_local("EcoCleanR-xxx.zip",         dependencies = TRUE)                   
+      #devtools::install_local("EcoCleanR.zip",
+      dependencies = TRUE)                   
 
  c) unzip the zip file EcoCleanR and set it as working directory.<br>
 

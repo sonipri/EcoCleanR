@@ -24,6 +24,7 @@ A map view shows occurrence records.
 Map view of occurrence data points
 }
 \examples{
+\donttest{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -36,5 +37,5 @@ ec_geographic_map(data,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-
+}
 }

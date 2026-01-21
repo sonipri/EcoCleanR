@@ -1,7 +1,12 @@
 bibentry(
-  bibtype  = "manual",
+  bibtype  = "article",
   title    = "EcoCleanR: Enhancing data quality of biogeographic ranges with application for marine invertebrates",
-  author   = person("Priyanka", "Soni"),
+  author  = c(
+    person("Priyanka", "Soni"),
+    person("Austin", "Hendy"),
+    person("David", "Bottjer")
+    ),
   journal  = "Ecography",
-  year     =  2025
+  year     =  2026,
+  url      = "https://github.com/sonipri/EcoCleanR"
   )
