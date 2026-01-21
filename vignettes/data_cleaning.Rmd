@@ -3,7 +3,7 @@ title: "EcoCleanR: Overview on Steps for Data cleaning and defining Biogeographi
 output: rmarkdown::html_vignette
 
 vignette: >
-  %\VignetteIndexEntry{data_cleaning}
+  %\VignetteIndexEntry{EcoCleanR: Overview on Steps for Data cleaning and defining Biogeographic ranges}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

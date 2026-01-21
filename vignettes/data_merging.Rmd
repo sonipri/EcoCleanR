@@ -2,7 +2,7 @@
 title: "EcoCleanR: Overview on Steps for Data merging from online bioiversity resources"
 output: html_vignette
 vignette: >
-  %\VignetteIndexEntry{data_merging}
+  %\VignetteIndexEntry{EcoCleanR: Overview on Steps for Data merging from online bioiversity resources}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
