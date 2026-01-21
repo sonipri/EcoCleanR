@@ -1,0 +1,303 @@
+# stepbystep
+
+``` r
+library(EcoCleanR)
+```
+
+``` r
+library(rgbif)
+library(robis)
+library(ridigbio)
+library(dplyr)
+```
+
+``` r
+# select species of interest
+species_name <- "Mexacanthina lugubris"
+taxonkey <- name_backbone(species_name)$usageKey
+## attribute list has required fields of interest following DwG standards
+attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode", "verbatimEventDate", "scientificName", "individualCount", "organismQuantity", "abundance", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "locality", "verbatimLocality", "municipality", "county", "stateProvince", "country", "countryCode")
+
+# GBIF - data extraction and standardization---------
+## library(rgbif)
+gbif.occ <- occ_data(taxonKey = taxonkey, occurrenceStatus = NULL, limit = 10000L)$data
+
+## additional field added to know the source
+gbif.occ$source <- "gbif"
+
+# refer article/cite_data.Rmd for instructions on how to cite the data from gbif- data providers
+
+for (field in attribute_list) {
+  if (!field %in% names(gbif.occ)) {
+    gbif.occ[[field]] <- NA # Add the missing field as NA
+  }
+}
+## we are making one column called abundance which should have values from individual count and organism Quantity
+gbif.occ$abundance <- ifelse(is.na(as.numeric(gbif.occ$individualCount)), as.numeric(gbif.occ$organismQuantity), as.numeric(gbif.occ$individualCount))
+
+
+gbif.occ_temp <- gbif.occ[, attribute_list]
+str(gbif.occ_temp[, 1:3])
+## end of GBIF data extraction
+
+# OBIS- data extraction and standardization---------
+## library(robis)
+obis.occ <- occurrence(species_name)
+for (field in attribute_list) {
+  if (!field %in% names(obis.occ)) {
+    obis.occ[[field]] <- NA # Add the missing field as NA
+  }
+}
+obis.occ$abundance <- ifelse(is.na(as.numeric(obis.occ$individualCount)), as.numeric(obis.occ$organismQuantity), as.numeric(obis.occ$individualCount))
+obis.occ$source <- "obis"
+obis.occ$municipality <- ""
+obis.occ_temp <- obis.occ[, attribute_list]
+str(obis.occ_temp[, 1:3])
+
+## end of OBIS data extraction
+
+# IDIGBIO - data extraction and standardization---------
+## library(ridigbio)
+idig.occ <- idig_search_records(
+  type = "records",
+  rq = list("scientificname" = species_name),
+  field = "all",
+  max_items = 10000L,
+  limit = 10000L,
+  offset = 0
+)
+
+idig.occ <- idig.occ %>%
+  dplyr::mutate(
+    abundance = as.numeric(individualcount),
+    source = "idigbio",
+    occurrenceStatus = "",
+    organismQuantity = ""
+  ) %>%
+  dplyr::rename(
+    decimalLatitude = geopoint.lat,
+    decimalLongitude = geopoint.lon,
+    basisOfRecord = basisofrecord,
+    catalogNumber = catalognumber,
+    scientificName = scientificname,
+    stateProvince = stateprovince,
+    coordinateUncertaintyInMeters = coordinateuncertainty,
+    individualCount = individualcount,
+    institutionCode = institutioncode,
+    verbatimLocality = verbatimlocality,
+    verbatimEventDate = verbatimeventdate,
+    countryCode = countrycode
+  )
+
+idig.occ_temp <- idig.occ[, attribute_list]
+str(idig.occ_temp[, 1:3])
+
+## end of idigbio data extraction
+
+# Local file (InvertEbase) - data read and standardization---------
+
+# This local file "example_sp_invertebase" is a manual downloaded file from InvertEbase for Mexacanthina lugubris. See the example_sp_invertEbase dataset for its attributes and DwC format.
+sym.occ <- example_sp_invertebase # this file is currently loaded in package "/data" folder.
+sym.occ$abundance <- as.numeric(sym.occ$individualCount)
+
+for (field in attribute_list) {
+  if (!field %in% names(sym.occ)) {
+    sym.occ[[field]] <- NA # Add the missing field as NA
+  }
+}
+
+str(sym.occ[, 1:3])
+### end of InvertEBase
+
+# Step1: Merging the databases------
+db_list <- list(gbif.occ_temp, obis.occ_temp, idig.occ_temp, sym.occ)
+Mixdb.occ <- ec_db_merge(db_list = db_list, datatype = "modern")
+
+str(Mixdb.occ[, 1:3])
+### end of merge data. Note - we have duplicates which will be removed as part of data cleaning file.
+
+# step2: remove duplicates - ec_rm_duplicates-------------
+ecodata_cl <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance = "abundance")
+str(ecodata_cl[, 1:3])
+
+### Optional to perform: check the institution code
+inst_counts <- ecodata_cl %>%
+  group_by(institutionCode) %>%
+  summarise(record_count = n(), .groups = "drop")
+
+### optional to perform..
+ecodata_cl <- ecodata_cl %>%
+  filter(is.na(institutionCode) | institutionCode != "NRM")
+
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude")
+
+# Step3: check taxon error - ec_worms_synonym function--------
+comparison <- ec_worms_synonym(
+  species_name,
+  ecodata_cl,
+  scientificName = "scientificName"
+)
+print(comparison)
+### identified bad taxon... filter it
+ecodata_cl <- ecodata_cl %>%
+  filter(scientificName != "Morula lugubris (I.Sowerby, 1822)")
+str(ecodata_cl[, 1:3])
+### End of taxon check
+
+# Step4: check records for georeferencing - ec_flag_with_locality------
+
+# ecodata_cl$flag_check_geolocate <- ec_flag_with_locality(ecodata_cl)
+# str(ecodata_cl[,1:3])
+# data_need_correction <- ecodata %>%
+# filter(flag_check_geolocate!= 1)
+# write.csv(data_need_correction, "data_check_geolocate.csv") ###excute this code when required.
+
+# ecodata_corrected <- read.csv("M lugubris_corrected_geolocate.csv")###comment this code as we have this file in "/data" folder
+
+# ecodata_cl <- ec_merge_corrected_coordinates(
+#  ecodata_corrected,
+#  ecodata_cl,
+#  catalog = "cleaned_catalog",
+#  latitude = "decimalLatitude",
+#  longitude = "decimalLongitude",
+#  uncertainty_col = "coordinateUncertaintyInMeters" )
+
+# str(ecodata_cl[,1:3]) ###merged records with improved georeference.
+# ec_geographic_map(ecodata_cl)###plot the map
+# Currently we are showing scenario A: filter records which do not have coordinates and have exteme high uncertainty.
+
+# in case the data has coordinate values as Char, convert them as.numeric
+# ecodata_cl$decimalLatitude <- as.numeric(ecodata_cl$decimalLatitude)
+# ecodata_cl$decimalLongitude <- as.numeric(ecodata_cl$decimalLongitude)
+
+ecodata_cl <- ec_filter_by_uncertainty(ecodata_cl, uncertainty_col = "coordinateUncertaintyInMeters", percentile = 0.965, ask = TRUE, latitude = "decimalLatitude", longitude = "decimalLongitude")
+
+str(ecodata_cl[, 1:3])
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude") ### plot the map
+### end of ec_flag_with locality
+
+# Step5: flag with poor precision - ec_flag_precision--------
+ecodata_cl$flag_precision <- ec_flag_precision(ecodata_cl,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  threshold = 2
+)
+### filter the flag - flag_cordinate_precision
+ecodata_cl <- ecodata_cl %>%
+  filter(flag_precision != 1) # remove flagged records
+str(ecodata_cl[1:3])
+### end of flag with poor precision
+
+# Step6: flag recored from wrong ocean/sea - ec_flag_non_region------
+direction <- "east"
+buffer <- 25000
+ocean <- "pacific"
+ecodata_cl$flag_non_region <- ec_flag_non_region(direction,
+  ocean,
+  buffer,
+  ecodata_cl,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
+
+ec_geographic_map_w_flag(ecodata_cl,
+  flag_column = "flag_non_region",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+) # map view with flagged records
+ecodata_cl <- ecodata_cl %>%
+  filter(flag_non_region != 1) # remove flagged records
+str(ecodata_cl[1:3])
+ec_geographic_map(ecodata_cl, latitude = "decimalLatitude", longitude = "decimalLongitude")
+
+### end of flagging recored from wrong ocean/sea - ec_flag_non_region
+
+
+# Step7: extract the environmental data-------
+
+### get the unique combination of coordiantes
+ecodata_unique <- ecodata_cl[, c("decimalLatitude", "decimalLongitude")]
+ecodata_unique <- base::unique(ecodata_unique)
+
+# available_layers <- list_layers() # returns something like c("BO_sstmean", "BO_sstmax", ...)
+# get the layer_code from the available_layers table, please make sure to put exact name on the variable env_layers
+env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
+
+### extraction env layers
+ecodata_unique <- ec_extract_env_layers(
+  ecodata_unique,
+  env_layers = env_layers,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+) # warning message, extraction of env data from the cache
+### impute env var values those were missing after extraction
+### Recommand to View the file to check coordinates with "NA" values for env variables.
+### end of extraction env values
+
+# Step8: imput environmental data-------
+ecodata_unique <- ec_impute_env_values(ecodata_unique, latitude = "decimalLatitude", longitude = "decimalLongitude", radius_km = 15, iter = 4)
+### Recommand to View the file to check coordinates with "NA" values reduced
+### end of step 8 - data imputation
+
+# Step8: Flagging outliers - ec_flag_outliers---------
+### omit the coordinate which couldn't get any env values after imputation
+ecodata_unique <- na.omit(ecodata_unique)
+list_outlier <- list()
+list_outlier <- ec_flag_outlier(ecodata_unique,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers,
+  itr = 100,
+  k = 3,
+  geo_quantile = 0.99,
+  maha_quantile = 0.99
+)
+
+# running below code will provide a sense how many and what data points are considered out of the quantile. If you are not satisfied you can re-run the code with different quantile values and run again the plot view.
+ec_plot_distance(list_outlier[["result_list"]], geo_quantile = 0.99, maha_quantile = 0.99, iterative = TRUE, geo_distance = "geo_distance", maha_distance = "maha_distance")
+### press q to exit from the plot
+
+ecodata_unique$flag_outliers <- list_outlier$outliers
+
+### this function gives a list view, list one has all the 100 iteration dataframs and list 2 is consolidated outlier list derived from all the 100 iterations.
+### currently we are just assigning outliers from list to ecodata_unique
+
+### end of step 8, outlier detection
+
+### merge back the env variables and outliers into main table
+### if you re run this code it will generate more columns instead of overriding so make sure you delete those columns from earlier run
+ecodata_cl <- ecodata_cl %>%
+  left_join(ecodata_unique[, c("decimalLatitude", "decimalLongitude", "flag_outliers", env_layers)],
+    by = c("decimalLatitude", "decimalLongitude")
+  )
+
+ec_geographic_map_w_flag(ecodata_cl,
+  flag_column = "flag_outliers",
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
+### consider a threshold to accept a data point outlier with the outlier probability >0.8
+cleaned_data <- ecodata_cl %>%
+  filter(flag_outliers < 0.95) # this threshold can be change based on requirements
+
+ec_geographic_map(cleaned_data,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
+str(cleaned_data)
+# Step8: Create summary table for the accepted occurrence record to define a species distribution range
+summary_table <- ec_var_summary(cleaned_data,
+  env_layers = env_layers,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude"
+)
+head(summary_table)
+
+# Step9: Create plot to show accepted data records
+ec_plot_var_range(ecodata_cl,
+  summary_df = summary_table,
+  latitude = "decimalLatitude",
+  longitude = "decimalLongitude",
+  env_layers = env_layers
+)
+```
