@@ -1,22 +1,13 @@
 bibentry(
   bibtype  = "article",
   title    = "EcoCleanR: Enhancing data quality of biogeographic ranges with application for marine invertebrates",
- Authors@R = c(
-  person("Priyanka", "Soni",
-         role = c("aut", "cre"),
-         email = "sonip@usc.edu",
-         comment = c(ORCID = "0000-0001-8358-1645")),
-
-  person("Austin", "Hendy",
-         role = "aut",
-         comment = "Advising on building the method- PI),
-
-  person("David", "Bottjer",
-         role = "aut".,
-         comment = "Advising on building the method- PI")
-
+  author = personList(
+    person("Priyanka", "Soni"),
+    person("Dave", "Bottjer"),
+    person("Austin", "Hendy")
   ),
   journal  = "Ecography",
   year     =  2026,
+  doi      = "10.1002/ecog.08203",
   url      = "https://github.com/sonipri/EcoCleanR"
   )

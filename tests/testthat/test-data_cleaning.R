@@ -158,9 +158,9 @@ test_that("ec_flag_non_region works", {
   ocean <- "pacific"
   buffer <- 25000
 
-  # skip("Skipping ec_flag_non_region test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran due to heavy data load
-  # skip_on_ci()
+  skip("Skipping ec_flag_non_region test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heavy data load
+  skip_on_ci()
   expect_equal(sum(ec_flag_non_region(direction, ocean, buffer, test_data4)), 6)
 })
 
@@ -173,9 +173,9 @@ test_that("ec_extract_env_layers works", {
     decimalLatitude = 30.8
   )
   env_layers <- "BO_sstmean"
-  # skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
-  # skip_on_cran() # skip on cran as external env layers load
-  # skip_on_ci()
+  skip("Skipping ec_extract_env_layers test - big shape files required to load for it")
+  skip_on_cran() # skip on cran as external env layers load
+  skip_on_ci()
   result <- ec_extract_env_layers(test_data5, env_layers, latitude = "decimalLatitude", longitude = "decimalLongitude")
   expect_s3_class(result, "data.frame")
   expect_true(all(env_layers %in% colnames(result)))
@@ -289,13 +289,17 @@ test_that("ec_geographic_map_w_flag works", {
   )
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
-  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
 
+  test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+  skip("Skipping ec_flag_non_region test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heavy data load
+  skip_on_ci()
   p <- ec_geographic_map_w_flag(test_data7,
     flag_column = "outliers",
     latitude = "decimalLatitude",
     longitude = "decimalLongitude"
   )
+
   expect_s3_class(p, "ggplot")
 })
 
@@ -328,6 +332,11 @@ test_that("ec_geographic_map works", {
 
   env_layers <- c("BO_sstmean", "BO_sstmin", "BO_sstmax")
   test_data7$outliers <- (ec_flag_outlier(test_data7, latitude = "decimalLatitude", longitude = "decimalLongitude", env_layers, itr = 100, k = 1, geo_quantile = 0.99, maha_quantile = 0.99))$outlier # result obtained from ec_flag_outliers
+
+  skip("Skipping ec_flag_non_region test - big shape files required to load for it")
+  skip_on_cran() # skip on cran due to heavy data load
+  skip_on_ci()
+
   p1 <- ec_geographic_map(test_data7,
     latitude = "decimalLatitude",
     longitude = "decimalLongitude"
