@@ -1,4 +1,4 @@
-# EcoCleanR 1.0.1
+# EcoCleanR 1.0.2
 
 **The goal of EcoCleanR is to provides functions to integrate
 biodiversity data from multiple aggregates and offers a step-by-step
@@ -313,3 +313,10 @@ visualization at vignettes/article/stepbystep.rmd.
 \*see citation guidelines for the downloaded data from gbif, obis,
 idigbio and InvertEbase \[cite_data\] at
 vignettes/article/cite_data.rmd.
+
+### Acknowledgements
+
+- I thank reviewers, editors, and colleagues who provided valuable
+  feedback on the design and development of this package. Their
+  suggestions and discussions helped improve functionality and
+  usability.
