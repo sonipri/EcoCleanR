@@ -33,7 +33,7 @@ A map view shows occurrence records.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -46,6 +46,5 @@ ec_geographic_map(data,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-
-# }
+} # }
 ```

@@ -47,7 +47,7 @@ record. Column name: flag_non_region
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
 ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
 buffer_distance <- 25000
 data <- data.frame(
@@ -62,9 +62,5 @@ data$flag_non_region <- ec_flag_non_west_atlantic(
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-#> Cache is fresh. Reading: /tmp/Rtmpk4Vi2A/goas-1504f082/goas.shp
-#> (Last Modified: 2026-02-08 01:26:55.220993)
-#> Cache is fresh. Reading: /tmp/Rtmpk4Vi2A/goas-88f56a33/goas.shp
-#> (Last Modified: 2026-02-08 01:26:56.477988)
-# }
+} # }
 ```

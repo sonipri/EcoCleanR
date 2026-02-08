@@ -43,7 +43,7 @@ gradient to show flagged records in warm color.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),
@@ -58,8 +58,5 @@ ec_geographic_map_w_flag(data,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-#> Ignoring unknown labels:
-#> • colour : "Flag"
-
-# }
+} # }
 ```

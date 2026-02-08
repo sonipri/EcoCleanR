@@ -18,15 +18,13 @@
 
 Soni P, Bottjer D, Hendy A (2026). “EcoCleanR: enhancing data quality of
 biogeographic ranges with application for marine invertebrates.”
-*Ecography*.
-[doi:10.1002/ecog.08203](https://doi.org/10.1002/ecog.08203),
-<https://github.com/sonipri/EcoCleanR>.
+*Ecography*. in press, <https://github.com/sonipri/EcoCleanR>.
 
     @Article{,
       title = {EcoCleanR: enhancing data quality of biogeographic ranges with application for marine invertebrates},
       author = {Priyanka Soni and Dave Bottjer and Austin Hendy},
       journal = {Ecography},
       year = {2026},
-      doi = {10.1002/ecog.08203},
+      note = {in press},
       url = {https://github.com/sonipri/EcoCleanR},
     }

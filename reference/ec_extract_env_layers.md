@@ -41,6 +41,7 @@ A data table which has unique coordinates and env predictors
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 env_layers <- c("BO_sstmean", "BO_chlomean", "BO_dissox", "BO_salinity")
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
@@ -53,8 +54,5 @@ data_x <- ec_extract_env_layers(data,
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-#> Extracting BO_sstmean...
-#> Extracting BO_chlomean...
-#> Extracting BO_dissox...
-#> Extracting BO_salinity...
+} # }
 ```

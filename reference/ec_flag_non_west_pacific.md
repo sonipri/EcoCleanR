@@ -47,7 +47,7 @@ record. Column name: flag_non_region
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
 ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 buffer_distance <- 25000
 data <- data.frame(
@@ -62,9 +62,5 @@ data$flag_non_region <- ec_flag_non_west_pacific(
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-#> Cache is fresh. Reading: /tmp/Rtmpk4Vi2A/goas-9d9829c8/goas.shp
-#> (Last Modified: 2026-02-08 01:27:50.408772)
-#> Cache is fresh. Reading: /tmp/Rtmpk4Vi2A/goas-be75374d/goas.shp
-#> (Last Modified: 2026-02-08 01:27:58.951739)
-# }
+} # }
 ```

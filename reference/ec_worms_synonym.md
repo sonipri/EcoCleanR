@@ -33,6 +33,7 @@ data base with the number of records tagged under species names.
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 species_name <- "Mexacanthina lugubris"
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
@@ -40,22 +41,6 @@ data <- data.frame(
   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 )
 comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
-#> ══  1 queries  ═══════════════
-#> 
-#> Retrieving data for taxon 'Mexacanthina lugubris'
-#> ✔  Found:  Mexacanthina lugubris
-#> ══  Results  ═════════════════
-#> 
-#> • Total: 1 
-#> • Found: 1 
-#> • Not Found: 0
 print(comparison)
-#>       Accepted_syn_worms    ecodata_syn_with_count
-#> 1     Acanthina lugubris Mexacanthina lugubris (8)
-#> 2  Acanthina tyrianthina                      <NA>
-#> 3       Buccinum armatum                      <NA>
-#> 4  Mexacanthina lugubris                      <NA>
-#> 5      Monoceros cymatum                      <NA>
-#> 6 Monoceros denticulatum                      <NA>
-#> 7      Monoceros lugubre                      <NA>
+} # }
 ```
