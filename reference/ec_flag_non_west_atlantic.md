@@ -62,9 +62,9 @@ data$flag_non_region <- ec_flag_non_west_atlantic(
   latitude = "decimalLatitude",
   longitude = "decimalLongitude"
 )
-#> Cache is fresh. Reading: /tmp/RtmpfspCoy/goas-1504f082/goas.shp
-#> (Last Modified: 2026-02-07 01:19:17.578216)
-#> Cache is fresh. Reading: /tmp/RtmpfspCoy/goas-88f56a33/goas.shp
-#> (Last Modified: 2026-02-07 01:19:19.059239)
+#> Cache is fresh. Reading: /tmp/Rtmp1a3UkJ/goas-1504f082/goas.shp
+#> (Last Modified: 2026-02-08 00:25:56.420011)
+#> Cache is fresh. Reading: /tmp/Rtmp1a3UkJ/goas-88f56a33/goas.shp
+#> (Last Modified: 2026-02-08 00:25:57.805015)
 # }
 ```

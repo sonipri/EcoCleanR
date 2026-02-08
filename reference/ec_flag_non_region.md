@@ -68,9 +68,9 @@ data$flag_non_region <- ec_flag_non_region(
   buffer = 50000,
   data
 )
-#> Cache is fresh. Reading: /tmp/RtmpfspCoy/goas-9d9829c8/goas.shp
-#> (Last Modified: 2026-02-07 01:20:29.623347)
-#> Cache is fresh. Reading: /tmp/RtmpfspCoy/goas-be75374d/goas.shp
-#> (Last Modified: 2026-02-07 01:20:52.354707)
+#> Cache is fresh. Reading: /tmp/Rtmp1a3UkJ/goas-9d9829c8/goas.shp
+#> (Last Modified: 2026-02-08 00:26:54.728195)
+#> Cache is fresh. Reading: /tmp/Rtmp1a3UkJ/goas-be75374d/goas.shp
+#> (Last Modified: 2026-02-08 00:27:01.519216)
 # }
 ```
