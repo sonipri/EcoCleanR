@@ -1,6 +1,7 @@
 Package: EcoCleanR
 Title: ‘EcoCleanR’: enhancing data quality of biogeographic ranges with application for marine invertebrates
 Version: 1.0.2
+Language: en-US
 Authors@R: c(
   person(given = "Priyanka",
          family = "Soni",

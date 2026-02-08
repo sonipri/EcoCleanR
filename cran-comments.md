@@ -1,5 +1,5 @@
 ## R CMD check results
-
+checking for future file timestamps ... NOTE
 0 errors | 0 warnings | 1 note
 
 * This is a update of release - now call EcoCleanR Version 1.0.2.
