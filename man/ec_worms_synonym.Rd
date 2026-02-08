@@ -20,6 +20,7 @@ A table with two columns, column one represent the accepted synonyms, and column
 Check Accepted Synonyms from WoRMs Taxonomy
 }
 \examples{
+\dontrun{
 species_name <- "Mexacanthina lugubris"
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
@@ -28,5 +29,5 @@ data <- data.frame(
 )
 comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
 print(comparison)
-
+}
 }

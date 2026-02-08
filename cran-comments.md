@@ -1,16 +1,8 @@
 ## R CMD check results
+This submission updates version 1.0.1, which was archived due to internet access during R CMD check. In this version, all internet-dependent workflows (e.g. WoRMS/geodata maps/Bo-Oracle layers) have been removed from examples and tests or wrapped in \\dontrun{} or guarded so that no internet access occurs during CRAN checks. The package now passes R CMD check without internet use. Metadata issues noted in the archived version have also been corrected.
+
+
 checking for future file timestamps ... NOTE
 0 errors | 0 warnings | 1 note
 
-* This is a update of release - now call EcoCleanR Version 1.0.2.
-
-* NOTE: "Possibly misspelled words: Biogeographic, biogeographic and georeferencing"
-  This is correct scientific terminology and intentional.
-  
-*NOTE: example run for \donttest{} - load heavy geographic marine gazetteer layers data files 
-Functions: 
-ec_flag_non_east_atlantic(), ec_flag_non_east_pacific(), ec_flag_non_west_atlantic(), ec_flag_non_west_pacific(), 
-ec_flag_non_region(), 
-ec_geographic_map(), 
-ec_geographic_map_w_flag()
-
+ 

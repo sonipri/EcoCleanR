@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' ocean_names <- c("North Atlantic Ocean", "South Atlantic Ocean")
 #' buffer_distance <- 25000
 #' data <- data.frame(

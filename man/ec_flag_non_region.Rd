@@ -33,7 +33,7 @@ A new column with flagged values, 1 means bad records 0 means good record. Colum
 Flag Occurrences those are in wrong ocean basins and are inland
 }
 \examples{
-\donttest{
+\dontrun{
 direction <- "east"
 buffer <- 25000
 ocean <- "pacific"

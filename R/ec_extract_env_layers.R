@@ -11,6 +11,7 @@
 #' @importFrom terra extract
 #'
 #' @examples
+#' \dontrun{
 #' env_layers <- c("BO_sstmean", "BO_chlomean", "BO_dissox", "BO_salinity")
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
@@ -23,7 +24,7 @@
 #'   latitude = "decimalLatitude",
 #'   longitude = "decimalLongitude"
 #' )
-#'
+#' }
 ec_extract_env_layers <- function(data,
                                   env_layers = env_layers,
                                   latitude = "decimalLatitude",

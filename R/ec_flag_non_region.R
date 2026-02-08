@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' direction <- "east"
 #' buffer <- 25000
 #' ocean <- "pacific"

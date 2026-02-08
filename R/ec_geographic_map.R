@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
 #'   decimalLongitude = c(-117, -117.8, -116.9),

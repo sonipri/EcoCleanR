@@ -24,7 +24,7 @@ A map view shows occurrence records.
 Map view of occurrence data points
 }
 \examples{
-\donttest{
+\dontrun{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),

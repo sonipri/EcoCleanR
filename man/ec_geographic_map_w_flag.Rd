@@ -27,7 +27,7 @@ A geographic map which shows occurrence data points with the color gradient to s
 Map view to visualize data points with outlier probability 0 to 1 on a map view
 }
 \examples{
-\donttest{
+\dontrun{
 data <- data.frame(
   scientificName = "Mexacanthina lugubris",
   decimalLongitude = c(-117, -117.8, -116.9),

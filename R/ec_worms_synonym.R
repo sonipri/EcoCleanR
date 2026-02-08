@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' species_name <- "Mexacanthina lugubris"
 #' data <- data.frame(
 #'   scientificName = "Mexacanthina lugubris",
@@ -17,7 +18,7 @@
 #' )
 #' comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
 #' print(comparison)
-#'
+#' }
 ec_worms_synonym <- function(species_name, data, scientificName = "scientificName") {
   # Step 1: Get WoRMS ID and synonyms
   worms_id <- get_wormsid(species_name)

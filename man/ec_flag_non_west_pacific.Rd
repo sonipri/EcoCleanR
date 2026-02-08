@@ -31,7 +31,7 @@ A new column with flagged values, 1 means bad records 0 means good record. Colum
 Flag occurrences those are not in east Pacific and are inland
 }
 \examples{
-\donttest{
+\dontrun{
 ocean_names <- c("North Pacific Ocean", "South Pacific Ocean")
 buffer_distance <- 25000
 data <- data.frame(
