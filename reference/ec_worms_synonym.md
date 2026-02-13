@@ -5,7 +5,12 @@ Check Accepted Synonyms from WoRMs Taxonomy
 ## Usage
 
 ``` r
-ec_worms_synonym(species_name, data, scientificName = "scientificName")
+ec_worms_synonym(
+  species_name,
+  data,
+  scientificName = "scientificName",
+  verbose = TRUE
+)
 ```
 
 ## Arguments
@@ -24,6 +29,10 @@ ec_worms_synonym(species_name, data, scientificName = "scientificName")
   default set to scientificName, this is a column in the data extracted
   from online sources, may have various synonyms of species_name.
 
+- verbose:
+
+  default value as TRUE
+
 ## Value
 
 A table with two columns, column one represent the accepted synonyms,
@@ -40,7 +49,12 @@ data <- data.frame(
   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 )
-comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
+comparison <- ec_worms_synonym(
+  species_name,
+  data,
+  scientificName = "scientificName",
+  verbose = TRUE
+)
 print(comparison)
 } # }
 ```

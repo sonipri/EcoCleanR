@@ -49,6 +49,8 @@
   accepted ranges of spatial and non-spatial attributes
 - [`ec_rm_duplicate()`](https://sonipri.github.io/EcoCleanR/reference/ec_rm_duplicate.md)
   : Remove Duplicate Records from the Merged Data
+- [`ec_rm_duplicate_occurid()`](https://sonipri.github.io/EcoCleanR/reference/ec_rm_duplicate_occurid.md)
+  : Remove Duplicate Records from the Merged Data based on occurrenceID
 - [`ec_trail_zero()`](https://sonipri.github.io/EcoCleanR/reference/ec_trail_zero.md)
   : Trail Zeros from the Coordinate Values
 - [`ec_var_summary()`](https://sonipri.github.io/EcoCleanR/reference/ec_var_summary.md)

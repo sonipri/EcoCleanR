@@ -36,13 +36,18 @@ species_name <- "Mexacanthina lugubris"
 ## Step1: Remove duplicates
 
 Remove duplicates from the merged dataset which is a product after
-merging data from various sources
-
+merging data from various sources.  
+`ec_rm_duplicate_occurid` will return an occurrence table “ecodata”
+after removing duplicates based on unique occurrenceID, while retaining
+abundance counts wherever available.  
 `ec_rm_duplicate` will return an occurrence table “ecodata” after
 removing duplicates based on unique catalog numbers, while retaining
 abundance counts wherever available.
 
 ``` r
+ecodata <- ec_rm_duplicate_occuid(Mixdb.occ,  occurrenceID = "occurrenceID", abundance = "abundance")
+str(ecodata[,1:3])
+
 ecodata <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance = "abundance")
 str(ecodata[,1:3])
 

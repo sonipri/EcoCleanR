@@ -45,6 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sonipri/EcoCleanR.git/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -60,7 +61,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>EcoCleanR: Overview on Steps for Data cleaning and defining Biogeographic ranges</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/sonipri/EcoCleanR.git/blob/main/vignettes/data_cleaning.Rmd" class="external-link"><code>vignettes/data_cleaning.Rmd</code></a></small>
       <div class="d-none name"><code>data_cleaning.Rmd</code></div>
     </div>
 
@@ -84,7 +85,7 @@ Below is the demonstration of each steps:</p>
 [<code>data_merging</code>]</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># package loading</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sonipri.github.io/EcoCleanR/">EcoCleanR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sonipri/EcoCleanR.git" class="external-link">EcoCleanR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># provide example species name</span></span>
@@ -94,12 +95,16 @@ Below is the demonstration of each steps:</p>
 <h2 id="step1-remove-duplicates">Step1: Remove duplicates<a class="anchor" aria-label="anchor" href="#step1-remove-duplicates"></a>
 </h2>
 <p>Remove duplicates from the merged dataset which is a product after
-merging data from various sources</p>
-<p><code>ec_rm_duplicate</code> will return an occurrence table
-“ecodata” after removing duplicates based on unique catalog numbers,
-while retaining abundance counts wherever available.</p>
+merging data from various sources.<br><code>ec_rm_duplicate_occurid</code> will return an occurrence table
+“ecodata” after removing duplicates based on unique occurrenceID, while
+retaining abundance counts wherever available.<br><code>ec_rm_duplicate</code> will return an occurrence table “ecodata”
+after removing duplicates based on unique catalog numbers, while
+retaining abundance counts wherever available.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ecodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ec_rm_duplicate.html">ec_rm_duplicate</a></span><span class="op">(</span><span class="va">Mixdb.occ</span>, catalogNumber <span class="op">=</span> <span class="st">"catalogNumber"</span>, abundance <span class="op">=</span> <span class="st">"abundance"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ecodata</span> <span class="op">&lt;-</span> <span class="fu">ec_rm_duplicate_occuid</span><span class="op">(</span><span class="va">Mixdb.occ</span>,  occurrenceID <span class="op">=</span> <span class="st">"occurrenceID"</span>, abundance <span class="op">=</span> <span class="st">"abundance"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">ecodata</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ecodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ec_rm_duplicate.html">ec_rm_duplicate</a></span><span class="op">(</span><span class="va">Mixdb.occ</span>, catalogNumber <span class="op">=</span> <span class="st">"catalogNumber"</span>, abundance <span class="op">=</span> <span class="st">"abundance"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">ecodata</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### Optional to perform: check the institution code</span></span>

@@ -16,15 +16,20 @@
 
 ## Citation
 
+Source:
+[`inst/CITATION`](https://github.com/sonipri/EcoCleanR.git/blob/main/inst/CITATION)
+
 Soni P, Bottjer D, Hendy A (2026). “EcoCleanR: enhancing data quality of
 biogeographic ranges with application for marine invertebrates.”
-*Ecography*. in press, <https://github.com/sonipri/EcoCleanR>.
+*Ecography*.
+[doi:10.1002/ecog.08203](https://doi.org/10.1002/ecog.08203),
+<https://github.com/sonipri/EcoCleanR>.
 
     @Article{,
       title = {EcoCleanR: enhancing data quality of biogeographic ranges with application for marine invertebrates},
       author = {Priyanka Soni and Dave Bottjer and Austin Hendy},
       journal = {Ecography},
       year = {2026},
-      note = {in press},
+      doi = {10.1002/ecog.08203},
       url = {https://github.com/sonipri/EcoCleanR},
     }
