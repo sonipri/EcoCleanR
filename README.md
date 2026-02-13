@@ -2,7 +2,7 @@
 <a href="https://sonipri.github.io/EcoCleanR/"><img src="man/figures/logo.png" align="right" height="138" alt="EcoCleanR website" /></a>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EcoCleanR 1.0.2
+# EcoCleanR 1.0.3
 
 **The goal of EcoCleanR is to provides functions to integrate
 biodiversity data from multiple aggregates and offers a step-by-step
