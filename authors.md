@@ -17,7 +17,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/sonipri/EcoCleanR.git/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/sonipri/EcoCleanR/blob/main/inst/CITATION)
 
 Soni P, Bottjer D, Hendy A (2026). “EcoCleanR: enhancing data quality of
 biogeographic ranges with application for marine invertebrates.”
