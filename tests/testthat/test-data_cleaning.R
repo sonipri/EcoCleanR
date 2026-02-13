@@ -59,9 +59,39 @@ test_that("ec_rm_duplicate works", {
   expect_equal(sum(table(result$cleaned_catalog) > 1), 0)
 })
 
+# ec_rm_duplicate_occurid
+test_that("ec_rm_duplicate_occurid works", {
+  db1 <- data.frame(
+    species = "A",
+    decimalLongitude = c(-120.2, -117.1, NA, NA),
+    decimalLatitude = c(20.2, 34.1, NA, NA),
+    occurrenceID = c("12345", "89888", "LACM8898", "SDNHM6767"),
+    occurrenceStatus = c("present", NA, "ABSENT", "Present"),
+    basisOfRecord = c("preserved_specimen", NA, "fossilspecimen", "material_sample"),
+    source = "db1",
+    abundance = c(1, 6, 23, 1)
+  )
+
+  db2 <- data.frame(
+    species = "A",
+    decimalLongitude = c(-120.2, -117.1, NA, NA),
+    decimalLatitude = c(20.2, 34.1, NA, NA),
+    occurrenceID = c("12345", "898828", "LACM82898", "SDNHM62767"),
+    occurrenceStatus = c("present", "Absent", "present", "Present"),
+    basisOfRecord = c("preserved_specimen", NA, "fossilspecimen", "material_sample"),
+    source = "db2",
+    abundance = c(1, 3, 8, 19)
+  )
+  result <- ec_rm_duplicate_occurid(ec_db_merge(db_list = list(db1, db2), "modern"), occurrenceID = "occurrenceID", abundance = "abundance")
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 2)
+  expect_equal(sum(table(result$cleaned_occurrenceID) > 1), 0)
+})
+
+
 # ec_worms_synonym (Testing)
 test_that("ec_worms_synonym works", {
-  skip_if_not_installed("taxize")
+  skip_if_not_installed("worrms")
   test_data1 <- data.frame(
     scientificName = c("Mexacanthina lugubris", "Mexacanthina angelica", "Notareal species"),
     stringsAsFactors = FALSE

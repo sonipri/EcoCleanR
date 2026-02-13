@@ -8,6 +8,6 @@ bibentry(
   ),
   journal  = "Ecography",
   year     =  2026,
-  note     = "in press",
+  doi      =  "10.1002/ecog.08203",
   url      = "https://github.com/sonipri/EcoCleanR"
   )

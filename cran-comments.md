@@ -1,4 +1,10 @@
 ## R CMD check results
+Date 12th Feb 2026
+taxize package dependency has been removed.
+Title has been changed as suggested.
+
+
+Date: 7th Feb 2026
 This submission updates version 1.0.1, which was archived due to internet access during R CMD check. In this version, all internet-dependent workflows (e.g. WoRMS/geodata maps/Bo-Oracle layers) have been removed from examples and tests or wrapped in \\dontrun{} or guarded so that no internet access occurs during CRAN checks. The package now passes R CMD check without internet use. Metadata issues noted in the archived version have also been corrected.
 
 

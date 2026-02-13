@@ -4,7 +4,12 @@
 \alias{ec_worms_synonym}
 \title{Check Accepted Synonyms from WoRMs Taxonomy}
 \usage{
-ec_worms_synonym(species_name, data, scientificName = "scientificName")
+ec_worms_synonym(
+  species_name,
+  data,
+  scientificName = "scientificName",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{species_name}{input species name.e.g. Mexacanthina lugubris}
@@ -12,6 +17,8 @@ ec_worms_synonym(species_name, data, scientificName = "scientificName")
 \item{data}{data table which has information of all occurrence data of the selected species}
 
 \item{scientificName}{default set to scientificName, this is a column in the data extracted from online sources, may have various synonyms of species_name.}
+
+\item{verbose}{default value as TRUE}
 }
 \value{
 A table with two columns, column one represent the accepted synonyms, and column two demonstrate the unique species names from the occurrence data base with the number of records tagged under species names.
@@ -27,7 +34,12 @@ data <- data.frame(
   decimalLongitude = c(-120, -78, -110, -60, -75, -130, -10, 5),
   decimalLatitude = c(20, 34, 30, 10, 40, 25, 15, 35)
 )
-comparison <- ec_worms_synonym(species_name, data, scientificName = "scientificName")
+comparison <- ec_worms_synonym(
+  species_name,
+  data,
+  scientificName = "scientificName",
+  verbose = TRUE
+)
 print(comparison)
 }
 }

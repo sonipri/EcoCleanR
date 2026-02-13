@@ -27,7 +27,7 @@ library(dplyr)
 species_name <- "Mexacanthina lugubris"
 taxonkey <- name_backbone(species_name)$usageKey
 ## attribute list has required fields of interest following DwG standards
-attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode", "verbatimEventDate", "scientificName", "individualCount", "organismQuantity", "abundance", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "locality", "verbatimLocality", "municipality", "county", "stateProvince", "country", "countryCode")
+attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatus", "occurrenceID", "institutionCode", "verbatimEventDate", "scientificName", "individualCount", "organismQuantity", "abundance", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "locality", "verbatimLocality", "municipality", "county", "stateProvince", "country", "countryCode")
 
 # GBIF - data extraction and standardization---------
 ## library(rgbif)
@@ -97,7 +97,8 @@ idig.occ <- idig.occ %>%
     institutionCode = institutioncode,
     verbatimLocality = verbatimlocality,
     verbatimEventDate = verbatimeventdate,
-    countryCode = countrycode
+    countryCode = countryCode,
+    occurrenceID = occurrenceid
   )
 
 idig.occ_temp <- idig.occ[, attribute_list]
@@ -128,8 +129,15 @@ str(Mixdb.occ[, 1:3])
 ### end of merge data. Note - we have duplicates which will be removed as part of data cleaning file.
 
 # step2: remove duplicates - ec_rm_duplicates-------------
+# removed based on unique catalogNumber
+ecodata_cl <- ec_rm_duplicate_occurid(Mixdb.occ, occurrenceID = "occurrenceID", abundance = "abundance")
+str(ecodata_cl[, 1:3])
+
+# removed based on unique catalogNumber
 ecodata_cl <- ec_rm_duplicate(Mixdb.occ, catalogNumber = "catalogNumber", abundance = "abundance")
 str(ecodata_cl[, 1:3])
+
+
 
 ### Optional to perform: check the institution code
 inst_counts <- ecodata_cl %>%

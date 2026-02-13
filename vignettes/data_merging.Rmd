@@ -40,7 +40,7 @@ taxonkey <- name_backbone(species_name)$usageKey
 Given attributes in the list can be changed/added based on the requirement
 
 ```{r}
-attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatus", "institutionCode", "verbatimEventDate", "scientificName", "individualCount", "organismQuantity", "abundance", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "locality", "verbatimLocality", "municipality", "county", "stateProvince", "country", "countryCode")
+attribute_list <- c("source", "catalogNumber", "basisOfRecord", "occurrenceStatus", "occurrenceID", "institutionCode", "verbatimEventDate", "scientificName", "individualCount", "organismQuantity", "abundance", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "locality", "verbatimLocality", "municipality", "county", "stateProvince", "country", "countryCode")
 ```
 
 ## GBIF - data extraction and standardization

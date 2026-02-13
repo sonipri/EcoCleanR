@@ -1,5 +1,5 @@
 Package: EcoCleanR
-Title: EcoCleanR: Enhancing Data Quality of Biogeographic Ranges with Application for Marine Invertebrates
+Title: Enhancing Data Quality of Biogeographic Ranges with Application for Marine Invertebrates
 Version: 1.0.2
 Language: en-US
 Authors@R: c(
@@ -20,7 +20,7 @@ Authors@R: c(
          family = "Barve",
          role = "ctb",
          comment = "Code development feedback and advising"))
-Description: Provides step-by-step automation for integrating biodiversity data from multiple online aggregators, merging and cleaning datasets while addressing challenges such as taxonomic inconsistencies, georeferencing issues, and spatial or environmental outliers. Includes functions to extract environmental data and to define the biogeographic ranges in which species are most likely to occur.
+Description: Provides step-by-step automation for integrating biodiversity data from multiple online aggregators, merging and cleaning datasets while addressing challenges such as taxonomic inconsistencies, georeferencing issues, and spatial or environmental outliers. Includes functions to extract environmental data and to define the biogeographic ranges in which species are most likely to occur. Methods are described in Soni et al. (2026) <doi: 10.1002/ecog.08203>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -43,7 +43,7 @@ Imports:
     rlang,
     sdmpredictors,
     sf,
-    taxize,
+    worrms,
     terra,
     tidyr
 Depends: 
@@ -51,4 +51,4 @@ Depends:
 LazyData: true
 VignetteBuilder: knitr
 Config/Needs/website: rmarkdown
-URL: https://sonipri.github.io/EcoCleanR/, https://sonipri.github.io/EcoCleanR/
+URL: https://github.com/sonipri/EcoCleanR.git, https://sonipri.github.io/EcoCleanR/
