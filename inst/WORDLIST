@@ -1,8 +1,8 @@
 Acknowledgements
 Biogeographic
+CMD
 CatalogNumber
 DwC
-EcoCleanR’
 GBIF
 GEOLocate
 GeoLocate
@@ -24,6 +24,7 @@ WoRMS
 WoRMs
 WorldClim
 accepeted
+al
 atlantic
 basisOfRecord
 biogeographic
@@ -44,16 +45,20 @@ decimalLantitude
 decimalLatitude
 decimalLongitude
 devtools
-donttest
+doi
+dontrun
 ec
 ecodata
+ecog
 env
 enviornemnt
 enviornmental
+et
 follwing
 furntion
 gbif
 geo
+geodata
 georeference
 georeferenced
 georeferences
@@ -76,6 +81,7 @@ mahalanobis
 marspec
 mixdb
 mollusc
+occurrenceID
 occurrenceStatus
 organismQuantity
 rda
