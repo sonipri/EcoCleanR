@@ -1,5 +1,10 @@
 # Changelog
 
+## EcoCleanR 1.0.3
+
+- Fixed Title in DESCRIPTION.
+- Remove dependency on taxize package
+
 ## EcoCleanR 1.0.2
 
 -This submission updates version 1.0.1, which was archived due to

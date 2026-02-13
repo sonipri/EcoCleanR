@@ -1,4 +1,4 @@
-# EcoCleanR 1.0.2
+# EcoCleanR 1.0.3
 
 **The goal of EcoCleanR is to provides functions to integrate
 biodiversity data from multiple aggregates and offers a step-by-step
